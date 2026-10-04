@@ -1,0 +1,59 @@
+/* Mode switch (Figma: playback Speed). 27 px bordered track, 25 px segments, neutral raised segment. */
+.group {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  min-height: var(--control-height-sm);
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+}
+
+.indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--radius-chip);
+  background: var(--surface-active);
+  pointer-events: none;
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    width var(--duration-base) var(--ease-out),
+    opacity var(--duration-fast) ease;
+}
+
+.option {
+  position: relative;
+  z-index: 1;
+  height: calc(var(--control-height-sm) - 2px);
+  padding: 0 7px; /* Figma: 5 × 7 */
+  border: 0;
+  border-radius: var(--radius-chip);
+  background: none;
+  font: var(--type-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: color var(--duration-fast) ease;
+}
+
+.option:focus-visible {
+  outline-offset: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .option:hover {
+    color: var(--text-primary);
+  }
+}
+
+.active {
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: opacity var(--duration-fast) ease;
+  }
+}

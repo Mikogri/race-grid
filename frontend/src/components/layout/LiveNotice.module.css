@@ -1,0 +1,21 @@
+.notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--warning-border);
+  border-radius: var(--radius-panel);
+  background: var(--warning-subtle);
+  font: var(--type-body);
+  color: var(--text-secondary);
+}
+
+.notice svg {
+  flex: none;
+  color: var(--warning);
+}
+
+.notice strong {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}

@@ -1,0 +1,107 @@
+/* Tyre stints per driver: one 20 px row per car, compound-coloured bars on a lap axis. */
+.chart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: center;
+  height: 20px;
+  border-radius: var(--radius-xs);
+  transition: background-color var(--duration-fast) ease;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .clickable:hover {
+    background: var(--surface-2);
+  }
+}
+
+.selected,
+.selected:hover {
+  background: var(--surface-active);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-left: var(--space-1);
+  font: var(--type-mono-meta);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+
+.selected .label {
+  color: var(--text-primary);
+}
+
+.marker {
+  width: 3px;
+  height: 12px;
+  border-radius: var(--radius-pill);
+}
+
+.track {
+  position: relative;
+  height: 4px;
+}
+
+/* Thin, muted bars: compound colours read without glaring. */
+.stint {
+  position: absolute;
+  top: 0;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  opacity: 0.75;
+  transition: opacity var(--duration-slow) ease;
+}
+
+.future {
+  opacity: 0.25;
+}
+
+.pit {
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 10px;
+  background: var(--text-secondary);
+  border-radius: var(--radius-hairline);
+}
+
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 20px;
+  width: 1px;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+.axis {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  height: 16px;
+  margin-top: var(--space-1);
+}
+
+.axisTrack {
+  position: relative;
+}
+
+.axisTrack span {
+  position: absolute;
+  transform: translateX(-50%);
+  font: var(--type-chart);
+  font-variant-numeric: tabular-nums;
+  color: var(--chart-axis);
+}

@@ -1,0 +1,4068 @@
+{
+  "schema_version": 2,
+  "generator_version": "1.1.0",
+  "started_at": "2026-09-26T13:51:08.552867+00:00",
+  "requested_years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "mode": "reference_lap_per_circuit_year",
+  "selection": {
+    "laps_per_session": 8,
+    "max_sessions": 0
+  },
+  "sources": [
+    "https://api.openf1.org/v1/meetings",
+    "https://api.openf1.org/v1/sessions",
+    "https://api.openf1.org/v1/laps",
+    "https://api.openf1.org/v1/pit",
+    "https://api.openf1.org/v1/location"
+  ],
+  "status": "finished",
+  "catalogue_group_count": 96,
+  "requests_made": 320,
+  "updated_at": "2026-09-26T14:03:09.336558+00:00",
+  "counts": {
+    "cancelled": 2,
+    "no_historical_session": 8,
+    "ready": 86
+  },
+  "unique_ready_circuits": 25,
+  "circuit_years": [
+    {
+      "circuit_key": 9,
+      "circuit_name": "Austin",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9207",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9207",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-10-20T22%3A00%3A21.813000%2B00%3A00&date%3E=2023-10-20T21%3A58%3A45.095000%2B00%3A00&driver_number=1&session_key=9207"
+        },
+        "session_key": 9207,
+        "meeting_key": 1222,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 17,
+        "lap_duration_seconds": 94.718,
+        "lap_date_start": "2023-10-20T21:58:46.095000+00:00"
+      },
+      "quality": {
+        "input_count": 374,
+        "point_count": 370,
+        "measured_point_count": 366,
+        "unique_valid_timestamp_count": 374,
+        "time_coverage": 0.9974767203699402,
+        "maximum_sample_gap_seconds": 0.9,
+        "median_sample_gap_seconds": 0.259,
+        "closure_gap_xy_units": 85.63109795272577,
+        "closure_gap_fraction": 0.0015810567906536016,
+        "largest_step_fraction": 0.013504049733006082,
+        "sampled_length_xy_units": 54160.67181073633,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "austin-9/2023"
+    },
+    {
+      "circuit_key": 9,
+      "circuit_name": "Austin",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9608,
+          "driver_number": 4,
+          "lap_number": 13,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.66% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9608",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9608",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-10-19T22%3A53%3A02.492000%2B00%3A00&date%3E=2024-10-19T22%3A51%3A28.131000%2B00%3A00&driver_number=1&session_key=9608"
+        },
+        "session_key": 9608,
+        "meeting_key": 1247,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 14,
+        "lap_duration_seconds": 92.361,
+        "lap_date_start": "2024-10-19T22:51:29.131000+00:00"
+      },
+      "quality": {
+        "input_count": 362,
+        "point_count": 362,
+        "measured_point_count": 358,
+        "unique_valid_timestamp_count": 362,
+        "time_coverage": 0.9976072151665746,
+        "maximum_sample_gap_seconds": 1.12,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 25.94789441478179,
+        "closure_gap_fraction": 0.0004780405179045462,
+        "largest_step_fraction": 0.012372270673115488,
+        "sampled_length_xy_units": 54279.69689373275,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "austin-9/2024"
+    },
+    {
+      "circuit_key": 9,
+      "circuit_name": "Austin",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9884",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9884",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-10-18T22%3A04%3A35.063000%2B00%3A00&date%3E=2025-10-18T22%3A03%3A00.553000%2B00%3A00&driver_number=1&session_key=9884"
+        },
+        "session_key": 9884,
+        "meeting_key": 1271,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 11,
+        "lap_duration_seconds": 92.51,
+        "lap_date_start": "2025-10-18T22:03:01.553000+00:00"
+      },
+      "quality": {
+        "input_count": 366,
+        "point_count": 363,
+        "measured_point_count": 360,
+        "unique_valid_timestamp_count": 366,
+        "time_coverage": 0.9992433250459409,
+        "maximum_sample_gap_seconds": 0.94,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 72.4425581298387,
+        "closure_gap_fraction": 0.001337277319959336,
+        "largest_step_fraction": 0.013199953233791185,
+        "sampled_length_xy_units": 54171.6793133391,
+        "interpolated_boundary_points": 3,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "austin-9/2025"
+    },
+    {
+      "circuit_key": 9,
+      "circuit_name": "Austin",
+      "year": 2026,
+      "status": "no_historical_session",
+      "attempts": [],
+      "reason": "No ended non-cancelled session outside the 30-minute live window",
+      "folder": null
+    },
+    {
+      "circuit_key": 144,
+      "circuit_name": "Baku",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9064",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9064",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-04-28T14%3A26%3A18.853000%2B00%3A00&date%3E=2023-04-28T14%3A24%3A36.650000%2B00%3A00&driver_number=16&session_key=9064"
+        },
+        "session_key": 9064,
+        "meeting_key": 1207,
+        "session_name": "Qualifying",
+        "driver_number": 16,
+        "lap_number": 20,
+        "lap_duration_seconds": 100.203,
+        "lap_date_start": "2023-04-28T14:24:37.650000+00:00"
+      },
+      "quality": {
+        "input_count": 394,
+        "point_count": 393,
+        "measured_point_count": 389,
+        "unique_valid_timestamp_count": 394,
+        "time_coverage": 0.996377353971438,
+        "maximum_sample_gap_seconds": 1.04,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 15.438924804286932,
+        "closure_gap_fraction": 0.00025901876438430424,
+        "largest_step_fraction": 0.01423086783457835,
+        "sampled_length_xy_units": 59605.42990383629,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true,
+        "pit_filter_warning": "HTTP 404: {\"detail\":\"No results found.\"}\nhttps://api.openf1.org/v1/pit?session_key=9064"
+      },
+      "folder": "baku-144/2023"
+    },
+    {
+      "circuit_key": 144,
+      "circuit_name": "Baku",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9594,
+          "driver_number": 16,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.75% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9594",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9594",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-09-14T13%3A00%3A31.865000%2B00%3A00&date%3E=2024-09-14T12%3A58%3A48.179000%2B00%3A00&driver_number=81&session_key=9594"
+        },
+        "session_key": 9594,
+        "meeting_key": 1245,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 18,
+        "lap_duration_seconds": 101.686,
+        "lap_date_start": "2024-09-14T12:58:49.179000+00:00"
+      },
+      "quality": {
+        "input_count": 409,
+        "point_count": 405,
+        "measured_point_count": 401,
+        "unique_valid_timestamp_count": 409,
+        "time_coverage": 0.9977873060204944,
+        "maximum_sample_gap_seconds": 1.161,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 3.5745373865877497,
+        "closure_gap_fraction": 5.998089130007182e-05,
+        "largest_step_fraction": 0.012188041946222373,
+        "sampled_length_xy_units": 59594.60269946788,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "baku-144/2024"
+    },
+    {
+      "circuit_key": 144,
+      "circuit_name": "Baku",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9900,
+          "stage": "laps",
+          "error": "HTTP 404: {\"detail\":\"No results found.\"}\nhttps://api.openf1.org/v1/laps?session_key=9900"
+        },
+        {
+          "session_key": 9904,
+          "driver_number": 1,
+          "lap_number": 50,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.58% of sampled path length"
+        },
+        {
+          "session_key": 9904,
+          "driver_number": 63,
+          "lap_number": 42,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.63% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9904",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9904",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-09-21T12%3A36%3A16.282000%2B00%3A00&date%3E=2025-09-21T12%3A34%3A30.398000%2B00%3A00&driver_number=6&session_key=9904"
+        },
+        "session_key": 9904,
+        "meeting_key": 1269,
+        "session_name": "Race",
+        "driver_number": 6,
+        "lap_number": 50,
+        "lap_duration_seconds": 103.884,
+        "lap_date_start": "2025-09-21T12:34:31.398000+00:00"
+      },
+      "quality": {
+        "input_count": 404,
+        "point_count": 399,
+        "measured_point_count": 395,
+        "unique_valid_timestamp_count": 404,
+        "time_coverage": 0.9968811366524201,
+        "maximum_sample_gap_seconds": 0.781,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 9.147534735640859,
+        "closure_gap_fraction": 0.00015349164321477608,
+        "largest_step_fraction": 0.007488969552791303,
+        "sampled_length_xy_units": 59596.30468507656,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "baku-144/2025"
+    },
+    {
+      "circuit_key": 144,
+      "circuit_name": "Baku",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11373",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11373",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-09-25T13%3A04%3A01.437000%2B00%3A00&date%3E=2026-09-25T13%3A02%3A16.911000%2B00%3A00&driver_number=63&session_key=11373"
+        },
+        "session_key": 11373,
+        "meeting_key": 1295,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 25,
+        "lap_duration_seconds": 102.526,
+        "lap_date_start": "2026-09-25T13:02:17.911000+00:00"
+      },
+      "quality": {
+        "input_count": 398,
+        "point_count": 393,
+        "measured_point_count": 389,
+        "unique_valid_timestamp_count": 398,
+        "time_coverage": 0.9968203187484151,
+        "maximum_sample_gap_seconds": 1.041,
+        "median_sample_gap_seconds": 0.2405,
+        "closure_gap_xy_units": 120.23753642269556,
+        "closure_gap_fraction": 0.002013599015049175,
+        "largest_step_fraction": 0.014475947292414505,
+        "sampled_length_xy_units": 59712.75091220641,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "baku-144/2026"
+    },
+    {
+      "circuit_key": 15,
+      "circuit_name": "Catalunya",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9098",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9098",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-06-03T15%3A01%3A02.715000%2B00%3A00&date%3E=2023-06-03T14%3A59%3A48.443000%2B00%3A00&driver_number=1&session_key=9098"
+        },
+        "session_key": 9098,
+        "meeting_key": 1211,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 17,
+        "lap_duration_seconds": 72.272,
+        "lap_date_start": "2023-06-03T14:59:49.443000+00:00"
+      },
+      "quality": {
+        "input_count": 287,
+        "point_count": 284,
+        "measured_point_count": 280,
+        "unique_valid_timestamp_count": 287,
+        "time_coverage": 0.99319238432588,
+        "maximum_sample_gap_seconds": 0.68,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 84.31278164868218,
+        "closure_gap_fraction": 0.0018315828266618317,
+        "largest_step_fraction": 0.009911374152702691,
+        "sampled_length_xy_units": 46032.74305773396,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "catalunya-15/2023"
+    },
+    {
+      "circuit_key": 15,
+      "circuit_name": "Catalunya",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9535",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9535",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-06-22T15%3A00%3A53.029000%2B00%3A00&date%3E=2024-06-22T14%3A59%3A39.646000%2B00%3A00&driver_number=4&session_key=9535"
+        },
+        "session_key": 9535,
+        "meeting_key": 1238,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 11,
+        "lap_duration_seconds": 71.383,
+        "lap_date_start": "2024-06-22T14:59:40.646000+00:00"
+      },
+      "quality": {
+        "input_count": 285,
+        "point_count": 281,
+        "measured_point_count": 277,
+        "unique_valid_timestamp_count": 285,
+        "time_coverage": 0.9971561856464426,
+        "maximum_sample_gap_seconds": 0.681,
+        "median_sample_gap_seconds": 0.2495,
+        "closure_gap_xy_units": 44.92795714149667,
+        "closure_gap_fraction": 0.0009749747718003521,
+        "largest_step_fraction": 0.009193504799239683,
+        "sampled_length_xy_units": 46081.14839580349,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "catalunya-15/2024"
+    },
+    {
+      "circuit_key": 15,
+      "circuit_name": "Catalunya",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9967",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9967",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-05-31T15%3A00%3A10.350000%2B00%3A00&date%3E=2025-05-31T14%3A58%3A56.804000%2B00%3A00&driver_number=81&session_key=9967"
+        },
+        "session_key": 9967,
+        "meeting_key": 1262,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 13,
+        "lap_duration_seconds": 71.546,
+        "lap_date_start": "2025-05-31T14:58:57.804000+00:00"
+      },
+      "quality": {
+        "input_count": 279,
+        "point_count": 275,
+        "measured_point_count": 271,
+        "unique_valid_timestamp_count": 279,
+        "time_coverage": 0.994339306180639,
+        "maximum_sample_gap_seconds": 0.939,
+        "median_sample_gap_seconds": 0.2405,
+        "closure_gap_xy_units": 35.25136594545534,
+        "closure_gap_fraction": 0.0007636996959397332,
+        "largest_step_fraction": 0.008570454204119688,
+        "sampled_length_xy_units": 46158.674846764865,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "catalunya-15/2025"
+    },
+    {
+      "circuit_key": 15,
+      "circuit_name": "Catalunya",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 11303,
+          "driver_number": 63,
+          "lap_number": 12,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.65% of sampled path length"
+        },
+        {
+          "session_key": 11303,
+          "driver_number": 44,
+          "lap_number": 13,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.56% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11303",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11303",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-06-13T15%3A11%3A04.964000%2B00%3A00&date%3E=2026-06-13T15%3A09%3A47.966000%2B00%3A00&driver_number=12&session_key=11303"
+        },
+        "session_key": 11303,
+        "meeting_key": 1287,
+        "session_name": "Qualifying",
+        "driver_number": 12,
+        "lap_number": 13,
+        "lap_duration_seconds": 74.998,
+        "lap_date_start": "2026-06-13T15:09:48.966000+00:00"
+      },
+      "quality": {
+        "input_count": 284,
+        "point_count": 281,
+        "measured_point_count": 277,
+        "unique_valid_timestamp_count": 284,
+        "time_coverage": 0.9925731352836076,
+        "maximum_sample_gap_seconds": 1.141,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 55.65102071537613,
+        "closure_gap_fraction": 0.0012051559840008106,
+        "largest_step_fraction": 0.014388460571650238,
+        "sampled_length_xy_units": 46177.44213543954,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "catalunya-15/2026"
+    },
+    {
+      "circuit_key": 4,
+      "circuit_name": "Hungaroring",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9129,
+          "driver_number": 44,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.97% of sampled path length"
+        },
+        {
+          "session_key": 9129,
+          "driver_number": 1,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.10% of sampled path length"
+        },
+        {
+          "session_key": 9129,
+          "driver_number": 4,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.65% of sampled path length"
+        },
+        {
+          "session_key": 9129,
+          "driver_number": 81,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.80% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9129",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9129",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-07-22T15%3A00%3A22.858000%2B00%3A00&date%3E=2023-07-22T14%3A59%3A03.887000%2B00%3A00&driver_number=24&session_key=9129"
+        },
+        "session_key": 9129,
+        "meeting_key": 1215,
+        "session_name": "Qualifying",
+        "driver_number": 24,
+        "lap_number": 21,
+        "lap_duration_seconds": 76.971,
+        "lap_date_start": "2023-07-22T14:59:04.887000+00:00"
+      },
+      "quality": {
+        "input_count": 292,
+        "point_count": 287,
+        "measured_point_count": 283,
+        "unique_valid_timestamp_count": 292,
+        "time_coverage": 0.9967520234893661,
+        "maximum_sample_gap_seconds": 1.099,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 10.960562813563996,
+        "closure_gap_fraction": 0.00025343224422203387,
+        "largest_step_fraction": 0.014210746066450267,
+        "sampled_length_xy_units": 43248.49368402138,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "hungaroring-4/2023"
+    },
+    {
+      "circuit_key": 4,
+      "circuit_name": "Hungaroring",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9562",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9562",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-07-20T15%3A03%3A20.501000%2B00%3A00&date%3E=2024-07-20T15%3A02%3A03.274000%2B00%3A00&driver_number=4&session_key=9562"
+        },
+        "session_key": 9562,
+        "meeting_key": 1241,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 17,
+        "lap_duration_seconds": 75.227,
+        "lap_date_start": "2024-07-20T15:02:04.274000+00:00"
+      },
+      "quality": {
+        "input_count": 294,
+        "point_count": 292,
+        "measured_point_count": 288,
+        "unique_valid_timestamp_count": 294,
+        "time_coverage": 0.9991093623300144,
+        "maximum_sample_gap_seconds": 1.06,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 58.54472408037329,
+        "closure_gap_fraction": 0.001351233905046197,
+        "largest_step_fraction": 0.009872194996540956,
+        "sampled_length_xy_units": 43326.86136851467,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "hungaroring-4/2024"
+    },
+    {
+      "circuit_key": 4,
+      "circuit_name": "Hungaroring",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9924",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9924",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-08-02T14%3A31%3A57.104000%2B00%3A00&date%3E=2025-08-02T14%3A30%3A40.214000%2B00%3A00&driver_number=4&session_key=9924"
+        },
+        "session_key": 9924,
+        "meeting_key": 1266,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 8,
+        "lap_duration_seconds": 74.89,
+        "lap_date_start": "2025-08-02T14:30:41.214000+00:00"
+      },
+      "quality": {
+        "input_count": 297,
+        "point_count": 293,
+        "measured_point_count": 289,
+        "unique_valid_timestamp_count": 297,
+        "time_coverage": 0.9945386566964881,
+        "maximum_sample_gap_seconds": 1.1,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 57.88644764591648,
+        "closure_gap_fraction": 0.001339448814870198,
+        "largest_step_fraction": 0.014863702088563831,
+        "sampled_length_xy_units": 43216.61791273904,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "hungaroring-4/2025"
+    },
+    {
+      "circuit_key": 4,
+      "circuit_name": "Hungaroring",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 11338,
+          "driver_number": 1,
+          "lap_number": 15,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.98% of sampled path length"
+        },
+        {
+          "session_key": 11338,
+          "driver_number": 44,
+          "lap_number": 11,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.58% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11338",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11338",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-07-25T14%3A53%3A11.359000%2B00%3A00&date%3E=2026-07-25T14%3A51%3A51.914000%2B00%3A00&driver_number=16&session_key=11338"
+        },
+        "session_key": 11338,
+        "meeting_key": 1291,
+        "session_name": "Qualifying",
+        "driver_number": 16,
+        "lap_number": 16,
+        "lap_duration_seconds": 77.445,
+        "lap_date_start": "2026-07-25T14:51:52.914000+00:00"
+      },
+      "quality": {
+        "input_count": 300,
+        "point_count": 296,
+        "measured_point_count": 292,
+        "unique_valid_timestamp_count": 300,
+        "time_coverage": 0.9978694557427853,
+        "maximum_sample_gap_seconds": 0.94,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 9.650481741981238,
+        "closure_gap_fraction": 0.00022309983500152058,
+        "largest_step_fraction": 0.013368062094489607,
+        "sampled_length_xy_units": 43256.3374236268,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "hungaroring-4/2026"
+    },
+    {
+      "circuit_key": 6,
+      "circuit_name": "Imola",
+      "year": 2023,
+      "status": "cancelled",
+      "attempts": [],
+      "reason": "Only cancelled meetings in this circuit/year",
+      "folder": null
+    },
+    {
+      "circuit_key": 6,
+      "circuit_name": "Imola",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9511,
+          "driver_number": 1,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.66% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9511",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9511",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-05-18T15%3A00%3A51.433000%2B00%3A00&date%3E=2024-05-18T14%3A59%3A34.613000%2B00%3A00&driver_number=81&session_key=9511"
+        },
+        "session_key": 9511,
+        "meeting_key": 1235,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 14,
+        "lap_duration_seconds": 74.82,
+        "lap_date_start": "2024-05-18T14:59:35.613000+00:00"
+      },
+      "quality": {
+        "input_count": 303,
+        "point_count": 299,
+        "measured_point_count": 295,
+        "unique_valid_timestamp_count": 303,
+        "time_coverage": 0.9978615343491045,
+        "maximum_sample_gap_seconds": 0.94,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 98.19465308494101,
+        "closure_gap_fraction": 0.002013875243107114,
+        "largest_step_fraction": 0.011096588112892604,
+        "sampled_length_xy_units": 48759.054673834245,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "imola-6/2024"
+    },
+    {
+      "circuit_key": 6,
+      "circuit_name": "Imola",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9983,
+          "driver_number": 81,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.88% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9983",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9983",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-05-17T15%3A33%3A52.349000%2B00%3A00&date%3E=2025-05-17T15%3A32%3A35.645000%2B00%3A00&driver_number=1&session_key=9983"
+        },
+        "session_key": 9983,
+        "meeting_key": 1260,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 16,
+        "lap_duration_seconds": 74.704,
+        "lap_date_start": "2025-05-17T15:32:36.645000+00:00"
+      },
+      "quality": {
+        "input_count": 296,
+        "point_count": 292,
+        "measured_point_count": 288,
+        "unique_valid_timestamp_count": 296,
+        "time_coverage": 0.9975503319768688,
+        "maximum_sample_gap_seconds": 1.0,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 2.8318348378308316,
+        "closure_gap_fraction": 5.8173371071060496e-05,
+        "largest_step_fraction": 0.014154849733990454,
+        "sampled_length_xy_units": 48679.22875522653,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "imola-6/2025"
+    },
+    {
+      "circuit_key": 14,
+      "circuit_name": "Interlagos",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9304",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9304",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-11-03T18%3A51%3A06.975000%2B00%3A00&date%3E=2023-11-03T18%3A49%3A54.954000%2B00%3A00&driver_number=4&session_key=9304"
+        },
+        "session_key": 9304,
+        "meeting_key": 1224,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 9,
+        "lap_duration_seconds": 70.021,
+        "lap_date_start": "2023-11-03T18:49:55.954000+00:00"
+      },
+      "quality": {
+        "input_count": 284,
+        "point_count": 280,
+        "measured_point_count": 276,
+        "unique_valid_timestamp_count": 284,
+        "time_coverage": 0.9971294325987917,
+        "maximum_sample_gap_seconds": 0.5,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 4.168995376463964,
+        "closure_gap_fraction": 9.85096706533209e-05,
+        "largest_step_fraction": 0.01002348055540115,
+        "sampled_length_xy_units": 42320.671146446686,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "interlagos-14/2023"
+    },
+    {
+      "circuit_key": 14,
+      "circuit_name": "Interlagos",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9627",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9627",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-11-03T12%3A12%3A31.734000%2B00%3A00&date%3E=2024-11-03T12%3A11%3A06.329000%2B00%3A00&driver_number=4&session_key=9627"
+        },
+        "session_key": 9627,
+        "meeting_key": 1249,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 32,
+        "lap_duration_seconds": 83.405,
+        "lap_date_start": "2024-11-03T12:11:07.329000+00:00"
+      },
+      "quality": {
+        "input_count": 315,
+        "point_count": 311,
+        "measured_point_count": 307,
+        "unique_valid_timestamp_count": 315,
+        "time_coverage": 0.9968227324500929,
+        "maximum_sample_gap_seconds": 1.161,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 10.802641336760427,
+        "closure_gap_fraction": 0.00025545026443003305,
+        "largest_step_fraction": 0.014320588601942113,
+        "sampled_length_xy_units": 42288.62851586217,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "interlagos-14/2024"
+    },
+    {
+      "circuit_key": 14,
+      "circuit_name": "Interlagos",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9865",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9865",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-11-08T19%3A03%3A57.514000%2B00%3A00&date%3E=2025-11-08T19%3A02%3A46.003000%2B00%3A00&driver_number=4&session_key=9865"
+        },
+        "session_key": 9865,
+        "meeting_key": 1273,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 20,
+        "lap_duration_seconds": 69.511,
+        "lap_date_start": "2025-11-08T19:02:47.003000+00:00"
+      },
+      "quality": {
+        "input_count": 280,
+        "point_count": 276,
+        "measured_point_count": 272,
+        "unique_valid_timestamp_count": 280,
+        "time_coverage": 0.9940872667635338,
+        "maximum_sample_gap_seconds": 0.5,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 31.232190849081075,
+        "closure_gap_fraction": 0.0007375308839743539,
+        "largest_step_fraction": 0.011264486779971902,
+        "sampled_length_xy_units": 42346.96000902263,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "interlagos-14/2025"
+    },
+    {
+      "circuit_key": 14,
+      "circuit_name": "Interlagos",
+      "year": 2026,
+      "status": "no_historical_session",
+      "attempts": [],
+      "reason": "No ended non-cancelled session outside the 30-minute live window",
+      "folder": null
+    },
+    {
+      "circuit_key": 149,
+      "circuit_name": "Jeddah",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=7775",
+          "pit": "https://api.openf1.org/v1/pit?session_key=7775",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-03-18T17%3A53%3A36.744000%2B00%3A00&date%3E=2023-03-18T17%3A52%3A06.479000%2B00%3A00&driver_number=11&session_key=7775"
+        },
+        "session_key": 7775,
+        "meeting_key": 1142,
+        "session_name": "Qualifying",
+        "driver_number": 11,
+        "lap_number": 15,
+        "lap_duration_seconds": 88.265,
+        "lap_date_start": "2023-03-18T17:52:07.479000+00:00"
+      },
+      "quality": {
+        "input_count": 346,
+        "point_count": 342,
+        "measured_point_count": 338,
+        "unique_valid_timestamp_count": 346,
+        "time_coverage": 0.9969976774485922,
+        "maximum_sample_gap_seconds": 1.299,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 19.438202926619976,
+        "closure_gap_fraction": 0.00031829819846571024,
+        "largest_step_fraction": 0.00871168124926212,
+        "sampled_length_xy_units": 61069.15785360319,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true,
+        "pit_filter_warning": "HTTP 404: {\"detail\":\"No results found.\"}\nhttps://api.openf1.org/v1/pit?session_key=7775"
+      },
+      "folder": "jeddah-149/2023"
+    },
+    {
+      "circuit_key": 149,
+      "circuit_name": "Jeddah",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9476",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9476",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-03-08T17%3A57%3A26.164000%2B00%3A00&date%3E=2024-03-08T17%3A55%3A56.692000%2B00%3A00&driver_number=1&session_key=9476"
+        },
+        "session_key": 9476,
+        "meeting_key": 1230,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 14,
+        "lap_duration_seconds": 87.472,
+        "lap_date_start": "2024-03-08T17:55:57.692000+00:00"
+      },
+      "quality": {
+        "input_count": 355,
+        "point_count": 351,
+        "measured_point_count": 347,
+        "unique_valid_timestamp_count": 355,
+        "time_coverage": 0.9987195902688861,
+        "maximum_sample_gap_seconds": 0.521,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 22.727200972898103,
+        "closure_gap_fraction": 0.000371739802912127,
+        "largest_step_fraction": 0.0068248011640534775,
+        "sampled_length_xy_units": 61137.38909543251,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "jeddah-149/2024"
+    },
+    {
+      "circuit_key": 149,
+      "circuit_name": "Jeddah",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=10018",
+          "pit": "https://api.openf1.org/v1/pit?session_key=10018",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-04-19T18%3A09%3A59.659000%2B00%3A00&date%3E=2025-04-19T18%3A08%3A30.365000%2B00%3A00&driver_number=1&session_key=10018"
+        },
+        "session_key": 10018,
+        "meeting_key": 1258,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 18,
+        "lap_duration_seconds": 87.294,
+        "lap_date_start": "2025-04-19T18:08:31.365000+00:00"
+      },
+      "quality": {
+        "input_count": 347,
+        "point_count": 344,
+        "measured_point_count": 340,
+        "unique_valid_timestamp_count": 347,
+        "time_coverage": 0.995944738469998,
+        "maximum_sample_gap_seconds": 0.94,
+        "median_sample_gap_seconds": 0.241,
+        "closure_gap_xy_units": 75.38857809067473,
+        "closure_gap_fraction": 0.0012324269176023457,
+        "largest_step_fraction": 0.012540744559424334,
+        "sampled_length_xy_units": 61170.83050842579,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "jeddah-149/2025"
+    },
+    {
+      "circuit_key": 149,
+      "circuit_name": "Jeddah",
+      "year": 2026,
+      "status": "cancelled",
+      "attempts": [],
+      "reason": "Only cancelled meetings in this circuit/year",
+      "folder": null
+    },
+    {
+      "circuit_key": 12,
+      "circuit_name": "Kuala Lumpur",
+      "year": 2026,
+      "status": "no_historical_session",
+      "attempts": [],
+      "reason": "No ended non-cancelled session outside the 30-minute live window",
+      "folder": null
+    },
+    {
+      "circuit_key": 152,
+      "circuit_name": "Las Vegas",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9314",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9314",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-11-18T08%3A59%3A54.015000%2B00%3A00&date%3E=2023-11-18T08%3A58%3A19.289000%2B00%3A00&driver_number=16&session_key=9314"
+        },
+        "session_key": 9314,
+        "meeting_key": 1225,
+        "session_name": "Qualifying",
+        "driver_number": 16,
+        "lap_number": 22,
+        "lap_duration_seconds": 92.726,
+        "lap_date_start": "2023-11-18T08:58:20.289000+00:00"
+      },
+      "quality": {
+        "input_count": 357,
+        "point_count": 354,
+        "measured_point_count": 350,
+        "unique_valid_timestamp_count": 357,
+        "time_coverage": 0.9990725362897138,
+        "maximum_sample_gap_seconds": 0.68,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 76.77832503042639,
+        "closure_gap_fraction": 0.0012462396922373207,
+        "largest_step_fraction": 0.007336872063632145,
+        "sampled_length_xy_units": 61607.99203288859,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "las-vegas-152/2023"
+    },
+    {
+      "circuit_key": 152,
+      "circuit_name": "Las Vegas",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9640",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9640",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-11-23T07%3A22%3A09.108000%2B00%3A00&date%3E=2024-11-23T07%3A20%3A34.796000%2B00%3A00&driver_number=63&session_key=9640"
+        },
+        "session_key": 9640,
+        "meeting_key": 1250,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 24,
+        "lap_duration_seconds": 92.312,
+        "lap_date_start": "2024-11-23T07:20:35.796000+00:00"
+      },
+      "quality": {
+        "input_count": 375,
+        "point_count": 372,
+        "measured_point_count": 368,
+        "unique_valid_timestamp_count": 375,
+        "time_coverage": 0.9968368142820001,
+        "maximum_sample_gap_seconds": 0.5,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 80.1432958713091,
+        "closure_gap_fraction": 0.0012982813875659928,
+        "largest_step_fraction": 0.007323625732895406,
+        "sampled_length_xy_units": 61730.29717506857,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "las-vegas-152/2024"
+    },
+    {
+      "circuit_key": 152,
+      "circuit_name": "Las Vegas",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9854",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9854",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-11-22T05%3A07%3A22.964000%2B00%3A00&date%3E=2025-11-22T05%3A05%3A33.030000%2B00%3A00&driver_number=4&session_key=9854"
+        },
+        "session_key": 9854,
+        "meeting_key": 1274,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 24,
+        "lap_duration_seconds": 107.934,
+        "lap_date_start": "2025-11-22T05:05:34.030000+00:00"
+      },
+      "quality": {
+        "input_count": 425,
+        "point_count": 421,
+        "measured_point_count": 417,
+        "unique_valid_timestamp_count": 425,
+        "time_coverage": 0.9967202179109456,
+        "maximum_sample_gap_seconds": 0.941,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 80.04083527411466,
+        "closure_gap_fraction": 0.001302742440857442,
+        "largest_step_fraction": 0.008040346932206194,
+        "sampled_length_xy_units": 61440.26076361893,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "las-vegas-152/2025"
+    },
+    {
+      "circuit_key": 152,
+      "circuit_name": "Las Vegas",
+      "year": 2026,
+      "status": "no_historical_session",
+      "attempts": [],
+      "reason": "No ended non-cancelled session outside the 30-minute live window",
+      "folder": null
+    },
+    {
+      "circuit_key": 150,
+      "circuit_name": "Lusail",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9215",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9215",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-10-06T17%3A52%3A44.081000%2B00%3A00&date%3E=2023-10-06T17%3A51%3A18.303000%2B00%3A00&driver_number=1&session_key=9215"
+        },
+        "session_key": 9215,
+        "meeting_key": 1221,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 16,
+        "lap_duration_seconds": 83.778,
+        "lap_date_start": "2023-10-06T17:51:19.303000+00:00"
+      },
+      "quality": {
+        "input_count": 329,
+        "point_count": 325,
+        "measured_point_count": 321,
+        "unique_valid_timestamp_count": 329,
+        "time_coverage": 0.9997970827663586,
+        "maximum_sample_gap_seconds": 0.5,
+        "median_sample_gap_seconds": 0.259,
+        "closure_gap_xy_units": 111.63152689730123,
+        "closure_gap_fraction": 0.0020761633855511416,
+        "largest_step_fraction": 0.007321922045230841,
+        "sampled_length_xy_units": 53768.18013177096,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "lusail-150/2023"
+    },
+    {
+      "circuit_key": 150,
+      "circuit_name": "Lusail",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9646",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9646",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-11-30T19%3A00%3A49.640000%2B00%3A00&date%3E=2024-11-30T18%3A59%3A27.120000%2B00%3A00&driver_number=1&session_key=9646"
+        },
+        "session_key": 9646,
+        "meeting_key": 1251,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 21,
+        "lap_duration_seconds": 80.52,
+        "lap_date_start": "2024-11-30T18:59:28.120000+00:00"
+      },
+      "quality": {
+        "input_count": 316,
+        "point_count": 313,
+        "measured_point_count": 309,
+        "unique_valid_timestamp_count": 316,
+        "time_coverage": 0.9930452061599603,
+        "maximum_sample_gap_seconds": 0.76,
+        "median_sample_gap_seconds": 0.2405,
+        "closure_gap_xy_units": 3.410167389816523,
+        "closure_gap_fraction": 6.328645399885934e-05,
+        "largest_step_fraction": 0.009444356471882472,
+        "sampled_length_xy_units": 53884.633667071736,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "lusail-150/2024"
+    },
+    {
+      "circuit_key": 150,
+      "circuit_name": "Lusail",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9846",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9846",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-11-29T19%3A05%3A39.532000%2B00%3A00&date%3E=2025-11-29T19%3A04%3A18.145000%2B00%3A00&driver_number=81&session_key=9846"
+        },
+        "session_key": 9846,
+        "meeting_key": 1275,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 17,
+        "lap_duration_seconds": 79.387,
+        "lap_date_start": "2025-11-29T19:04:19.145000+00:00"
+      },
+      "quality": {
+        "input_count": 308,
+        "point_count": 306,
+        "measured_point_count": 302,
+        "unique_valid_timestamp_count": 308,
+        "time_coverage": 0.9943693551840981,
+        "maximum_sample_gap_seconds": 1.1,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 86.26810024427083,
+        "closure_gap_fraction": 0.0015993206067378678,
+        "largest_step_fraction": 0.012869895682713187,
+        "sampled_length_xy_units": 53940.46689627276,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "lusail-150/2025"
+    },
+    {
+      "circuit_key": 150,
+      "circuit_name": "Lusail",
+      "year": 2026,
+      "status": "no_historical_session",
+      "attempts": [],
+      "reason": "No ended non-cancelled session outside the 30-minute live window",
+      "folder": null
+    },
+    {
+      "circuit_key": 153,
+      "circuit_name": "Madring",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11365",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11365",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-09-12T15%3A00%3A15.504000%2B00%3A00&date%3E=2026-09-12T14%3A58%3A41.680000%2B00%3A00&driver_number=1&session_key=11365"
+        },
+        "session_key": 11365,
+        "meeting_key": 1294,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 18,
+        "lap_duration_seconds": 91.824,
+        "lap_date_start": "2026-09-12T14:58:42.680000+00:00"
+      },
+      "quality": {
+        "input_count": 342,
+        "point_count": 339,
+        "measured_point_count": 335,
+        "unique_valid_timestamp_count": 342,
+        "time_coverage": 0.9986495905209968,
+        "maximum_sample_gap_seconds": 1.0,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 23.20675920984893,
+        "closure_gap_fraction": 0.0004344045742027297,
+        "largest_step_fraction": 0.014891408444762173,
+        "sampled_length_xy_units": 53421.995503709186,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "madring-153/2026"
+    },
+    {
+      "circuit_key": 10,
+      "circuit_name": "Melbourne",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 7783,
+          "driver_number": 1,
+          "lap_number": 23,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.67% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=7783",
+          "pit": "https://api.openf1.org/v1/pit?session_key=7783",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-04-01T06%3A08%3A12.227000%2B00%3A00&date%3E=2023-04-01T06%3A06%3A53.259000%2B00%3A00&driver_number=63&session_key=7783"
+        },
+        "session_key": 7783,
+        "meeting_key": 1143,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 28,
+        "lap_duration_seconds": 76.968,
+        "lap_date_start": "2023-04-01T06:06:54.259000+00:00"
+      },
+      "quality": {
+        "input_count": 305,
+        "point_count": 301,
+        "measured_point_count": 297,
+        "unique_valid_timestamp_count": 305,
+        "time_coverage": 0.9962322003949693,
+        "maximum_sample_gap_seconds": 0.96,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 5.341934619209463,
+        "closure_gap_fraction": 0.00010165925935143697,
+        "largest_step_fraction": 0.010121070837535334,
+        "sampled_length_xy_units": 52547.44775133908,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true,
+        "pit_filter_warning": "HTTP 404: {\"detail\":\"No results found.\"}\nhttps://api.openf1.org/v1/pit?session_key=7783"
+      },
+      "folder": "melbourne-10/2023"
+    },
+    {
+      "circuit_key": 10,
+      "circuit_name": "Melbourne",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9484",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9484",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-03-23T05%3A59%3A32.851000%2B00%3A00&date%3E=2024-03-23T05%3A58%3A14.936000%2B00%3A00&driver_number=1&session_key=9484"
+        },
+        "session_key": 9484,
+        "meeting_key": 1231,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 20,
+        "lap_duration_seconds": 75.915,
+        "lap_date_start": "2024-03-23T05:58:15.936000+00:00"
+      },
+      "quality": {
+        "input_count": 309,
+        "point_count": 306,
+        "measured_point_count": 302,
+        "unique_valid_timestamp_count": 309,
+        "time_coverage": 0.9950470921425277,
+        "maximum_sample_gap_seconds": 0.921,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 95.3584044770878,
+        "closure_gap_fraction": 0.0018230557413072225,
+        "largest_step_fraction": 0.014213306884680399,
+        "sampled_length_xy_units": 52306.90555227403,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "melbourne-10/2024"
+    },
+    {
+      "circuit_key": 10,
+      "circuit_name": "Melbourne",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9689",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9689",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-03-15T05%3A59%3A16.360000%2B00%3A00&date%3E=2025-03-15T05%3A57%3A59.264000%2B00%3A00&driver_number=4&session_key=9689"
+        },
+        "session_key": 9689,
+        "meeting_key": 1254,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 19,
+        "lap_duration_seconds": 75.096,
+        "lap_date_start": "2025-03-15T05:58:00.264000+00:00"
+      },
+      "quality": {
+        "input_count": 294,
+        "point_count": 289,
+        "measured_point_count": 285,
+        "unique_valid_timestamp_count": 294,
+        "time_coverage": 0.9979093427080002,
+        "maximum_sample_gap_seconds": 0.68,
+        "median_sample_gap_seconds": 0.2505,
+        "closure_gap_xy_units": 15.265932209481551,
+        "closure_gap_fraction": 0.00029121873928812105,
+        "largest_step_fraction": 0.008042363322676103,
+        "sampled_length_xy_units": 52420.84436873413,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "melbourne-10/2025"
+    },
+    {
+      "circuit_key": 10,
+      "circuit_name": "Melbourne",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11230",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11230",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-03-07T06%3A19%3A02.546000%2B00%3A00&date%3E=2026-03-07T06%3A17%3A42.028000%2B00%3A00&driver_number=63&session_key=11230"
+        },
+        "session_key": 11230,
+        "meeting_key": 1279,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 21,
+        "lap_duration_seconds": 78.518,
+        "lap_date_start": "2026-03-07T06:17:43.028000+00:00"
+      },
+      "quality": {
+        "input_count": 300,
+        "point_count": 297,
+        "measured_point_count": 293,
+        "unique_valid_timestamp_count": 300,
+        "time_coverage": 0.998497159886905,
+        "maximum_sample_gap_seconds": 0.719,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 77.6947390086229,
+        "closure_gap_fraction": 0.0014803464409695424,
+        "largest_step_fraction": 0.008041627328107738,
+        "sampled_length_xy_units": 52484.15969287384,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "melbourne-10/2026"
+    },
+    {
+      "circuit_key": 65,
+      "circuit_name": "Mexico City",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9177",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9177",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-10-28T21%3A51%3A47.178000%2B00%3A00&date%3E=2023-10-28T21%3A50%3A28.012000%2B00%3A00&driver_number=16&session_key=9177"
+        },
+        "session_key": 9177,
+        "meeting_key": 1223,
+        "session_name": "Qualifying",
+        "driver_number": 16,
+        "lap_number": 13,
+        "lap_duration_seconds": 77.166,
+        "lap_date_start": "2023-10-28T21:50:29.012000+00:00"
+      },
+      "quality": {
+        "input_count": 310,
+        "point_count": 305,
+        "measured_point_count": 301,
+        "unique_valid_timestamp_count": 310,
+        "time_coverage": 0.9999222455485577,
+        "maximum_sample_gap_seconds": 0.48,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 70.8545630856558,
+        "closure_gap_fraction": 0.0016662715183878073,
+        "largest_step_fraction": 0.01003439468775698,
+        "sampled_length_xy_units": 42522.81954276622,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "mexico-city-65/2023"
+    },
+    {
+      "circuit_key": 65,
+      "circuit_name": "Mexico City",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9621",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9621",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-10-26T22%3A05%3A10.841000%2B00%3A00&date%3E=2024-10-26T22%3A03%3A52.895000%2B00%3A00&driver_number=55&session_key=9621"
+        },
+        "session_key": 9621,
+        "meeting_key": 1248,
+        "session_name": "Qualifying",
+        "driver_number": 55,
+        "lap_number": 20,
+        "lap_duration_seconds": 75.946,
+        "lap_date_start": "2024-10-26T22:03:53.895000+00:00"
+      },
+      "quality": {
+        "input_count": 299,
+        "point_count": 297,
+        "measured_point_count": 293,
+        "unique_valid_timestamp_count": 299,
+        "time_coverage": 0.9951939535986096,
+        "maximum_sample_gap_seconds": 0.48,
+        "median_sample_gap_seconds": 0.2405,
+        "closure_gap_xy_units": 72.74646704974562,
+        "closure_gap_fraction": 0.0017165794122181144,
+        "largest_step_fraction": 0.010495775494110536,
+        "sampled_length_xy_units": 42378.736766826725,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "mexico-city-65/2024"
+    },
+    {
+      "circuit_key": 65,
+      "circuit_name": "Mexico City",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9873,
+          "driver_number": 4,
+          "lap_number": 20,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.34% of sampled path length"
+        },
+        {
+          "session_key": 9873,
+          "driver_number": 16,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.74% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9873",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9873",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-10-25T22%3A00%3A27.155000%2B00%3A00&date%3E=2025-10-25T21%3A59%3A09.217000%2B00%3A00&driver_number=44&session_key=9873"
+        },
+        "session_key": 9873,
+        "meeting_key": 1272,
+        "session_name": "Qualifying",
+        "driver_number": 44,
+        "lap_number": 20,
+        "lap_duration_seconds": 75.938,
+        "lap_date_start": "2025-10-25T21:59:10.217000+00:00"
+      },
+      "quality": {
+        "input_count": 287,
+        "point_count": 283,
+        "measured_point_count": 279,
+        "unique_valid_timestamp_count": 287,
+        "time_coverage": 0.9973794411230215,
+        "maximum_sample_gap_seconds": 1.22,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 19.5998995261759,
+        "closure_gap_fraction": 0.0004616779085762133,
+        "largest_step_fraction": 0.01159373625118846,
+        "sampled_length_xy_units": 42453.62223767822,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "mexico-city-65/2025"
+    },
+    {
+      "circuit_key": 65,
+      "circuit_name": "Mexico City",
+      "year": 2026,
+      "status": "no_historical_session",
+      "attempts": [],
+      "reason": "No ended non-cancelled session outside the 30-minute live window",
+      "folder": null
+    },
+    {
+      "circuit_key": 151,
+      "circuit_name": "Miami",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9074",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9074",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-05-06T20%3A39%3A55.224000%2B00%3A00&date%3E=2023-05-06T20%3A38%3A26.410000%2B00%3A00&driver_number=1&session_key=9074"
+        },
+        "session_key": 9074,
+        "meeting_key": 1208,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 11,
+        "lap_duration_seconds": 86.814,
+        "lap_date_start": "2023-05-06T20:38:27.410000+00:00"
+      },
+      "quality": {
+        "input_count": 338,
+        "point_count": 336,
+        "measured_point_count": 332,
+        "unique_valid_timestamp_count": 338,
+        "time_coverage": 0.9954615614992974,
+        "maximum_sample_gap_seconds": 0.8,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 107.19708041540498,
+        "closure_gap_fraction": 0.0020006037772391542,
+        "largest_step_fraction": 0.012988114913873559,
+        "sampled_length_xy_units": 53582.36430170977,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true,
+        "pit_filter_warning": "HTTP 404: {\"detail\":\"No results found.\"}\nhttps://api.openf1.org/v1/pit?session_key=9074"
+      },
+      "folder": "miami-151/2023"
+    },
+    {
+      "circuit_key": 151,
+      "circuit_name": "Miami",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9498",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9498",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-05-04T20%3A52%3A23.884000%2B00%3A00&date%3E=2024-05-04T20%3A50%3A54.643000%2B00%3A00&driver_number=1&session_key=9498"
+        },
+        "session_key": 9498,
+        "meeting_key": 1234,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 14,
+        "lap_duration_seconds": 87.241,
+        "lap_date_start": "2024-05-04T20:50:55.643000+00:00"
+      },
+      "quality": {
+        "input_count": 347,
+        "point_count": 345,
+        "measured_point_count": 341,
+        "unique_valid_timestamp_count": 347,
+        "time_coverage": 0.9988308249561559,
+        "maximum_sample_gap_seconds": 0.5,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 0.1769286030181099,
+        "closure_gap_fraction": 3.3080601316621985e-06,
+        "largest_step_fraction": 0.007467749190802315,
+        "sampled_length_xy_units": 53484.09520270985,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "miami-151/2024"
+    },
+    {
+      "circuit_key": 151,
+      "circuit_name": "Miami",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 10029,
+          "driver_number": 1,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.91% of sampled path length"
+        },
+        {
+          "session_key": 10029,
+          "driver_number": 4,
+          "lap_number": 20,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.63% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=10029",
+          "pit": "https://api.openf1.org/v1/pit?session_key=10029",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-05-03T20%3A45%3A02.245000%2B00%3A00&date%3E=2025-05-03T20%3A43%3A33.976000%2B00%3A00&driver_number=81&session_key=10029"
+        },
+        "session_key": 10029,
+        "meeting_key": 1259,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 9,
+        "lap_duration_seconds": 86.269,
+        "lap_date_start": "2025-05-03T20:43:34.976000+00:00"
+      },
+      "quality": {
+        "input_count": 328,
+        "point_count": 325,
+        "measured_point_count": 321,
+        "unique_valid_timestamp_count": 328,
+        "time_coverage": 0.9968818463179125,
+        "maximum_sample_gap_seconds": 1.06,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 60.68214740730223,
+        "closure_gap_fraction": 0.0011332903109732713,
+        "largest_step_fraction": 0.007777990113335439,
+        "sampled_length_xy_units": 53545.10386238837,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "miami-151/2025"
+    },
+    {
+      "circuit_key": 151,
+      "circuit_name": "Miami",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11276",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11276",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-05-02T20%3A57%3A03.384000%2B00%3A00&date%3E=2026-05-02T20%3A55%3A33.586000%2B00%3A00&driver_number=12&session_key=11276"
+        },
+        "session_key": 11276,
+        "meeting_key": 1284,
+        "session_name": "Qualifying",
+        "driver_number": 12,
+        "lap_number": 14,
+        "lap_duration_seconds": 87.798,
+        "lap_date_start": "2026-05-02T20:55:34.586000+00:00"
+      },
+      "quality": {
+        "input_count": 332,
+        "point_count": 328,
+        "measured_point_count": 324,
+        "unique_valid_timestamp_count": 332,
+        "time_coverage": 0.9977334335634069,
+        "maximum_sample_gap_seconds": 1.119,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 23.867662284937786,
+        "closure_gap_fraction": 0.0004465322361985359,
+        "largest_step_fraction": 0.010161891428228712,
+        "sampled_length_xy_units": 53451.15167525288,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "miami-151/2026"
+    },
+    {
+      "circuit_key": 22,
+      "circuit_name": "Monte Carlo",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9090",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9090",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-05-27T15%3A11%3A16.425000%2B00%3A00&date%3E=2023-05-27T15%3A10%3A03.060000%2B00%3A00&driver_number=1&session_key=9090"
+        },
+        "session_key": 9090,
+        "meeting_key": 1210,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 29,
+        "lap_duration_seconds": 71.365,
+        "lap_date_start": "2023-05-27T15:10:04.060000+00:00"
+      },
+      "quality": {
+        "input_count": 266,
+        "point_count": 263,
+        "measured_point_count": 259,
+        "unique_valid_timestamp_count": 266,
+        "time_coverage": 0.9943249492047922,
+        "maximum_sample_gap_seconds": 0.841,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 9.229642193164398,
+        "closure_gap_fraction": 0.0002819606980687772,
+        "largest_step_fraction": 0.014945937083497979,
+        "sampled_length_xy_units": 32733.789696154956,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true,
+        "pit_filter_warning": "HTTP 404: {\"detail\":\"No results found.\"}\nhttps://api.openf1.org/v1/pit?session_key=9090"
+      },
+      "folder": "monte-carlo-22/2023"
+    },
+    {
+      "circuit_key": 22,
+      "circuit_name": "Monte Carlo",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9519,
+          "driver_number": 16,
+          "lap_number": 25,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.02% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9519",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9519",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-05-25T14%3A59%3A38.688000%2B00%3A00&date%3E=2024-05-25T14%3A58%3A26.264000%2B00%3A00&driver_number=81&session_key=9519"
+        },
+        "session_key": 9519,
+        "meeting_key": 1236,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 23,
+        "lap_duration_seconds": 70.424,
+        "lap_date_start": "2024-05-25T14:58:27.264000+00:00"
+      },
+      "quality": {
+        "input_count": 275,
+        "point_count": 270,
+        "measured_point_count": 266,
+        "unique_valid_timestamp_count": 275,
+        "time_coverage": 0.9925309553561285,
+        "maximum_sample_gap_seconds": 1.02,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 15.698795981320986,
+        "closure_gap_fraction": 0.0004789846974970434,
+        "largest_step_fraction": 0.011190521783193293,
+        "sampled_length_xy_units": 32775.15140537008,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "monte-carlo-22/2024"
+    },
+    {
+      "circuit_key": 22,
+      "circuit_name": "Monte Carlo",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9975,
+          "driver_number": 4,
+          "lap_number": 26,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.96% of sampled path length"
+        },
+        {
+          "session_key": 9975,
+          "driver_number": 16,
+          "lap_number": 26,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.73% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9975",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9975",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-05-24T15%3A14%3A58.970000%2B00%3A00&date%3E=2025-05-24T15%3A13%3A46.841000%2B00%3A00&driver_number=81&session_key=9975"
+        },
+        "session_key": 9975,
+        "meeting_key": 1261,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 28,
+        "lap_duration_seconds": 70.129,
+        "lap_date_start": "2025-05-24T15:13:47.841000+00:00"
+      },
+      "quality": {
+        "input_count": 272,
+        "point_count": 269,
+        "measured_point_count": 265,
+        "unique_valid_timestamp_count": 272,
+        "time_coverage": 0.9984457214561735,
+        "maximum_sample_gap_seconds": 0.96,
+        "median_sample_gap_seconds": 0.241,
+        "closure_gap_xy_units": 26.719258513481293,
+        "closure_gap_fraction": 0.0008172989970878148,
+        "largest_step_fraction": 0.012735352524872559,
+        "sampled_length_xy_units": 32692.146458868636,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "monte-carlo-22/2025"
+    },
+    {
+      "circuit_key": 22,
+      "circuit_name": "Monte Carlo",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 11295,
+          "driver_number": 12,
+          "lap_number": 27,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.50% of sampled path length"
+        },
+        {
+          "session_key": 11295,
+          "driver_number": 3,
+          "lap_number": 25,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.21% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11295",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11295",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-06-06T15%3A07%3A10.139000%2B00%3A00&date%3E=2026-06-06T15%3A05%3A55.860000%2B00%3A00&driver_number=44&session_key=11295"
+        },
+        "session_key": 11295,
+        "meeting_key": 1286,
+        "session_name": "Qualifying",
+        "driver_number": 44,
+        "lap_number": 27,
+        "lap_duration_seconds": 72.279,
+        "lap_date_start": "2026-06-06T15:05:56.860000+00:00"
+      },
+      "quality": {
+        "input_count": 280,
+        "point_count": 273,
+        "measured_point_count": 269,
+        "unique_valid_timestamp_count": 280,
+        "time_coverage": 0.9908825523319361,
+        "maximum_sample_gap_seconds": 0.94,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 71.25785698647046,
+        "closure_gap_fraction": 0.002182193297028047,
+        "largest_step_fraction": 0.014370212841299463,
+        "sampled_length_xy_units": 32654.23694753225,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "monte-carlo-22/2026"
+    },
+    {
+      "circuit_key": 23,
+      "circuit_name": "Montreal",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9106",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9106",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-06-17T20%3A39%3A04.372000%2B00%3A00&date%3E=2023-06-17T20%3A37%3A43.647000%2B00%3A00&driver_number=23&session_key=9106"
+        },
+        "session_key": 9106,
+        "meeting_key": 1212,
+        "session_name": "Qualifying",
+        "driver_number": 23,
+        "lap_number": 18,
+        "lap_duration_seconds": 78.725,
+        "lap_date_start": "2023-06-17T20:37:44.647000+00:00"
+      },
+      "quality": {
+        "input_count": 311,
+        "point_count": 309,
+        "measured_point_count": 305,
+        "unique_valid_timestamp_count": 311,
+        "time_coverage": 0.9994283899650684,
+        "maximum_sample_gap_seconds": 0.9,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 8.93820233472862,
+        "closure_gap_fraction": 0.0002071835480434042,
+        "largest_step_fraction": 0.0095563037216872,
+        "sampled_length_xy_units": 43141.46764614775,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "montreal-23/2023"
+    },
+    {
+      "circuit_key": 23,
+      "circuit_name": "Montreal",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9527",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9527",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-06-08T20%3A39%3A46.422000%2B00%3A00&date%3E=2024-06-08T20%3A38%3A32.680000%2B00%3A00&driver_number=63&session_key=9527"
+        },
+        "session_key": 9527,
+        "meeting_key": 1237,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 19,
+        "lap_duration_seconds": 71.742,
+        "lap_date_start": "2024-06-08T20:38:33.680000+00:00"
+      },
+      "quality": {
+        "input_count": 283,
+        "point_count": 280,
+        "measured_point_count": 276,
+        "unique_valid_timestamp_count": 283,
+        "time_coverage": 0.9930027041342587,
+        "maximum_sample_gap_seconds": 0.5,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 15.773616227476909,
+        "closure_gap_fraction": 0.0003656030830975435,
+        "largest_step_fraction": 0.008888144235210685,
+        "sampled_length_xy_units": 43144.10068382406,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "montreal-23/2024"
+    },
+    {
+      "circuit_key": 23,
+      "circuit_name": "Montreal",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9959",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9959",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-06-14T21%3A07%3A59.370000%2B00%3A00&date%3E=2025-06-14T21%3A06%3A46.471000%2B00%3A00&driver_number=63&session_key=9959"
+        },
+        "session_key": 9959,
+        "meeting_key": 1263,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 20,
+        "lap_duration_seconds": 70.899,
+        "lap_date_start": "2025-06-14T21:06:47.471000+00:00"
+      },
+      "quality": {
+        "input_count": 285,
+        "point_count": 281,
+        "measured_point_count": 277,
+        "unique_valid_timestamp_count": 285,
+        "time_coverage": 0.9957827331838248,
+        "maximum_sample_gap_seconds": 0.52,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 36.336778254622736,
+        "closure_gap_fraction": 0.0008431741359591979,
+        "largest_step_fraction": 0.012116466835912217,
+        "sampled_length_xy_units": 43095.22399342324,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "montreal-23/2025"
+    },
+    {
+      "circuit_key": 23,
+      "circuit_name": "Montreal",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 11287,
+          "driver_number": 63,
+          "lap_number": 23,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.80% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11287",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11287",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-05-23T20%3A59%3A23.406000%2B00%3A00&date%3E=2026-05-23T20%3A58%3A08.760000%2B00%3A00&driver_number=12&session_key=11287"
+        },
+        "session_key": 11287,
+        "meeting_key": 1285,
+        "session_name": "Qualifying",
+        "driver_number": 12,
+        "lap_number": 23,
+        "lap_duration_seconds": 72.646,
+        "lap_date_start": "2026-05-23T20:58:09.760000+00:00"
+      },
+      "quality": {
+        "input_count": 288,
+        "point_count": 283,
+        "measured_point_count": 279,
+        "unique_valid_timestamp_count": 288,
+        "time_coverage": 0.9963384081711312,
+        "maximum_sample_gap_seconds": 0.68,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 4.331497445274276,
+        "closure_gap_fraction": 0.00010042896881914345,
+        "largest_step_fraction": 0.010064320085676105,
+        "sampled_length_xy_units": 43129.96037104206,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "montreal-23/2026"
+    },
+    {
+      "circuit_key": 39,
+      "circuit_name": "Monza",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9153,
+          "driver_number": 55,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.85% of sampled path length"
+        },
+        {
+          "session_key": 9153,
+          "driver_number": 1,
+          "lap_number": 20,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.98% of sampled path length"
+        },
+        {
+          "session_key": 9153,
+          "driver_number": 16,
+          "lap_number": 20,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.59% of sampled path length"
+        },
+        {
+          "session_key": 9153,
+          "driver_number": 63,
+          "lap_number": 20,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.61% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9153",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9153",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-09-02T15%3A00%3A50.264000%2B00%3A00&date%3E=2023-09-02T14%3A59%3A27.576000%2B00%3A00&driver_number=11&session_key=9153"
+        },
+        "session_key": 9153,
+        "meeting_key": 1218,
+        "session_name": "Qualifying",
+        "driver_number": 11,
+        "lap_number": 20,
+        "lap_duration_seconds": 80.688,
+        "lap_date_start": "2023-09-02T14:59:28.576000+00:00"
+      },
+      "quality": {
+        "input_count": 317,
+        "point_count": 315,
+        "measured_point_count": 311,
+        "unique_valid_timestamp_count": 317,
+        "time_coverage": 0.9959349593495934,
+        "maximum_sample_gap_seconds": 1.081,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 78.22257581921633,
+        "closure_gap_fraction": 0.0013562452950587017,
+        "largest_step_fraction": 0.012860718747863924,
+        "sampled_length_xy_units": 57675.8320225772,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "monza-39/2023"
+    },
+    {
+      "circuit_key": 39,
+      "circuit_name": "Monza",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9586",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9586",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-08-31T15%3A04%3A10.916000%2B00%3A00&date%3E=2024-08-31T15%3A02%3A49.589000%2B00%3A00&driver_number=4&session_key=9586"
+        },
+        "session_key": 9586,
+        "meeting_key": 1244,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 11,
+        "lap_duration_seconds": 79.327,
+        "lap_date_start": "2024-08-31T15:02:50.589000+00:00"
+      },
+      "quality": {
+        "input_count": 326,
+        "point_count": 324,
+        "measured_point_count": 320,
+        "unique_valid_timestamp_count": 326,
+        "time_coverage": 0.9956257012114413,
+        "maximum_sample_gap_seconds": 0.48,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 33.401485495798326,
+        "closure_gap_fraction": 0.0005801652509731571,
+        "largest_step_fraction": 0.00760178658067417,
+        "sampled_length_xy_units": 57572.36483876166,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "monza-39/2024"
+    },
+    {
+      "circuit_key": 39,
+      "circuit_name": "Monza",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9908",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9908",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-09-06T15%3A02%3A13.909000%2B00%3A00&date%3E=2025-09-06T15%3A00%3A53.117000%2B00%3A00&driver_number=1&session_key=9908"
+        },
+        "session_key": 9908,
+        "meeting_key": 1268,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 17,
+        "lap_duration_seconds": 78.792,
+        "lap_date_start": "2025-09-06T15:00:54.117000+00:00"
+      },
+      "quality": {
+        "input_count": 305,
+        "point_count": 301,
+        "measured_point_count": 297,
+        "unique_valid_timestamp_count": 305,
+        "time_coverage": 0.9978170372626664,
+        "maximum_sample_gap_seconds": 0.939,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 50.98581003573444,
+        "closure_gap_fraction": 0.0008859762046414166,
+        "largest_step_fraction": 0.009638567362845426,
+        "sampled_length_xy_units": 57547.60654815787,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "monza-39/2025"
+    },
+    {
+      "circuit_key": 39,
+      "circuit_name": "Monza",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 11357,
+          "driver_number": 10,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.61% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11357",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11357",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-09-05T15%3A01%3A00.945000%2B00%3A00&date%3E=2026-09-05T14%3A59%3A37.099000%2B00%3A00&driver_number=63&session_key=11357"
+        },
+        "session_key": 11357,
+        "meeting_key": 1293,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 16,
+        "lap_duration_seconds": 81.846,
+        "lap_date_start": "2026-09-05T14:59:38.099000+00:00"
+      },
+      "quality": {
+        "input_count": 317,
+        "point_count": 313,
+        "measured_point_count": 309,
+        "unique_valid_timestamp_count": 317,
+        "time_coverage": 0.9969943552525473,
+        "maximum_sample_gap_seconds": 1.0,
+        "median_sample_gap_seconds": 0.2405,
+        "closure_gap_xy_units": 82.67281360869076,
+        "closure_gap_fraction": 0.0014372599545077803,
+        "largest_step_fraction": 0.014472533086365792,
+        "sampled_length_xy_units": 57521.1278581847,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "monza-39/2026"
+    },
+    {
+      "circuit_key": 63,
+      "circuit_name": "Sakhir",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 7768,
+          "driver_number": 1,
+          "lap_number": 14,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.93% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=7768",
+          "pit": "https://api.openf1.org/v1/pit?session_key=7768",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-03-04T16%3A09%3A02.834000%2B00%3A00&date%3E=2023-03-04T16%3A07%3A30.988000%2B00%3A00&driver_number=11&session_key=7768"
+        },
+        "session_key": 7768,
+        "meeting_key": 1141,
+        "session_name": "Qualifying",
+        "driver_number": 11,
+        "lap_number": 14,
+        "lap_duration_seconds": 89.846,
+        "lap_date_start": "2023-03-04T16:07:31.988000+00:00"
+      },
+      "quality": {
+        "input_count": 343,
+        "point_count": 339,
+        "measured_point_count": 335,
+        "unique_valid_timestamp_count": 343,
+        "time_coverage": 0.9990316764241034,
+        "maximum_sample_gap_seconds": 1.0,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 3.230668496598009,
+        "closure_gap_fraction": 6.052074725628639e-05,
+        "largest_step_fraction": 0.011638276205458596,
+        "sampled_length_xy_units": 53381.173284545555,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true,
+        "pit_filter_warning": "HTTP 404: {\"detail\":\"No results found.\"}\nhttps://api.openf1.org/v1/pit?session_key=7768"
+      },
+      "folder": "sakhir-63/2023"
+    },
+    {
+      "circuit_key": 63,
+      "circuit_name": "Sakhir",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9468",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9468",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-03-01T16%3A40%3A09.083000%2B00%3A00&date%3E=2024-03-01T16%3A38%3A37.918000%2B00%3A00&driver_number=16&session_key=9468"
+        },
+        "session_key": 9468,
+        "meeting_key": 1229,
+        "session_name": "Qualifying",
+        "driver_number": 16,
+        "lap_number": 12,
+        "lap_duration_seconds": 89.165,
+        "lap_date_start": "2024-03-01T16:38:38.918000+00:00"
+      },
+      "quality": {
+        "input_count": 358,
+        "point_count": 354,
+        "measured_point_count": 350,
+        "unique_valid_timestamp_count": 358,
+        "time_coverage": 0.9976896764425502,
+        "maximum_sample_gap_seconds": 0.84,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 3.432136502504945,
+        "closure_gap_fraction": 6.429357212293795e-05,
+        "largest_step_fraction": 0.011748804704347382,
+        "sampled_length_xy_units": 53382.264963319176,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "sakhir-63/2024"
+    },
+    {
+      "circuit_key": 63,
+      "circuit_name": "Sakhir",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 10010,
+          "driver_number": 81,
+          "lap_number": 14,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.97% of sampled path length"
+        },
+        {
+          "session_key": 10010,
+          "driver_number": 63,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.87% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=10010",
+          "pit": "https://api.openf1.org/v1/pit?session_key=10010",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-04-12T17%3A09%3A27.361000%2B00%3A00&date%3E=2025-04-12T17%3A07%3A55.186000%2B00%3A00&driver_number=16&session_key=10010"
+        },
+        "session_key": 10010,
+        "meeting_key": 1257,
+        "session_name": "Qualifying",
+        "driver_number": 16,
+        "lap_number": 15,
+        "lap_duration_seconds": 90.175,
+        "lap_date_start": "2025-04-12T17:07:56.186000+00:00"
+      },
+      "quality": {
+        "input_count": 346,
+        "point_count": 342,
+        "measured_point_count": 338,
+        "unique_valid_timestamp_count": 346,
+        "time_coverage": 0.9947213751039645,
+        "maximum_sample_gap_seconds": 1.26,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 18.998978098640315,
+        "closure_gap_fraction": 0.0003557656777593797,
+        "largest_step_fraction": 0.013549331375497896,
+        "sampled_length_xy_units": 53403.06636181519,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "sakhir-63/2025"
+    },
+    {
+      "circuit_key": 63,
+      "circuit_name": "Sakhir",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11465",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11465",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-02-11T14%3A41%3A32.568000%2B00%3A00&date%3E=2026-02-11T14%3A39%3A55.899000%2B00%3A00&driver_number=1&session_key=11465"
+        },
+        "session_key": 11465,
+        "meeting_key": 1304,
+        "session_name": "Day 1",
+        "driver_number": 1,
+        "lap_number": 26,
+        "lap_duration_seconds": 94.669,
+        "lap_date_start": "2026-02-11T14:39:56.899000+00:00"
+      },
+      "quality": {
+        "input_count": 359,
+        "point_count": 357,
+        "measured_point_count": 353,
+        "unique_valid_timestamp_count": 359,
+        "time_coverage": 0.997897939135303,
+        "maximum_sample_gap_seconds": 0.9,
+        "median_sample_gap_seconds": 0.25,
+        "closure_gap_xy_units": 53.526237732748356,
+        "closure_gap_fraction": 0.0010037044173117975,
+        "largest_step_fraction": 0.010685684055208752,
+        "sampled_length_xy_units": 53328.68602502185,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "sakhir-63/2026"
+    },
+    {
+      "circuit_key": 49,
+      "circuit_name": "Shanghai",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9664",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9664",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-04-20T08%3A12%3A43.545000%2B00%3A00&date%3E=2024-04-20T08%3A11%3A07.885000%2B00%3A00&driver_number=1&session_key=9664"
+        },
+        "session_key": 9664,
+        "meeting_key": 1233,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 17,
+        "lap_duration_seconds": 93.66,
+        "lap_date_start": "2024-04-20T08:11:08.885000+00:00"
+      },
+      "quality": {
+        "input_count": 367,
+        "point_count": 364,
+        "measured_point_count": 360,
+        "unique_valid_timestamp_count": 367,
+        "time_coverage": 0.9976510783685671,
+        "maximum_sample_gap_seconds": 0.5,
+        "median_sample_gap_seconds": 0.259,
+        "closure_gap_xy_units": 43.50341797510518,
+        "closure_gap_fraction": 0.0008104201791772391,
+        "largest_step_fraction": 0.010242787220937636,
+        "sampled_length_xy_units": 53680.07743744862,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "shanghai-49/2024"
+    },
+    {
+      "circuit_key": 49,
+      "circuit_name": "Shanghai",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9994",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9994",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-03-22T08%3A00%3A11.736000%2B00%3A00&date%3E=2025-03-22T07%3A58%3A39.095000%2B00%3A00&driver_number=81&session_key=9994"
+        },
+        "session_key": 9994,
+        "meeting_key": 1255,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 19,
+        "lap_duration_seconds": 90.641,
+        "lap_date_start": "2025-03-22T07:58:40.095000+00:00"
+      },
+      "quality": {
+        "input_count": 358,
+        "point_count": 356,
+        "measured_point_count": 352,
+        "unique_valid_timestamp_count": 358,
+        "time_coverage": 0.9964585562824769,
+        "maximum_sample_gap_seconds": 0.82,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 19.576964421346517,
+        "closure_gap_fraction": 0.0003641845243565247,
+        "largest_step_fraction": 0.011489863478876863,
+        "sampled_length_xy_units": 53755.61868241637,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "shanghai-49/2025"
+    },
+    {
+      "circuit_key": 49,
+      "circuit_name": "Shanghai",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11241",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11241",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-03-14T07%3A59%3A13.743000%2B00%3A00&date%3E=2026-03-14T07%3A57%3A39.679000%2B00%3A00&driver_number=12&session_key=11241"
+        },
+        "session_key": 11241,
+        "meeting_key": 1280,
+        "session_name": "Qualifying",
+        "driver_number": 12,
+        "lap_number": 14,
+        "lap_duration_seconds": 92.064,
+        "lap_date_start": "2026-03-14T07:57:40.679000+00:00"
+      },
+      "quality": {
+        "input_count": 362,
+        "point_count": 359,
+        "measured_point_count": 355,
+        "unique_valid_timestamp_count": 362,
+        "time_coverage": 0.996697949252694,
+        "maximum_sample_gap_seconds": 0.82,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 196.32960537145811,
+        "closure_gap_fraction": 0.003594030644813487,
+        "largest_step_fraction": 0.011730558121369522,
+        "sampled_length_xy_units": 54626.58078744531,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "shanghai-49/2026"
+    },
+    {
+      "circuit_key": 2,
+      "circuit_name": "Silverstone",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9122,
+          "driver_number": 1,
+          "lap_number": 25,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.84% of sampled path length"
+        },
+        {
+          "session_key": 9122,
+          "driver_number": 4,
+          "lap_number": 25,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.57% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9122",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9122",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-07-08T15%3A15%3A34.527000%2B00%3A00&date%3E=2023-07-08T15%3A14%3A05.435000%2B00%3A00&driver_number=81&session_key=9122"
+        },
+        "session_key": 9122,
+        "meeting_key": 1214,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 25,
+        "lap_duration_seconds": 87.092,
+        "lap_date_start": "2023-07-08T15:14:06.435000+00:00"
+      },
+      "quality": {
+        "input_count": 342,
+        "point_count": 338,
+        "measured_point_count": 334,
+        "unique_valid_timestamp_count": 342,
+        "time_coverage": 0.9938915170164884,
+        "maximum_sample_gap_seconds": 1.198,
+        "median_sample_gap_seconds": 0.241,
+        "closure_gap_xy_units": 12.428956902164902,
+        "closure_gap_fraction": 0.00021345457145521655,
+        "largest_step_fraction": 0.011568299552060119,
+        "sampled_length_xy_units": 58227.64449330398,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "silverstone-2/2023"
+    },
+    {
+      "circuit_key": 2,
+      "circuit_name": "Silverstone",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9554",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9554",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-07-06T15%3A10%3A15.803000%2B00%3A00&date%3E=2024-07-06T15%3A08%3A47.984000%2B00%3A00&driver_number=63&session_key=9554"
+        },
+        "session_key": 9554,
+        "meeting_key": 1240,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 25,
+        "lap_duration_seconds": 85.819,
+        "lap_date_start": "2024-07-06T15:08:48.984000+00:00"
+      },
+      "quality": {
+        "input_count": 331,
+        "point_count": 329,
+        "measured_point_count": 325,
+        "unique_valid_timestamp_count": 331,
+        "time_coverage": 0.9948845826681736,
+        "maximum_sample_gap_seconds": 0.7,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 82.19277440748299,
+        "closure_gap_fraction": 0.0014083822515698473,
+        "largest_step_fraction": 0.008856332748856065,
+        "sampled_length_xy_units": 58359.706191885874,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "silverstone-2/2024"
+    },
+    {
+      "circuit_key": 2,
+      "circuit_name": "Silverstone",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9943",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9943",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-07-05T15%3A10%3A54.481000%2B00%3A00&date%3E=2025-07-05T15%3A09%3A27.589000%2B00%3A00&driver_number=1&session_key=9943"
+        },
+        "session_key": 9943,
+        "meeting_key": 1277,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 17,
+        "lap_duration_seconds": 84.892,
+        "lap_date_start": "2025-07-05T15:09:28.589000+00:00"
+      },
+      "quality": {
+        "input_count": 327,
+        "point_count": 324,
+        "measured_point_count": 320,
+        "unique_valid_timestamp_count": 327,
+        "time_coverage": 0.9944517740187534,
+        "maximum_sample_gap_seconds": 1.26,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 71.38428984541828,
+        "closure_gap_fraction": 0.0012264357171518302,
+        "largest_step_fraction": 0.014514481165225647,
+        "sampled_length_xy_units": 58204.672978046554,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "silverstone-2/2025"
+    },
+    {
+      "circuit_key": 2,
+      "circuit_name": "Silverstone",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11322",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11322",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-07-04T16%3A07%3A57.939000%2B00%3A00&date%3E=2026-07-04T16%3A06%3A27.828000%2B00%3A00&driver_number=12&session_key=11322"
+        },
+        "session_key": 11322,
+        "meeting_key": 1289,
+        "session_name": "Qualifying",
+        "driver_number": 12,
+        "lap_number": 18,
+        "lap_duration_seconds": 88.111,
+        "lap_date_start": "2026-07-04T16:06:28.828000+00:00"
+      },
+      "quality": {
+        "input_count": 347,
+        "point_count": 343,
+        "measured_point_count": 339,
+        "unique_valid_timestamp_count": 347,
+        "time_coverage": 0.9978322797380577,
+        "maximum_sample_gap_seconds": 1.04,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 11.933375095775334,
+        "closure_gap_fraction": 0.00020485187971263077,
+        "largest_step_fraction": 0.014233760223353396,
+        "sampled_length_xy_units": 58253.67632708886,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "silverstone-2/2026"
+    },
+    {
+      "circuit_key": 61,
+      "circuit_name": "Singapore",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9161,
+          "driver_number": 55,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.96% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9161",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9161",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-09-16T14%3A28%3A57.429000%2B00%3A00&date%3E=2023-09-16T14%3A27%3A24.373000%2B00%3A00&driver_number=63&session_key=9161"
+        },
+        "session_key": 9161,
+        "meeting_key": 1219,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 16,
+        "lap_duration_seconds": 91.056,
+        "lap_date_start": "2023-09-16T14:27:25.373000+00:00"
+      },
+      "quality": {
+        "input_count": 344,
+        "point_count": 341,
+        "measured_point_count": 337,
+        "unique_valid_timestamp_count": 344,
+        "time_coverage": 0.9980671235283781,
+        "maximum_sample_gap_seconds": 1.179,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 57.091960592607506,
+        "closure_gap_fraction": 0.0011723675041969647,
+        "largest_step_fraction": 0.01318925508591162,
+        "sampled_length_xy_units": 48698.006715661846,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "singapore-61/2023"
+    },
+    {
+      "circuit_key": 61,
+      "circuit_name": "Singapore",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9602,
+          "driver_number": 4,
+          "lap_number": 15,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.52% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9602",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9602",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-09-21T13%3A39%3A00.690000%2B00%3A00&date%3E=2024-09-21T13%3A37%3A29.050000%2B00%3A00&driver_number=81&session_key=9602"
+        },
+        "session_key": 9602,
+        "meeting_key": 1246,
+        "session_name": "Qualifying",
+        "driver_number": 81,
+        "lap_number": 11,
+        "lap_duration_seconds": 89.64,
+        "lap_date_start": "2024-09-21T13:37:30.050000+00:00"
+      },
+      "quality": {
+        "input_count": 350,
+        "point_count": 347,
+        "measured_point_count": 343,
+        "unique_valid_timestamp_count": 350,
+        "time_coverage": 0.9990963855421686,
+        "maximum_sample_gap_seconds": 0.781,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 7.678287061050764,
+        "closure_gap_fraction": 0.00015794444063316695,
+        "largest_step_fraction": 0.012858640362978273,
+        "sampled_length_xy_units": 48613.84820048165,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "singapore-61/2024"
+    },
+    {
+      "circuit_key": 61,
+      "circuit_name": "Singapore",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9892",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9892",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-10-04T14%3A07%3A08.546000%2B00%3A00&date%3E=2025-10-04T14%3A05%3A37.388000%2B00%3A00&driver_number=63&session_key=9892"
+        },
+        "session_key": 9892,
+        "meeting_key": 1270,
+        "session_name": "Qualifying",
+        "driver_number": 63,
+        "lap_number": 17,
+        "lap_duration_seconds": 89.158,
+        "lap_date_start": "2025-10-04T14:05:38.388000+00:00"
+      },
+      "quality": {
+        "input_count": 357,
+        "point_count": 353,
+        "measured_point_count": 349,
+        "unique_valid_timestamp_count": 357,
+        "time_coverage": 0.9959846564525897,
+        "maximum_sample_gap_seconds": 0.84,
+        "median_sample_gap_seconds": 0.2395,
+        "closure_gap_xy_units": 62.38202443267087,
+        "closure_gap_fraction": 0.0012846372101256083,
+        "largest_step_fraction": 0.010407141978294728,
+        "sampled_length_xy_units": 48560.03231182392,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "singapore-61/2025"
+    },
+    {
+      "circuit_key": 61,
+      "circuit_name": "Singapore",
+      "year": 2026,
+      "status": "no_historical_session",
+      "attempts": [],
+      "reason": "No ended non-cancelled session outside the 30-minute live window",
+      "folder": null
+    },
+    {
+      "circuit_key": 7,
+      "circuit_name": "Spa-Francorchamps",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9135,
+          "driver_number": 1,
+          "lap_number": 21,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.51% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9135",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9135",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-07-28T16%3A15%3A58.094000%2B00%3A00&date%3E=2023-07-28T16%3A14%3A09.106000%2B00%3A00&driver_number=16&session_key=9135"
+        },
+        "session_key": 9135,
+        "meeting_key": 1216,
+        "session_name": "Qualifying",
+        "driver_number": 16,
+        "lap_number": 22,
+        "lap_duration_seconds": 106.988,
+        "lap_date_start": "2023-07-28T16:14:10.106000+00:00"
+      },
+      "quality": {
+        "input_count": 421,
+        "point_count": 417,
+        "measured_point_count": 413,
+        "unique_valid_timestamp_count": 421,
+        "time_coverage": 0.998626014132426,
+        "maximum_sample_gap_seconds": 0.5,
+        "median_sample_gap_seconds": 0.2505,
+        "closure_gap_xy_units": 2.068824478350489,
+        "closure_gap_fraction": 2.9772205596562015e-05,
+        "largest_step_fraction": 0.006573419580313086,
+        "sampled_length_xy_units": 69488.45196035424,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "spa-francorchamps-7/2023"
+    },
+    {
+      "circuit_key": 7,
+      "circuit_name": "Spa-Francorchamps",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9570",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9570",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-07-27T14%3A53%3A20.506000%2B00%3A00&date%3E=2024-07-27T14%3A51%3A25.347000%2B00%3A00&driver_number=1&session_key=9570"
+        },
+        "session_key": 9570,
+        "meeting_key": 1242,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 17,
+        "lap_duration_seconds": 113.159,
+        "lap_date_start": "2024-07-27T14:51:26.347000+00:00"
+      },
+      "quality": {
+        "input_count": 430,
+        "point_count": 426,
+        "measured_point_count": 422,
+        "unique_valid_timestamp_count": 430,
+        "time_coverage": 0.9966507303882147,
+        "maximum_sample_gap_seconds": 1.239,
+        "median_sample_gap_seconds": 0.241,
+        "closure_gap_xy_units": 14.152399275278931,
+        "closure_gap_fraction": 0.00020374151174656845,
+        "largest_step_fraction": 0.00987664754446461,
+        "sampled_length_xy_units": 69462.52216329348,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "spa-francorchamps-7/2024"
+    },
+    {
+      "circuit_key": 7,
+      "circuit_name": "Spa-Francorchamps",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9935",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9935",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-07-26T14%3A52%3A38.477000%2B00%3A00&date%3E=2025-07-26T14%3A50%3A55.915000%2B00%3A00&driver_number=4&session_key=9935"
+        },
+        "session_key": 9935,
+        "meeting_key": 1265,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 16,
+        "lap_duration_seconds": 100.562,
+        "lap_date_start": "2025-07-26T14:50:56.915000+00:00"
+      },
+      "quality": {
+        "input_count": 389,
+        "point_count": 386,
+        "measured_point_count": 382,
+        "unique_valid_timestamp_count": 389,
+        "time_coverage": 0.9977924066744894,
+        "maximum_sample_gap_seconds": 1.021,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 31.965623701156254,
+        "closure_gap_fraction": 0.0004598869864897361,
+        "largest_step_fraction": 0.008535084115869007,
+        "sampled_length_xy_units": 69507.56303227048,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "spa-francorchamps-7/2025"
+    },
+    {
+      "circuit_key": 7,
+      "circuit_name": "Spa-Francorchamps",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 11330,
+          "driver_number": 12,
+          "lap_number": 14,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.59% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11330",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11330",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-07-18T15%3A09%3A42.428000%2B00%3A00&date%3E=2026-07-18T15%3A07%3A55.750000%2B00%3A00&driver_number=3&session_key=11330"
+        },
+        "session_key": 11330,
+        "meeting_key": 1290,
+        "session_name": "Qualifying",
+        "driver_number": 3,
+        "lap_number": 11,
+        "lap_duration_seconds": 104.678,
+        "lap_date_start": "2026-07-18T15:07:56.750000+00:00"
+      },
+      "quality": {
+        "input_count": 405,
+        "point_count": 400,
+        "measured_point_count": 396,
+        "unique_valid_timestamp_count": 405,
+        "time_coverage": 0.997153174497029,
+        "maximum_sample_gap_seconds": 1.1,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 14.994252300158783,
+        "closure_gap_fraction": 0.00021583490153237426,
+        "largest_step_fraction": 0.014523089577297033,
+        "sampled_length_xy_units": 69470.93446751805,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "spa-francorchamps-7/2026"
+    },
+    {
+      "circuit_key": 19,
+      "circuit_name": "Spielberg",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9112,
+          "driver_number": 1,
+          "lap_number": 23,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.04% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9112",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9112",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-06-30T16%3A06%3A23.449000%2B00%3A00&date%3E=2023-06-30T16%3A05%3A17.010000%2B00%3A00&driver_number=16&session_key=9112"
+        },
+        "session_key": 9112,
+        "meeting_key": 1213,
+        "session_name": "Qualifying",
+        "driver_number": 16,
+        "lap_number": 25,
+        "lap_duration_seconds": 64.439,
+        "lap_date_start": "2023-06-30T16:05:18.010000+00:00"
+      },
+      "quality": {
+        "input_count": 249,
+        "point_count": 244,
+        "measured_point_count": 240,
+        "unique_valid_timestamp_count": 249,
+        "time_coverage": 0.9950495817750122,
+        "maximum_sample_gap_seconds": 0.94,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 27.386952796496175,
+        "closure_gap_fraction": 0.0006378258437835119,
+        "largest_step_fraction": 0.009991399167899425,
+        "sampled_length_xy_units": 42937.97917318593,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "spielberg-19/2023"
+    },
+    {
+      "circuit_key": 19,
+      "circuit_name": "Spielberg",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9541",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9541",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-06-29T14%3A59%3A34.600000%2B00%3A00&date%3E=2024-06-29T14%3A58%3A28.286000%2B00%3A00&driver_number=1&session_key=9541"
+        },
+        "session_key": 9541,
+        "meeting_key": 1239,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 17,
+        "lap_duration_seconds": 64.314,
+        "lap_date_start": "2024-06-29T14:58:29.286000+00:00"
+      },
+      "quality": {
+        "input_count": 264,
+        "point_count": 259,
+        "measured_point_count": 255,
+        "unique_valid_timestamp_count": 264,
+        "time_coverage": 0.9916969866592034,
+        "maximum_sample_gap_seconds": 0.48,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 52.28730514435608,
+        "closure_gap_fraction": 0.001219663101837284,
+        "largest_step_fraction": 0.011137707567671578,
+        "sampled_length_xy_units": 42870.285298941315,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "spielberg-19/2024"
+    },
+    {
+      "circuit_key": 19,
+      "circuit_name": "Spielberg",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9951,
+          "driver_number": 4,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.11% of sampled path length"
+        },
+        {
+          "session_key": 9951,
+          "driver_number": 16,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.06% of sampled path length"
+        },
+        {
+          "session_key": 9951,
+          "driver_number": 81,
+          "lap_number": 16,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.45% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9951",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9951",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-06-28T15%3A13%3A36.369000%2B00%3A00&date%3E=2025-06-28T15%3A12%3A29.787000%2B00%3A00&driver_number=44&session_key=9951"
+        },
+        "session_key": 9951,
+        "meeting_key": 1264,
+        "session_name": "Qualifying",
+        "driver_number": 44,
+        "lap_number": 20,
+        "lap_duration_seconds": 64.582,
+        "lap_date_start": "2025-06-28T15:12:30.787000+00:00"
+      },
+      "quality": {
+        "input_count": 258,
+        "point_count": 252,
+        "measured_point_count": 248,
+        "unique_valid_timestamp_count": 258,
+        "time_coverage": 0.9956334582391378,
+        "maximum_sample_gap_seconds": 1.04,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 8.254770412791668,
+        "closure_gap_fraction": 0.00019238492387295484,
+        "largest_step_fraction": 0.014666899100914304,
+        "sampled_length_xy_units": 42907.574287072865,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "spielberg-19/2025"
+    },
+    {
+      "circuit_key": 19,
+      "circuit_name": "Spielberg",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 11311,
+          "driver_number": 63,
+          "lap_number": 19,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.22% of sampled path length"
+        },
+        {
+          "session_key": 11311,
+          "driver_number": 16,
+          "lap_number": 14,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.35% of sampled path length"
+        },
+        {
+          "session_key": 11311,
+          "driver_number": 44,
+          "lap_number": 13,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.68% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11311",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11311",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-06-27T14%3A53%3A46.276000%2B00%3A00&date%3E=2026-06-27T14%3A52%3A37.862000%2B00%3A00&driver_number=12&session_key=11311"
+        },
+        "session_key": 11311,
+        "meeting_key": 1288,
+        "session_name": "Qualifying",
+        "driver_number": 12,
+        "lap_number": 13,
+        "lap_duration_seconds": 66.414,
+        "lap_date_start": "2026-06-27T14:52:38.862000+00:00"
+      },
+      "quality": {
+        "input_count": 262,
+        "point_count": 258,
+        "measured_point_count": 254,
+        "unique_valid_timestamp_count": 262,
+        "time_coverage": 0.9979974101845998,
+        "maximum_sample_gap_seconds": 1.02,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 7.342531551761893,
+        "closure_gap_fraction": 0.00017111554067423098,
+        "largest_step_fraction": 0.012462419081444711,
+        "sampled_length_xy_units": 42909.78787099515,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "spielberg-19/2026"
+    },
+    {
+      "circuit_key": 46,
+      "circuit_name": "Suzuka",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9169",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9169",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-09-23T07%3A13%3A25.965000%2B00%3A00&date%3E=2023-09-23T07%3A11%3A55.088000%2B00%3A00&driver_number=1&session_key=9169"
+        },
+        "session_key": 9169,
+        "meeting_key": 1220,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 11,
+        "lap_duration_seconds": 88.877,
+        "lap_date_start": "2023-09-23T07:11:56.088000+00:00"
+      },
+      "quality": {
+        "input_count": 356,
+        "point_count": 353,
+        "measured_point_count": 349,
+        "unique_valid_timestamp_count": 356,
+        "time_coverage": 0.9950718408587148,
+        "maximum_sample_gap_seconds": 0.679,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 41.33084031475401,
+        "closure_gap_fraction": 0.0007165955941938835,
+        "largest_step_fraction": 0.00747995101626529,
+        "sampled_length_xy_units": 57676.659819892026,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "suzuka-46/2023"
+    },
+    {
+      "circuit_key": 46,
+      "circuit_name": "Suzuka",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9492",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9492",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-04-06T06%3A59%3A44.086000%2B00%3A00&date%3E=2024-04-06T06%3A58%3A13.889000%2B00%3A00&driver_number=1&session_key=9492"
+        },
+        "session_key": 9492,
+        "meeting_key": 1232,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 11,
+        "lap_duration_seconds": 88.197,
+        "lap_date_start": "2024-04-06T06:58:14.889000+00:00"
+      },
+      "quality": {
+        "input_count": 347,
+        "point_count": 345,
+        "measured_point_count": 341,
+        "unique_valid_timestamp_count": 347,
+        "time_coverage": 0.9980044672721294,
+        "maximum_sample_gap_seconds": 0.54,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 22.401771558556437,
+        "closure_gap_fraction": 0.00038801493212538036,
+        "largest_step_fraction": 0.006830956782935723,
+        "sampled_length_xy_units": 57734.30273894122,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "suzuka-46/2024"
+    },
+    {
+      "circuit_key": 46,
+      "circuit_name": "Suzuka",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=10002",
+          "pit": "https://api.openf1.org/v1/pit?session_key=10002",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-04-05T07%3A08%3A33.526000%2B00%3A00&date%3E=2025-04-05T07%3A07%3A04.543000%2B00%3A00&driver_number=1&session_key=10002"
+        },
+        "session_key": 10002,
+        "meeting_key": 1256,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 16,
+        "lap_duration_seconds": 86.983,
+        "lap_date_start": "2025-04-05T07:07:05.543000+00:00"
+      },
+      "quality": {
+        "input_count": 336,
+        "point_count": 333,
+        "measured_point_count": 329,
+        "unique_valid_timestamp_count": 336,
+        "time_coverage": 0.9981260706114987,
+        "maximum_sample_gap_seconds": 1.001,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 9.600804274845405,
+        "closure_gap_fraction": 0.00016632127430339506,
+        "largest_step_fraction": 0.00941595869652896,
+        "sampled_length_xy_units": 57724.45115669383,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "suzuka-46/2025"
+    },
+    {
+      "circuit_key": 46,
+      "circuit_name": "Suzuka",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11249",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11249",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-03-28T06%3A50%3A30.820000%2B00%3A00&date%3E=2026-03-28T06%3A49%3A00.042000%2B00%3A00&driver_number=12&session_key=11249"
+        },
+        "session_key": 11249,
+        "meeting_key": 1281,
+        "session_name": "Qualifying",
+        "driver_number": 12,
+        "lap_number": 11,
+        "lap_duration_seconds": 88.778,
+        "lap_date_start": "2026-03-28T06:49:01.042000+00:00"
+      },
+      "quality": {
+        "input_count": 355,
+        "point_count": 352,
+        "measured_point_count": 348,
+        "unique_valid_timestamp_count": 355,
+        "time_coverage": 0.9982315438509539,
+        "maximum_sample_gap_seconds": 0.88,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 20.682291992816545,
+        "closure_gap_fraction": 0.00035845801367309,
+        "largest_step_fraction": 0.011930979781313916,
+        "sampled_length_xy_units": 57697.94844558443,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "suzuka-46/2026"
+    },
+    {
+      "circuit_key": 70,
+      "circuit_name": "Yas Marina Circuit",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9193",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9193",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-11-25T14%3A51%3A18.328000%2B00%3A00&date%3E=2023-11-25T14%3A49%3A52.883000%2B00%3A00&driver_number=1&session_key=9193"
+        },
+        "session_key": 9193,
+        "meeting_key": 1226,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 11,
+        "lap_duration_seconds": 83.445,
+        "lap_date_start": "2023-11-25T14:49:53.883000+00:00"
+      },
+      "quality": {
+        "input_count": 320,
+        "point_count": 318,
+        "measured_point_count": 314,
+        "unique_valid_timestamp_count": 320,
+        "time_coverage": 0.9968242554976333,
+        "maximum_sample_gap_seconds": 0.999,
+        "median_sample_gap_seconds": 0.241,
+        "closure_gap_xy_units": 24.32369016377436,
+        "closure_gap_fraction": 0.00046473867198460915,
+        "largest_step_fraction": 0.012594320472549266,
+        "sampled_length_xy_units": 52338.425076404856,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "yas-marina-circuit-70/2023"
+    },
+    {
+      "circuit_key": 70,
+      "circuit_name": "Yas Marina Circuit",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9658",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9658",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-12-07T15%3A03%3A23.084000%2B00%3A00&date%3E=2024-12-07T15%3A01%3A58.489000%2B00%3A00&driver_number=4&session_key=9658"
+        },
+        "session_key": 9658,
+        "meeting_key": 1252,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 15,
+        "lap_duration_seconds": 82.595,
+        "lap_date_start": "2024-12-07T15:01:59.489000+00:00"
+      },
+      "quality": {
+        "input_count": 331,
+        "point_count": 327,
+        "measured_point_count": 323,
+        "unique_valid_timestamp_count": 331,
+        "time_coverage": 0.9959440644106787,
+        "maximum_sample_gap_seconds": 0.481,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 14.421539579144909,
+        "closure_gap_fraction": 0.00027575020354103993,
+        "largest_step_fraction": 0.007552780755172525,
+        "sampled_length_xy_units": 52299.28897223298,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "yas-marina-circuit-70/2024"
+    },
+    {
+      "circuit_key": 70,
+      "circuit_name": "Yas Marina Circuit",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9835",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9835",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-12-06T15%3A00%3A54.581000%2B00%3A00&date%3E=2025-12-06T14%3A59%3A30.374000%2B00%3A00&driver_number=1&session_key=9835"
+        },
+        "session_key": 9835,
+        "meeting_key": 1276,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 17,
+        "lap_duration_seconds": 82.207,
+        "lap_date_start": "2025-12-06T14:59:31.374000+00:00"
+      },
+      "quality": {
+        "input_count": 311,
+        "point_count": 308,
+        "measured_point_count": 304,
+        "unique_valid_timestamp_count": 311,
+        "time_coverage": 0.9957789482647463,
+        "maximum_sample_gap_seconds": 1.0,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 10.664844408147712,
+        "closure_gap_fraction": 0.00020395811520850464,
+        "largest_step_fraction": 0.011727525216326837,
+        "sampled_length_xy_units": 52289.38499086017,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "yas-marina-circuit-70/2025"
+    },
+    {
+      "circuit_key": 70,
+      "circuit_name": "Yas Marina Circuit",
+      "year": 2026,
+      "status": "no_historical_session",
+      "attempts": [],
+      "reason": "No ended non-cancelled session outside the 30-minute live window",
+      "folder": null
+    },
+    {
+      "circuit_key": 55,
+      "circuit_name": "Zandvoort",
+      "year": 2023,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2023",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9145",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9145",
+          "location": "https://api.openf1.org/v1/location?date%3C=2023-08-26T14%3A25%3A08.817000%2B00%3A00&date%3E=2023-08-26T14%3A23%3A56.250000%2B00%3A00&driver_number=1&session_key=9145"
+        },
+        "session_key": 9145,
+        "meeting_key": 1217,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 30,
+        "lap_duration_seconds": 70.567,
+        "lap_date_start": "2023-08-26T14:23:57.250000+00:00"
+      },
+      "quality": {
+        "input_count": 279,
+        "point_count": 274,
+        "measured_point_count": 270,
+        "unique_valid_timestamp_count": 279,
+        "time_coverage": 0.9965139512803436,
+        "maximum_sample_gap_seconds": 0.98,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 2.601735514318052,
+        "closure_gap_fraction": 6.175865803786315e-05,
+        "largest_step_fraction": 0.009023367155505755,
+        "sampled_length_xy_units": 42127.46191348545,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "zandvoort-55/2023"
+    },
+    {
+      "circuit_key": 55,
+      "circuit_name": "Zandvoort",
+      "year": 2024,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9578",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9578",
+          "location": "https://api.openf1.org/v1/location?date%3C=2024-08-24T13%3A59%3A22.124000%2B00%3A00&date%3E=2024-08-24T13%3A58%3A10.451000%2B00%3A00&driver_number=4&session_key=9578"
+        },
+        "session_key": 9578,
+        "meeting_key": 1243,
+        "session_name": "Qualifying",
+        "driver_number": 4,
+        "lap_number": 13,
+        "lap_duration_seconds": 69.673,
+        "lap_date_start": "2024-08-24T13:58:11.451000+00:00"
+      },
+      "quality": {
+        "input_count": 282,
+        "point_count": 277,
+        "measured_point_count": 273,
+        "unique_valid_timestamp_count": 282,
+        "time_coverage": 0.993799606734316,
+        "maximum_sample_gap_seconds": 0.48,
+        "median_sample_gap_seconds": 0.2405,
+        "closure_gap_xy_units": 60.03673153763208,
+        "closure_gap_fraction": 0.001427712329422286,
+        "largest_step_fraction": 0.01019837704555218,
+        "sampled_length_xy_units": 42051.00026132403,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "zandvoort-55/2024"
+    },
+    {
+      "circuit_key": 55,
+      "circuit_name": "Zandvoort",
+      "year": 2025,
+      "status": "ready",
+      "attempts": [
+        {
+          "session_key": 9916,
+          "driver_number": 81,
+          "lap_number": 14,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.60% of sampled path length"
+        },
+        {
+          "session_key": 9916,
+          "driver_number": 4,
+          "lap_number": 14,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.83% of sampled path length"
+        },
+        {
+          "session_key": 9916,
+          "driver_number": 1,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.69% of sampled path length"
+        },
+        {
+          "session_key": 9916,
+          "driver_number": 6,
+          "lap_number": 17,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.08% of sampled path length"
+        },
+        {
+          "session_key": 9916,
+          "driver_number": 63,
+          "lap_number": 14,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 2.05% of sampled path length"
+        },
+        {
+          "session_key": 9916,
+          "driver_number": 44,
+          "lap_number": 13,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.56% of sampled path length"
+        },
+        {
+          "session_key": 9916,
+          "driver_number": 16,
+          "lap_number": 14,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.77% of sampled path length"
+        },
+        {
+          "session_key": 9916,
+          "driver_number": 14,
+          "lap_number": 10,
+          "stage": "location_or_geometry",
+          "error": "Suspected location jump: 1.63% of sampled path length"
+        }
+      ],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2025",
+          "laps": "https://api.openf1.org/v1/laps?session_key=9920",
+          "pit": "https://api.openf1.org/v1/pit?session_key=9920",
+          "location": "https://api.openf1.org/v1/location?date%3C=2025-08-31T14%3A24%3A38.377000%2B00%3A00&date%3E=2025-08-31T14%3A23%3A24.106000%2B00%3A00&driver_number=81&session_key=9920"
+        },
+        "session_key": 9920,
+        "meeting_key": 1267,
+        "session_name": "Race",
+        "driver_number": 81,
+        "lap_number": 60,
+        "lap_duration_seconds": 72.271,
+        "lap_date_start": "2025-08-31T14:23:25.106000+00:00"
+      },
+      "quality": {
+        "input_count": 289,
+        "point_count": 285,
+        "measured_point_count": 281,
+        "unique_valid_timestamp_count": 289,
+        "time_coverage": 0.9979106418895547,
+        "maximum_sample_gap_seconds": 0.461,
+        "median_sample_gap_seconds": 0.24,
+        "closure_gap_xy_units": 48.97866431225395,
+        "closure_gap_fraction": 0.0011637937427349252,
+        "largest_step_fraction": 0.008519787612830777,
+        "sampled_length_xy_units": 42085.34769842779,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "zandvoort-55/2025"
+    },
+    {
+      "circuit_key": 55,
+      "circuit_name": "Zandvoort",
+      "year": 2026,
+      "status": "ready",
+      "attempts": [],
+      "source": {
+        "provider": "OpenF1",
+        "urls": {
+          "meetings": "https://api.openf1.org/v1/meetings",
+          "sessions": "https://api.openf1.org/v1/sessions?year=2026",
+          "laps": "https://api.openf1.org/v1/laps?session_key=11349",
+          "pit": "https://api.openf1.org/v1/pit?session_key=11349",
+          "location": "https://api.openf1.org/v1/location?date%3C=2026-08-22T14%3A56%3A14.189000%2B00%3A00&date%3E=2026-08-22T14%3A55%3A01.026000%2B00%3A00&driver_number=1&session_key=11349"
+        },
+        "session_key": 11349,
+        "meeting_key": 1292,
+        "session_name": "Qualifying",
+        "driver_number": 1,
+        "lap_number": 20,
+        "lap_duration_seconds": 71.163,
+        "lap_date_start": "2026-08-22T14:55:02.026000+00:00"
+      },
+      "quality": {
+        "input_count": 266,
+        "point_count": 264,
+        "measured_point_count": 260,
+        "unique_valid_timestamp_count": 266,
+        "time_coverage": 0.9977094838609952,
+        "maximum_sample_gap_seconds": 1.14,
+        "median_sample_gap_seconds": 0.26,
+        "closure_gap_xy_units": 53.6718709373625,
+        "closure_gap_fraction": 0.0012755014301830663,
+        "largest_step_fraction": 0.01322741325374548,
+        "sampled_length_xy_units": 42079.036265493836,
+        "interpolated_boundary_points": 4,
+        "sector_boundary_count": 4,
+        "checks_passed": true
+      },
+      "folder": "zandvoort-55/2026"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+/* Team colour as a thin vertical bar — data colour, never a surface. */
+.marker {
+  display: inline-block;
+  flex: none;
+  border-radius: var(--radius-pill);
+}
+
+.xs {
+  width: 2px;
+  height: 12px;
+}
+
+.sm {
+  width: 3px;
+  height: 15px;
+}
+
+.lg {
+  width: 4px;
+  height: 36px;
+}
+
+.driver {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--inline-gap);
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+/* Driver acronym (Figma timing: Inter 12/500). */
+.acronym {
+  font: var(--type-body-dense);
+  color: var(--text-primary);
+}
+
+.name {
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@container (max-width: 420px) {
+  .name {
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+.lead {
+  padding: 0 var(--space-1);
+  font: var(--type-secondary);
+  color: var(--text-secondary);
+}
+
+.note {
+  margin-top: var(--space-2);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.teamCell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--inline-gap);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--inline-gap);
+  margin-left: auto;
+}

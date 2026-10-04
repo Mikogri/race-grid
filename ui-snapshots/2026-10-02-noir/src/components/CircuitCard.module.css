@@ -1,0 +1,196 @@
+.grid {
+  display: grid;
+  /* Narrow columns: cards always stand portrait (taller than wide). */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: var(--grid-gap-tight);
+}
+
+/* Event / circuit card: one fixed anatomy. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  background: var(--table-surface);
+  overflow: hidden;
+  transition:
+    border-color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease,
+    transform 160ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Quiet hover: the edge and the circuit line brighten, the surface stays. */
+  .card:hover {
+    border-color: var(--border-hover);
+  }
+  .card:hover .visual .outline {
+    color: var(--card-accent, var(--text-primary));
+    opacity: 1;
+  }
+}
+
+/* Press feedback (link cards only). */
+.card:not(.static):active {
+  transform: scale(0.985);
+}
+
+.titleLink {
+  color: inherit;
+  transition: color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .titleLink:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--border-hover);
+    text-underline-offset: 3px;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.actions > * {
+  flex: 1;
+}
+
+.muted .visual,
+.muted .text,
+.muted .facts {
+  opacity: 0.45;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: var(--badge-height);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  font: var(--type-label);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.flag {
+  flex: none;
+  width: 20px;
+  height: 14px;
+  border-radius: 3px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+/* Square tile: every outline is rotated to fill it the same way. */
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-control);
+  background: var(--surface-2);
+}
+
+/* Fills the tile minus a margin; the square viewBox centres the circuit. */
+.visual .outline {
+  /* Optional accent colour for the circuit line (e.g. circuit type on Tracks). */
+  color: var(--card-accent, var(--text-secondary));
+  opacity: 0.85;
+  /* An SVG is a replaced element: insets alone do not stretch it, so size it explicitly. */
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  width: calc(100% - 2 * var(--space-3));
+  height: calc(100% - 2 * var(--space-3));
+  transition: opacity var(--duration-fast) ease;
+}
+
+.visual .outline path {
+  /* Same line weight on every card, whatever the circuit's size. */
+  vector-effect: non-scaling-stroke;
+  stroke-width: 2px;
+  stroke: currentColor;
+  transition: stroke var(--duration-fast) ease;
+}
+
+.noOutline {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap);
+  min-width: 0;
+}
+
+.title {
+  font: var(--type-heading);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font: var(--type-secondary);
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Three facts in equal columns, label over value. */
+.facts {
+  display: grid;
+  /* The first fact (dates, circuit type) is the longest. */
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-2);
+  margin: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.fact dt {
+  font: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.fact dd {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--type-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:not(.static):active {
+    transform: none;
+  }
+}

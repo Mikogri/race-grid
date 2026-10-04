@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "circuit_key": 49,
+  "year": 2026,
+  "source": {
+    "session_key": 11241,
+    "driver_number": 12,
+    "lap_number": 14
+  },
+  "timing": {
+    "source_sector_seconds": [
+      24.013,
+      27.664,
+      40.387
+    ],
+    "boundary_offsets_seconds": [
+      0.0,
+      24.013,
+      51.677,
+      92.064
+    ],
+    "sum_minus_lap_seconds": 0.0,
+    "sum_tolerance_seconds": 0.05,
+    "finish_time_source": "date_start + lap_duration",
+    "method": "date_start plus cumulative duration_sector_1/2; time-aligned location",
+    "accuracy": "approximate; not surveyed timing-gate coordinates",
+    "sector_assignment": "S1=[START,S1_END), S2=[S1_END,S2_END), S3=[S2_END,FINISH]",
+    "range_indices": "inclusive endpoints, shared by neighbouring SVG sector paths"
+  },
+  "sectors": [
+    {
+      "sector": 1,
+      "name": "S1",
+      "start_index": 0,
+      "end_index": 96,
+      "start_boundary": "START",
+      "end_boundary": "S1_END",
+      "start_t_seconds": 0.0,
+      "end_t_seconds": 24.013,
+      "duration_seconds": 24.013,
+      "source_duration_seconds": 24.013
+    },
+    {
+      "sector": 2,
+      "name": "S2",
+      "start_index": 96,
+      "end_index": 201,
+      "start_boundary": "S1_END",
+      "end_boundary": "S2_END",
+      "start_t_seconds": 24.013,
+      "end_t_seconds": 51.677,
+      "duration_seconds": 27.664,
+      "source_duration_seconds": 27.664
+    },
+    {
+      "sector": 3,
+      "name": "S3",
+      "start_index": 201,
+      "end_index": 358,
+      "start_boundary": "S2_END",
+      "end_boundary": "FINISH",
+      "start_t_seconds": 51.677,
+      "end_t_seconds": 92.064,
+      "duration_seconds": 40.387,
+      "source_duration_seconds": 40.387
+    }
+  ],
+  "boundaries": [
+    {
+      "type": "START",
+      "point_index": 0,
+      "sector_before": 3,
+      "sector_after": 1,
+      "date": "2026-03-14T07:57:40.679000+00:00",
+      "t_seconds": 0.0,
+      "x": 407.9,
+      "y": -1474.9,
+      "z": 154.7,
+      "svg_x": 579.300197,
+      "svg_y": 746.178478,
+      "progress": 0.0,
+      "position_method": "linear_interpolation",
+      "source_before_date": "2026-03-14T07:57:40.661000+00:00",
+      "source_after_date": "2026-03-14T07:57:40.841000+00:00",
+      "sample_bracket_seconds": 0.18
+    },
+    {
+      "type": "S1_END",
+      "point_index": 96,
+      "sector_before": 1,
+      "sector_after": 2,
+      "date": "2026-03-14T07:58:04.692000+00:00",
+      "t_seconds": 24.013,
+      "x": -6273.85,
+      "y": 2048.173076923077,
+      "z": 159.18846153846152,
+      "svg_x": 75.099902,
+      "svg_y": 480.329788,
+      "progress": 0.261979824,
+      "position_method": "linear_interpolation",
+      "source_before_date": "2026-03-14T07:58:04.481000+00:00",
+      "source_after_date": "2026-03-14T07:58:04.741000+00:00",
+      "sample_bracket_seconds": 0.26
+    },
+    {
+      "type": "S2_END",
+      "point_index": 201,
+      "sector_before": 2,
+      "sector_after": 3,
+      "date": "2026-03-14T07:58:32.356000+00:00",
+      "t_seconds": 51.677,
+      "x": -1005.8684210526316,
+      "y": 4804.368421052632,
+      "z": 142.0,
+      "svg_x": 472.618197,
+      "svg_y": 272.349168,
+      "progress": 0.548872128,
+      "position_method": "linear_interpolation",
+      "source_before_date": "2026-03-14T07:58:31.981000+00:00",
+      "source_after_date": "2026-03-14T07:58:32.361000+00:00",
+      "sample_bracket_seconds": 0.38
+    },
+    {
+      "type": "FINISH",
+      "point_index": 358,
+      "sector_before": 3,
+      "sector_after": 1,
+      "date": "2026-03-14T07:59:12.743000+00:00",
+      "t_seconds": 92.064,
+      "x": 216.20625,
+      "y": -1517.3125,
+      "z": 140.0,
+      "svg_x": 564.835117,
+      "svg_y": 749.378896,
+      "progress": 1.0,
+      "position_method": "linear_interpolation",
+      "source_before_date": "2026-03-14T07:59:12.601000+00:00",
+      "source_after_date": "2026-03-14T07:59:12.921000+00:00",
+      "sample_bracket_seconds": 0.32
+    }
+  ],
+  "note": "Timing sectors S1/S2/S3, not marshal sectors or mini-sectors. Positions are approximate."
+}

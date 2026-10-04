@@ -1,0 +1,50 @@
+/* Position cell: number + movement in the latest session. */
+.position {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.positionNumber {
+  min-width: 2ch;
+}
+
+.team {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--inline-gap);
+}
+
+/* Driver cell: headshot, then name over country. */
+.driver {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.driverText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.driverName {
+  font: var(--type-body-dense);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.country {
+  font: var(--type-caption);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+/* Narrow tables: long names wrap under the portrait instead of widening the table. */
+@container (max-width: 520px) {
+  .driverName {
+    white-space: normal;
+  }
+}

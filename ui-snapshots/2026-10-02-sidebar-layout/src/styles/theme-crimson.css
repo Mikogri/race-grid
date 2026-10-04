@@ -1,0 +1,25 @@
+/* EXPERIMENTAL theme "crimson" (reference: CoCreate dashboard, red instead of green).
+   Near-black silk backdrop with a faint warm cast + near-black neutral panels. Everything lives in this file and is switched on by
+   data-theme="crimson" on <html> (index.html).
+   - Revert: remove data-theme="crimson" from index.html (and delete this file + assets/app-background-crimson.webp).
+   - Adopt:  move these values into tokens.css / global.css, then remove the attribute and this file. */
+:root[data-theme='crimson'] {
+  --background: #060606;
+  --surface-1: rgba(12, 12, 12, 0.6); /* panels: near-black, translucent */
+  --surface-2: rgba(48, 45, 44, 0.24);
+  --surface-3: rgba(80, 77, 76, 0.24);
+  --surface-hover: rgba(120, 118, 116, 0.1);
+  --surface-active: rgba(120, 118, 116, 0.18);
+  --surface-popover: #121212;
+  --surface-bar: rgba(8, 8, 8, 0.72);
+  --surface-frosted: rgba(14, 14, 14, 0.6);
+  --border: rgba(255, 245, 240, 0.08);
+  --border-subtle: rgba(255, 245, 240, 0.05);
+  --border-hover: rgba(255, 245, 240, 0.18);
+  --chart-grid: rgba(255, 245, 240, 0.07);
+  --chart-grid-minor: rgba(255, 245, 240, 0.03);
+}
+
+:root[data-theme='crimson'] body::before {
+  background: var(--background) url('../assets/app-background-crimson.webp') center / cover no-repeat;
+}

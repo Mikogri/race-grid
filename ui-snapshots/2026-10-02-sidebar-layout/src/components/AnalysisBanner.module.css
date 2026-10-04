@@ -1,0 +1,18 @@
+.banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--panel-padding);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.bannerNote {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}

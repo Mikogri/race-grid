@@ -1,0 +1,25 @@
+/* Tyre compound (Figma: tyre ring): 18 × 17 pill outlined in the FIA compound colour, white initial, then the stint age. */
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.tyre {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: var(--radius-pill);
+  border: 1px solid;
+  font: var(--type-body-dense);
+  color: var(--text-primary);
+}
+
+.age {
+  font: var(--type-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}

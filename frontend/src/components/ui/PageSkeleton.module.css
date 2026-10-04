@@ -1,0 +1,185 @@
+/* Page-shaped skeletons: the same grids and panel proportions as the pages they stand in for. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-spacing);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--panel-padding-lg);
+  border: 1px solid var(--border);
+  border-top-color: var(--border-highlight);
+  border-radius: var(--radius-panel);
+  background: var(--surface-1);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legend {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.toolbar,
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.tabs {
+  justify-content: flex-start;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--grid-gap);
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+}
+
+.square {
+  aspect-ratio: 1 / 1;
+}
+
+.fill {
+  flex: 1;
+  min-height: 160px;
+}
+
+.twoCol,
+.dashboardBottom {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+.dashboardBottom {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+}
+
+.threeCol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+.twoColTight,
+.threeColTight {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.threeColTight {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Dashboard: hero beside next round + season progress. */
+.dashboardTop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(300px, 1fr);
+  gap: var(--grid-gap);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  min-height: 340px;
+}
+
+/* Driver profile hero: portrait, identity, key figures. */
+.profileHero {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) minmax(260px, 0.6fr);
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+/* Replay: header, then tower | map over analysis | selected driver, filling the window. */
+.replayHeader {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.replayHeader > :last-child {
+  margin-left: auto;
+}
+
+.replay {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr) 260px;
+  gap: var(--grid-gap-tight);
+  height: calc(100dvh - var(--topbar-height) - var(--footer-height) - 2 * var(--sheet-padding) - 120px);
+  min-height: 420px;
+}
+
+.replay > * {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.fillPanel {
+  flex: 1;
+}
+
+.analysis {
+  height: 34%;
+}
+
+@media (max-width: 1100px) {
+  .kpis,
+  .threeCol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .dashboardTop,
+  .dashboardBottom,
+  .twoCol,
+  .profileHero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .replay {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+  }
+}

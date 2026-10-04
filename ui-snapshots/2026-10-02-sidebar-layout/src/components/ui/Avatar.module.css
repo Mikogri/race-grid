@@ -1,0 +1,44 @@
+/* Round portrait on a neutral fill (headshots have transparent backgrounds). */
+.avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  font: var(--type-meta);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.sm {
+  width: var(--avatar-size-sm);
+  height: var(--avatar-size-sm);
+}
+
+.md {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+}
+
+.lg {
+  width: var(--avatar-size-lg);
+  height: var(--avatar-size-lg);
+  font: var(--type-heading);
+}
+
+.xl {
+  width: 112px;
+  height: 112px;
+  border-width: 2px;
+  font: var(--type-heading-lg);
+}

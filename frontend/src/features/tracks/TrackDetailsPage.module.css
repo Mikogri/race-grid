@@ -1,0 +1,55 @@
+/* Circuit map: the outline on the panel surface, no decorative background. */
+.map {
+  height: min(62vh, 620px);
+  min-height: 360px;
+  padding: var(--space-4) var(--space-8);
+  margin-bottom: var(--space-3);
+}
+
+.benchmarks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.benchmarks li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.benchmarks li:first-child {
+  padding-top: 0;
+}
+
+.benchmarks li:last-child {
+  border-bottom: 0;
+}
+
+.benchmarkLabel {
+  font: var(--type-body-dense);
+  color: var(--text-secondary);
+}
+
+.benchmarkValue {
+  font: var(--type-metric);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.benchmarkMeta {
+  grid-column: 1 / -1;
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.caption {
+  margin-top: var(--space-3);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}

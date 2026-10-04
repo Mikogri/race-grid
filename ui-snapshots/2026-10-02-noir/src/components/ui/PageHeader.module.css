@@ -1,0 +1,222 @@
+/* Page header: breadcrumbs, light title, 12 px subtitle; key facts on the subtitle line. */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-spacing);
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+}
+
+.leading {
+  display: flex;
+  align-self: center;
+}
+
+.titleBlock {
+  display: flex;
+  flex: 1 1 320px;
+  flex-direction: column;
+  gap: var(--stack-gap);
+  min-width: 0;
+}
+
+/* Breadcrumbs (reference: ⌂ › Incidents › INC-2042): quiet 12 px trail above the title. */
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+  font: var(--type-label);
+  color: var(--text-secondary);
+}
+
+/* Back: the first crumb, text only; the arrow nudges left on hover. */
+.back {
+  gap: var(--space-1);
+  color: var(--text-secondary);
+}
+
+.back svg {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .back:hover svg {
+    transform: translateX(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back svg {
+    transition: none;
+  }
+}
+
+.crumbSeparator {
+  flex: none;
+  color: var(--text-quaternary);
+}
+
+.crumbLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-tertiary);
+  transition: color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .crumbLink:hover {
+    color: var(--text-primary);
+  }
+}
+
+.title {
+  font: var(--type-page-title);
+  letter-spacing: var(--tracking-page-title);
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+/* One accent word in a title: <h1><mark>Baku</mark> Race Replay</h1> */
+.title mark {
+  background: none;
+  color: var(--accent);
+}
+
+.boxed {
+  padding: var(--panel-padding-lg);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+}
+
+.boxed {
+  padding: var(--space-4) var(--space-5);
+}
+
+.boxed .row {
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+}
+
+.boxed .titleBlock {
+  flex: 0 1 auto;
+}
+
+/* Circuit thumbnail in a tile at the start of the header. */
+.boxed .leading {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: var(--space-2);
+  border-radius: var(--radius-panel);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.boxed .leading > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.boxed .leading path {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 2px;
+}
+
+/* Key facts on the right: hairline-separated columns, small uppercase label over a 16 px value. */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 0 auto;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-1) var(--space-6);
+  border-left: 1px solid var(--border);
+}
+
+.fact:last-child {
+  padding-right: 0;
+}
+
+.fact dt {
+  font: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.fact dd {
+  margin: 0;
+  font: var(--type-fact);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.description {
+  font: var(--type-page-subtitle);
+  color: var(--text-tertiary);
+}
+
+/* Key facts on the subtitle line: label value · label value */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  min-width: 0;
+}
+
+.metaItem {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  min-width: 0;
+  font: var(--type-page-subtitle);
+}
+
+.metaItem dt {
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.metaItem dt::after {
+  content: ':';
+}
+
+.metaItem dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  gap: var(--inline-gap);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .metaItem dd {
+    white-space: normal;
+  }
+}

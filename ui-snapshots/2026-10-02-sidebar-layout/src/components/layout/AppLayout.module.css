@@ -1,0 +1,51 @@
+/* Shell: sidebar | (top bar + fluid content). Content is not width-capped: data screens use the whole desktop. */
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  min-height: 100vh;
+  transition: grid-template-columns var(--duration-layout) var(--ease-out);
+}
+
+.shell[data-collapsed='true'] {
+  grid-template-columns: var(--sidebar-width-collapsed) minmax(0, 1fr);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Content: aligned with the search field above it; panels start one gutter from the menu. */
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-spacing);
+  padding: var(--content-padding-top) var(--page-gutter) var(--page-gutter) var(--content-padding-left);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--overlay);
+  animation: rg-fade var(--duration-slow) ease backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell {
+    transition: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .content {
+    padding-left: var(--page-gutter);
+  }
+  .shell,
+  .shell[data-collapsed='true'] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,149 @@
+/* Shared chart theme (DESIGN_SYSTEM.md §13): 12 px labels, dashed low-contrast grid, dot legend top right,
+   points on hover, compact tooltip. */
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: var(--type-chart);
+  color: var(--text-secondary);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.swatch {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+}
+
+.swatchDashed {
+  display: inline-block;
+  flex: none;
+  width: 12px;
+  height: 0;
+  border-top: 2px dashed;
+}
+
+.plot {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.plot svg {
+  display: block;
+}
+
+.interactive {
+  cursor: crosshair;
+}
+
+.grid {
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+}
+
+.gridFrame {
+  fill: none;
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+}
+
+.gridMinor {
+  stroke: var(--chart-grid-minor);
+  stroke-width: 1;
+}
+
+.tickY,
+.tickX {
+  fill: var(--chart-axis);
+  font: var(--type-chart);
+  font-variant-numeric: tabular-nums;
+}
+
+.tickY {
+  text-anchor: end;
+  dominant-baseline: middle;
+}
+
+.tickX {
+  text-anchor: middle;
+}
+
+.line {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.cursor {
+  stroke: var(--accent);
+  stroke-width: 1;
+}
+
+.hoverLine {
+  stroke: var(--chart-cursor);
+  stroke-width: 1;
+}
+
+.hoverPoint {
+  stroke: var(--background);
+  stroke-width: 2;
+}
+
+.tooltip {
+  position: absolute;
+  top: var(--space-1);
+  z-index: 5;
+  min-width: 160px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-frosted);
+  backdrop-filter: var(--blur-frosted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-popover);
+  pointer-events: none;
+  animation: rg-fade var(--duration-fast) ease backwards;
+}
+
+.tooltipTitle {
+  margin-bottom: var(--space-1);
+  font: var(--type-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-meta);
+  color: var(--text-secondary);
+}
+
+.tooltipLabel {
+  flex: 1;
+}
+
+.tooltipValue {
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}

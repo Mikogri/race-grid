@@ -1,0 +1,204 @@
+/* Shared chart theme: smooth lines with a soft fill, mono axis figures, dotted low-contrast grid, dot legend top right,
+   points on hover, compact tooltip. */
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+/* Legend: one line per series as a short stroke in its colour, left-aligned and wrapping. */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: var(--type-caption);
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.legend .swatch {
+  width: 12px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+}
+
+.swatch {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+}
+
+.swatchDashed {
+  display: inline-block;
+  flex: none;
+  width: 12px;
+  height: 0;
+  border-top: 2px dashed;
+}
+
+.plot {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.plot svg {
+  display: block;
+}
+
+/* Fill mode: the chart takes the free height of its column; the SVG follows the measured plot. */
+.fill {
+  flex: 1;
+  min-height: 0;
+}
+
+.fillPlot {
+  flex: 1;
+}
+
+.fillPlot svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.interactive {
+  cursor: crosshair;
+}
+
+/* Dotted grid in both directions. */
+.grid {
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.gridFrame {
+  fill: none;
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.gridMinor {
+  stroke: var(--chart-grid-minor);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+/* Axis figures in the mono face. */
+.tickY,
+.tickX {
+  fill: var(--chart-axis);
+  font: var(--type-mono);
+}
+
+.tickY {
+  text-anchor: end;
+  dominant-baseline: middle;
+}
+
+.tickX {
+  text-anchor: middle; /* the edge labels set their own anchor */
+}
+
+.line {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Lines draw in from the left when the chart appears. */
+.draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 700ms var(--ease-out) forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}
+
+.cursor {
+  stroke: var(--accent);
+  stroke-width: 1;
+}
+
+.hoverLine {
+  stroke: var(--chart-cursor);
+  stroke-width: 1;
+}
+
+.hoverPoint {
+  stroke: var(--background);
+  stroke-width: 2;
+}
+
+.tooltip {
+  position: absolute;
+  top: var(--space-1);
+  z-index: 5;
+  min-width: 160px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-frosted);
+  backdrop-filter: var(--blur-frosted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-popover);
+  pointer-events: none;
+  animation: fade-in var(--duration-fast) ease backwards;
+}
+
+.tooltipTitle {
+  margin-bottom: var(--space-1);
+  font: var(--type-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-meta);
+  color: var(--text-secondary);
+}
+
+.tooltipLabel {
+  flex: 1;
+}
+
+.tooltipValue {
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+/* Local copy of the shared fade: CSS modules scope keyframe names, so the global rg-fade cannot be referenced here. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

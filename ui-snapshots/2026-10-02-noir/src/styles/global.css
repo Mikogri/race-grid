@@ -1,0 +1,121 @@
+@import './tokens.css';
+@import './theme-crimson.css'; /* experimental: see the file header */
+@import './theme-mono.css'; /* experimental: see the file header */
+@import './theme-graphite.css'; /* experimental: see the file header */
+@import './theme-ember.css'; /* experimental: see the file header */
+@import './theme-noir.css'; /* experimental: see the file header */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+/* Last line of defence: layouts adapt instead of scrolling sideways. */
+html,
+body {
+  overflow-x: clip;
+}
+
+/* Components set their own role with `font: var(--type-…)`. */
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
+  font: var(--type-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Backdrop: the red-light image, pre-blurred (37.5 px) at 50 % over black. Fixed behind every surface. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--background) url('../assets/app-background.webp') center top / cover no-repeat;
+  pointer-events: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+/* Headings get their size and weight from a role token; never the browser's bold default. */
+h1,
+h2,
+h3,
+h4 {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+/* Comparable figures (points, positions, counts, percentages): interface face, tabular digits. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Identifiers and page numbers: IBM Plex Mono. */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Slim scrollbars inside panels; the page's own scroll area keeps the browser default. */
+:not([data-page-scroll])::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+:not([data-page-scroll])::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: var(--radius-xs);
+}
+:not([data-page-scroll])::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

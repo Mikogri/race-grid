@@ -1,0 +1,342 @@
+/* Sidebar (Figma: Menu). Fluid width up to 300 px, or a 60 px icon rail when collapsed; off-canvas drawer below 768 px.
+   Brand row lines up with the 60 px top bar; groups are split by hairlines; the data source sits at the bottom. */
+.sidebar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Part of the backdrop: no fill, no edge. */
+  background: none;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  height: var(--topbar-height);
+  padding: 0 var(--sidebar-padding);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--inline-gap);
+  min-width: 0;
+  max-width: 200px;
+  overflow: hidden;
+  color: var(--text-primary);
+}
+
+.brand svg {
+  flex: none;
+}
+
+.wordmark {
+  font: var(--type-brand);
+  white-space: nowrap;
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--nav-item-height);
+  height: var(--nav-item-height);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: none;
+  color: var(--text-primary);
+  opacity: 0.5;
+  transition:
+    opacity var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .toggle:hover {
+    opacity: 1;
+    background: var(--surface-hover);
+  }
+}
+
+/* Expanded: the sidebar icon. Collapsed: the app logo, which turns into the expand icon on hover / focus. */
+.toggleLogo {
+  display: none;
+  color: var(--text-primary);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nav-group-gap);
+  padding: var(--space-3) var(--sidebar-padding);
+}
+
+.group + .group {
+  border-top: 1px solid var(--border);
+  margin: 0 var(--sidebar-padding);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.groupLabel {
+  font: var(--type-nav-group);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nav-item-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: var(--nav-item-height);
+  padding: 0 var(--nav-item-padding-x);
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font: var(--type-nav);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+.icon {
+  flex: none;
+  width: var(--nav-icon-size);
+  height: var(--nav-icon-size);
+  color: var(--text-primary);
+  opacity: 0.4;
+  transition: opacity var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+  }
+  .link:hover .icon {
+    opacity: 0.7;
+  }
+}
+
+.active,
+.active:hover {
+  background: var(--surface-active);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.active .icon,
+.active:hover .icon {
+  opacity: 1;
+}
+
+.active {
+  position: relative;
+}
+
+.active::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 25%;
+  bottom: 25%;
+  width: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.link:focus-visible {
+  outline-offset: -2px;
+}
+
+/* ---- Data source (bottom) ---- */
+.footer {
+  margin-top: auto;
+  padding: var(--space-3) var(--sidebar-padding);
+}
+
+.footer::before {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-bottom: var(--space-3);
+  background: var(--border);
+}
+
+.source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  background: var(--surface-2);
+  font: var(--type-meta);
+  color: var(--text-primary);
+  transition: border-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .source:hover {
+    border-color: var(--border-hover);
+  }
+}
+
+.sourceText {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.sourceText .label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sourceArrow {
+  flex: none;
+  color: var(--text-tertiary);
+}
+
+.dot {
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-pill);
+  background: var(--success);
+}
+
+.dot[data-state='busy'] {
+  animation: pulse 1s ease-in-out infinite alternate;
+}
+
+.dot[data-state='waiting'] {
+  background: var(--warning);
+}
+
+@keyframes pulse {
+  to {
+    opacity: 0.3;
+  }
+}
+
+/* Text that fades out when the menu collapses (it keeps its place, so nothing jumps). */
+.brand,
+.wordmark,
+.groupLabel,
+.label,
+.sourceArrow {
+  transition:
+    opacity var(--duration-layout) var(--ease-out),
+    max-width var(--duration-layout) var(--ease-out);
+}
+
+.source {
+  overflow: hidden;
+}
+
+/* ---- Collapsed rail (desktop): the column animates to 60 px; labels fade, the logo becomes the toggle ---- */
+@media (min-width: 768px) {
+  .sidebar[data-collapsed='true'] .brand {
+    max-width: 0;
+    opacity: 0;
+  }
+
+  .sidebar[data-collapsed='true'] .groupLabel,
+  .sidebar[data-collapsed='true'] .label,
+  .sidebar[data-collapsed='true'] .sourceArrow {
+    opacity: 0;
+  }
+
+  .sidebar[data-collapsed='true'] .toggle {
+    opacity: 1;
+  }
+
+  .sidebar[data-collapsed='true'] .toggleLogo {
+    display: grid;
+  }
+
+  .sidebar[data-collapsed='true'] .toggleIcon {
+    display: none;
+  }
+
+  .sidebar[data-collapsed='true'] .toggle:hover .toggleLogo,
+  .sidebar[data-collapsed='true'] .toggle:focus-visible .toggleLogo {
+    display: none;
+  }
+
+  .sidebar[data-collapsed='true'] .toggle:hover .toggleIcon,
+  .sidebar[data-collapsed='true'] .toggle:focus-visible .toggleIcon {
+    display: block;
+  }
+}
+
+/* ---- Mobile drawer: the top bar's menu button opens it, so the collapse toggle is hidden ---- */
+@media (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 60;
+    width: min(300px, 85vw);
+    background: var(--surface-popover);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition:
+      transform var(--duration-slow) var(--ease-out),
+      visibility 0s linear var(--duration-slow);
+  }
+
+  .sidebar[data-open='true'] {
+    transform: none;
+    visibility: visible;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .toggle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .sidebar[data-open='true'],
+  .brand,
+  .wordmark,
+  .groupLabel,
+  .label,
+  .sourceArrow {
+    transition: none;
+  }
+  .dot[data-state='busy'] {
+    animation: none;
+  }
+}

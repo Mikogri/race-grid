@@ -1,0 +1,1135 @@
+/* ---------- Workspace (Figma: Race Replay) ----------
+   Three columns filling the viewport: timing | map + transport over the analysis tabs | selected driver.
+   Column shares follow the frame (336 / 894 / 300 of 1562). Panels scroll internally; the page itself does not. */
+.workspace {
+  /* Side columns and the analysis row are variables so minimising animates the grid (the map takes the space). */
+  --tower-w: max(272px, 21.5%);
+  --driver-w: max(260px, 19.5%);
+  /* The analysis row is resizable (PanelResizer sets --analysis-height). */
+  --analysis-row: var(--analysis-height, 34%);
+  display: grid;
+  grid-template-columns: var(--tower-w) minmax(0, 1fr) var(--driver-w);
+  grid-template-rows: minmax(0, 1fr) var(--analysis-row);
+  transition:
+    grid-template-columns var(--duration-layout) var(--ease-out),
+    grid-template-rows var(--duration-layout) var(--ease-out);
+  grid-template-areas:
+    'tower map driver'
+    'tower analysis driver';
+  gap: var(--grid-gap-tight);
+  flex: 1;
+  min-height: 0;
+}
+
+/* The replay page fills the viewport exactly (no page scroll); panels scroll inside. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap-tight);
+  height: calc(100dvh - var(--topbar-height) - var(--content-padding-top) - var(--page-gutter));
+  min-height: 0;
+}
+
+.titleWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleWithIcon svg {
+  flex: none;
+  opacity: 0.5;
+}
+
+.workspace[data-tower-collapsed='true'] {
+  --tower-w: var(--rail-width);
+}
+
+.workspace[data-driver-collapsed='true'] {
+  --driver-w: var(--rail-width);
+}
+
+/* Minimised analysis: a rail strip like the side panels. */
+.workspace[data-analysis-collapsed='true'] {
+  --analysis-row: var(--rail-width);
+}
+
+/* Dragging the resizer follows the pointer directly. */
+.workspace[data-resizing='true'] {
+  transition: none;
+}
+
+/* A grid cell holding a collapsible panel and, when minimised, its rail. */
+.slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.slot > :first-child {
+  flex: 1;
+  transition: opacity var(--duration-layout) var(--ease-out);
+}
+
+.slot[data-collapsed='true'] > :first-child {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.towerSlot {
+  grid-area: tower;
+}
+
+.driverSlot {
+  grid-area: driver;
+}
+
+.rail {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  animation: rg-fade var(--duration-layout) var(--ease-out) backwards;
+  transition:
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rail:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+  }
+}
+
+.railHorizontal {
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 var(--space-4);
+}
+
+.railHorizontal .railLabel {
+  writing-mode: horizontal-tb;
+}
+
+.railLabel {
+  writing-mode: vertical-rl;
+  font: var(--type-label);
+  white-space: nowrap;
+}
+
+.collapseButton {
+  width: var(--control-height);
+  height: var(--control-height);
+}
+
+.towerTile {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.towerTile > div:last-child {
+  min-height: 0;
+}
+
+.mapTile {
+  grid-area: map;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+}
+
+.driverTile {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.analysisArea {
+  grid-area: analysis;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.analysisTile {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.analysisTile {
+  transition: opacity var(--duration-layout) var(--ease-out);
+}
+
+.analysisArea[data-collapsed='true'] .analysisTile {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Space between the tab bar and the charts / lists. */
+.analysisTile > div:last-child {
+  padding-top: var(--space-6);
+}
+
+/* Drag handle in the gap above the analysis panel. */
+/* Drag handle on the top edge inside the analysis panel. */
+.resizer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  height: 12px;
+  cursor: row-resize;
+  touch-action: none;
+}
+
+.resizer::before {
+  content: '';
+  width: 40px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  transition: background-color var(--duration-fast) ease;
+}
+
+.resizer:hover::before,
+.resizer:focus-visible::before,
+.resizer[data-dragging='true']::before {
+  background: var(--text-tertiary);
+}
+
+.resizer:focus-visible {
+  outline: none;
+}
+
+/* The analysis body scrolls inside the panel. */
+.analysisTile > div:last-child {
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.panelNote {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+/* ---------- Map ---------- */
+.map {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  padding: var(--space-4) var(--space-6);
+}
+
+.map > svg {
+  position: relative;
+}
+
+/* SC / VSC / red flag banner over the map: a warning badge. */
+.neutralised {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  height: var(--badge-height);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--warning-border);
+  background: var(--warning-subtle);
+  font: var(--type-meta);
+  font-weight: var(--weight-medium);
+  color: var(--warning);
+  animation: rg-fade var(--duration-slow) var(--ease-out) backwards;
+}
+
+.mapStatus,
+.mapNote {
+  position: absolute;
+  bottom: var(--space-2);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.mapStatus {
+  left: var(--space-3);
+}
+
+.mapNote {
+  right: var(--space-3);
+}
+
+.mapCanvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Car marker: team-colour dot with a dark ring, and a frosted label chip beside it. Positioned by transform. */
+.car {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  will-change: transform;
+}
+
+/* Sector start: a small frosted tag with a dot in the selected driver's sector colour. */
+.sectorTag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+  background: var(--surface-frosted);
+  backdrop-filter: var(--blur-frosted);
+  font: var(--type-caption);
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.sectorTag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--sector);
+  transition: background-color var(--duration-slow) ease;
+}
+
+.carDot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px; /* centre the dot on the car position */
+  align-self: flex-start;
+  border-radius: var(--radius-pill);
+  /* Flat team colour with a thin light inner ring; no outline, no gradient. */
+  background: var(--team);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.35);
+  transition: box-shadow var(--duration-fast) ease;
+}
+
+.carLabel {
+  margin-top: -10px;
+  padding: 2px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-chip);
+  background: var(--surface-frosted);
+  backdrop-filter: var(--blur-frosted);
+  font: var(--type-caption);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition:
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .car:hover .carLabel {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* Selected car: larger dot with a white ring and a pulsing halo; its label is filled with the team colour. */
+.carSelected {
+  z-index: 2;
+}
+
+.carSelected .carDot {
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  box-shadow:
+    0 0 0 2px var(--text-primary),
+    0 0 0 7px color-mix(in srgb, var(--team) 40%, transparent),
+    0 0 18px 4px color-mix(in srgb, var(--team) 55%, transparent);
+  animation: car-pulse 1.6s ease-in-out infinite;
+}
+
+.carSelected .carLabel {
+  margin-top: -12px;
+  margin-left: 4px;
+  padding: 3px 8px;
+  border-color: transparent;
+  background: color-mix(in srgb, var(--team) 80%, black);
+  font: var(--type-meta);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+@keyframes car-pulse {
+  50% {
+    box-shadow:
+      0 0 0 2px var(--text-primary),
+      0 0 0 10px color-mix(in srgb, var(--team) 20%, transparent),
+      0 0 22px 6px color-mix(in srgb, var(--team) 45%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carSelected .carDot {
+    animation: none;
+  }
+}
+
+.car:focus-visible {
+  outline: none;
+}
+
+.car:focus-visible .carLabel {
+  box-shadow: var(--focus-ring);
+}
+
+.carStale {
+  opacity: 0.35;
+}
+
+/* ---------- Transport (Figma: Track bar) ---------- */
+.controls {
+  padding: var(--space-3);
+}
+
+.controlRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.transport {
+  width: var(--control-height-transport);
+  height: var(--control-height-transport);
+  padding: 0;
+}
+
+.skip {
+  color: var(--text-primary);
+}
+
+.readout {
+  display: flex;
+  gap: var(--space-4);
+  font: var(--type-body);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.readoutLabel {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.timeline {
+  position: relative;
+  flex: 1;
+  min-width: 160px;
+  height: 24px;
+  margin: 0 5px;
+}
+
+.timelineTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--accent);
+  filter: brightness(0.8); /* Figma: 20 % black over the red */
+}
+
+.band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.bandSC {
+  background: var(--warning);
+}
+
+.bandVSC {
+  background: var(--warning-border);
+}
+
+.bandRED {
+  background: var(--danger);
+}
+
+.tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 1px;
+  background: var(--text-tertiary);
+}
+
+.scrubber {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+.scrubber::-webkit-slider-runnable-track {
+  height: 24px;
+  background: transparent;
+}
+
+/* Playhead: 3 x 10 white bar (Figma). */
+.scrubber::-webkit-slider-thumb {
+  appearance: none;
+  width: 4px;
+  height: 14px;
+  margin-top: 5px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-inverted);
+}
+
+.scrubber:focus-visible {
+  outline: none;
+}
+
+.scrubber:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--focus-color);
+}
+
+.scrubber::-moz-range-thumb {
+  width: 4px;
+  height: 14px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--surface-inverted);
+}
+
+/* ---------- Timing tower (Figma: Timing) ----------
+   Own scroll container (header sticks to its top) and size container (narrow-table padding applies).
+   Plain 10 px uppercase header, 30 px rows, no frame. */
+.tower {
+  --table-sticky-top: 0px;
+  container-type: inline-size;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Beats the table's own narrow-container values (.tower table outranks .table). */
+.tower table {
+  --table-cell-padding-x: 6px;
+  --table-edge-padding-x: var(--space-3);
+}
+
+/* Plain header: no fill, no blur; it scrolls with the rows instead of sticking over them. */
+.tower table th {
+  position: static;
+  height: 28px;
+  background: none;
+  backdrop-filter: none;
+  border-top: 0;
+  border-bottom: 0;
+  font: var(--type-meta);
+  color: var(--text-quaternary);
+}
+
+.towerDriver {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.towerAcronym {
+  color: var(--text-primary);
+}
+
+.retiredRow td {
+  opacity: 0.3;
+}
+
+/* Interval chips: within DRS range green, otherwise yellow (Figma). */
+.gapClose,
+.gapFar {
+  display: inline-block;
+  padding: 3px 5px;
+  border-radius: var(--radius-chip);
+  font: var(--type-caption);
+}
+
+.gapClose {
+  background: var(--gap-close-bg);
+  color: var(--gap-close);
+}
+
+.gapFar {
+  background: var(--gap-far-bg);
+  color: var(--gap-far);
+}
+
+.fastest {
+  color: var(--fastest);
+}
+
+/* ---------- Selected driver ----------
+   Header, then Live / Timing / Tyre sections: a small uppercase title and aligned label-value rows (label tertiary
+   left, value right). Separation by spacing only; filled tiles for the live figures and the sectors. */
+.selectedHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.selectedName {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.selectedDriver {
+  font: var(--type-heading);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectedTeam {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.selectedPos {
+  font: var(--type-heading-lg);
+  color: var(--text-primary);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.sectionTitle {
+  font: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.kv,
+.meterRow {
+  display: grid;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 28px;
+  font: var(--type-body-dense);
+}
+
+.kv {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.kv dt,
+.meterLabel {
+  color: var(--text-tertiary);
+}
+
+.kv dd {
+  margin: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.live {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.liveItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-control);
+  background: var(--surface-2);
+}
+
+.liveLabel,
+.sectorLabel {
+  font: var(--type-caption);
+  color: var(--text-tertiary);
+}
+
+.liveValue {
+  font: var(--type-heading-lg);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.liveUnit {
+  margin-left: var(--space-1);
+  font: var(--type-caption);
+  color: var(--text-tertiary);
+}
+
+.meters {
+  display: flex;
+  flex-direction: column;
+}
+
+.meterRow {
+  grid-template-columns: 64px minmax(0, 1fr) 40px;
+}
+
+.meterTrack {
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.meterFill {
+  display: block;
+  height: 100%;
+  transform-origin: left;
+}
+
+.throttle {
+  background: var(--success);
+}
+
+.brake {
+  background: var(--danger);
+}
+
+.meterValue {
+  text-align: right;
+  color: var(--text-primary);
+}
+
+/* DRS sits in a meter row: value right-aligned in the last two columns. */
+.meters .kv {
+  grid-template-columns: 64px minmax(0, 1fr);
+}
+
+.drsOpen {
+  color: var(--success);
+}
+
+/* Sectors (F1 timing screens): a 3 px bar in the sector colour over the label and time. */
+.sectors {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.sector {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding-top: var(--space-2);
+  border-top: 3px solid var(--sector-color, var(--surface-3));
+}
+
+.sectorTime {
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.sectorFastest {
+  --sector-color: var(--fastest);
+}
+
+.sectorPersonal {
+  --sector-color: var(--personal-best);
+}
+
+.sectorSlower {
+  --sector-color: var(--sector-slower);
+}
+
+.sectorNone {
+  --sector-color: var(--surface-3);
+}
+
+.sectorNone .sectorTime {
+  color: var(--text-tertiary);
+}
+
+.tyreValue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ---------- Telemetry ---------- */
+.telemetry {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.telemetry > .panelNote {
+  grid-column: 1 / -1;
+  margin-bottom: var(--space-1);
+}
+
+/* Channel card: swatch, name, unit and the live value over its chart. */
+.channel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.channelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.channelLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-meta);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.channelSwatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.channelValue {
+  font: var(--type-label);
+}
+
+/* Smaller axis labels on the stacked telemetry charts. */
+.compactChart text {
+  font: var(--type-caption);
+}
+
+.channelUnit {
+  font: var(--type-caption);
+  color: var(--text-tertiary);
+}
+
+/* ---------- Strategy ---------- */
+.strategy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.strategyGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+.strategyGrid h3 {
+  margin-top: var(--space-4);
+}
+
+.strategyGrid h3:first-child {
+  margin-top: 0;
+}
+
+.plainList {
+  list-style: none;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font: var(--type-body-dense);
+  color: var(--text-secondary);
+}
+
+/* ---------- Events ---------- */
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.eventList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.futureEvent {
+  opacity: 0.4;
+}
+
+.eventButton {
+  display: grid;
+  grid-template-columns: 56px 32px auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: var(--control-height);
+  padding: 0 var(--space-2);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: none;
+  text-align: left;
+  font: var(--type-body-dense);
+  color: var(--text-secondary);
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .eventButton:hover {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+  }
+}
+
+.eventTime {
+  font: var(--type-mono-meta);
+  color: var(--text-tertiary);
+}
+
+.eventLap {
+  font: var(--type-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}
+
+.eventTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.eventDetail {
+  color: var(--text-tertiary);
+}
+
+/* ---------- Radio ---------- */
+.radioList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.radioItem {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 120px) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.jump {
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: var(--type-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  transition: color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .jump:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.audio {
+  width: 100%;
+  height: var(--control-height);
+  color-scheme: dark;
+}
+
+/* ---------- Weather ---------- */
+.weather {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Narrower desktops: two columns, the selected driver under the timing; still one screen, no page scroll. */
+@media (max-width: 1380px) {
+  /* Side panels share one column here, so only the analysis panel can be minimised. */
+  .towerSlot .collapseButton,
+  .driverSlot .collapseButton {
+    display: none;
+  }
+  .workspace {
+    grid-template-columns: var(--tower-w) minmax(0, 1fr);
+    grid-template-areas:
+      'tower map'
+      'driver analysis';
+  }
+}
+
+/* Phones: one stacked column; only here does the page scroll. */
+@media (max-width: 900px) {
+  .collapseButton {
+    display: none;
+  }
+  .page {
+    height: auto;
+  }
+  .resizer {
+    display: none;
+  }
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: 'map' 'tower' 'driver' 'analysis';
+  }
+  .towerTile {
+    max-height: 560px;
+  }
+  .analysisArea {
+    max-height: 640px;
+  }
+  .mapTile {
+    height: 460px;
+  }
+  .telemetry,
+  .strategyGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Side-panel headers stay on one line: title left, figure + minimise button right. */
+.towerTile > header,
+.driverTile > header {
+  flex-wrap: nowrap;
+}
+
+.towerTile > header > :first-child,
+.driverTile > header > :first-child {
+  flex-basis: 0;
+}
+
+/* Telemetry empty / loading state: centred, muted, with an icon tile. */
+.telemetryEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 160px;
+  height: 100%;
+  text-align: center;
+}
+
+.telemetryEmptyIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  background: var(--surface-2);
+  color: var(--text-tertiary);
+}
+
+.pulse {
+  animation: pulse-soft 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-soft {
+  to {
+    opacity: 0.4;
+  }
+}
+
+.telemetryEmptyTitle {
+  font: var(--type-label);
+  color: var(--text-secondary);
+}
+
+.telemetryEmptyDetail {
+  max-width: 320px;
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}

@@ -1,0 +1,419 @@
+/* Top: latest race (wide) + next round. Bottom: drivers | constructors | insights. */
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(280px, 1fr);
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--grid-gap);
+  align-items: stretch; /* the three panels share one height */
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font: var(--type-secondary);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--text-primary);
+  }
+}
+
+/* Circuit outline filling its tile (an SVG is a replaced element: size it explicitly). */
+.latestMap .outline,
+.nextMap .outline {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  width: calc(100% - 2 * var(--space-4));
+  height: calc(100% - 2 * var(--space-4));
+  color: var(--text-primary);
+}
+
+.latestMap .outline path,
+.nextMap .outline path {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 2px;
+  stroke: currentColor;
+}
+
+.mapEmpty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  text-align: center;
+  font: var(--type-heading);
+  color: var(--text-secondary);
+}
+
+.mapEmpty svg {
+  width: 28px;
+  height: 28px;
+  margin-bottom: var(--space-2);
+  color: var(--text-quaternary);
+}
+
+.mapEmpty span {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.flag {
+  width: 20px;
+  height: 14px;
+  margin-right: var(--space-2);
+  border-radius: 3px;
+  object-fit: cover;
+  vertical-align: -1px;
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.raceName {
+  font: var(--type-heading-lg);
+  color: var(--text-primary);
+}
+
+.raceSub {
+  margin-top: var(--space-1);
+  font: var(--type-secondary);
+  color: var(--text-tertiary);
+}
+
+/* ---- Latest race ---- */
+.latestBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: var(--space-6);
+  height: 100%;
+}
+
+.race {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.latestMap,
+.nextMap {
+  position: relative;
+  border-radius: var(--radius-panel);
+  background: var(--surface-2);
+}
+
+.latestMap {
+  flex: 1;
+  min-height: 150px;
+}
+
+/* Race facts: small uppercase label over a figure, hairline-separated. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+}
+
+.facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: 0 var(--space-3);
+  border-left: 1px solid var(--border-subtle);
+}
+
+.facts > div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.facts dt {
+  font: var(--type-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.facts dd {
+  margin: 0;
+  font: var(--type-fact);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Podium: three rows filling the column, team colour on the left edge. */
+.podium {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.podium > li {
+  display: flex;
+  flex: 1;
+}
+
+.podiumRow {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 3ch auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 84px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--team, var(--border));
+  border-radius: var(--radius-panel);
+  background: var(--surface-2);
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.podiumRow:hover {
+    background: var(--surface-hover);
+    border-top-color: var(--border-hover);
+    border-right-color: var(--border-hover);
+    border-bottom-color: var(--border-hover);
+  }
+}
+
+.podiumPos {
+  font: var(--type-mono);
+  color: var(--text-tertiary);
+}
+
+.podiumRow[data-place='1'] .podiumPos {
+  color: var(--text-primary);
+}
+
+.podiumText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.podiumName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--type-heading);
+  color: var(--text-primary);
+}
+
+.podiumTeam {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.podiumTime {
+  font: var(--type-mono);
+  color: var(--text-secondary);
+}
+
+/* ---- Next round ---- */
+.nextBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+}
+
+.countdown {
+  align-self: flex-start;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-chip);
+  background: color-mix(in srgb, var(--tone-blue) 16%, transparent);
+  font: var(--type-label);
+  color: var(--tone-blue);
+}
+
+.nextMap {
+  max-height: none;
+  flex: 1;
+  min-height: 140px;
+}
+
+/* ---- Championship rankings ---- */
+/* Rows spread over the full panel height, so drivers and constructors line up. */
+.ranking {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rankRow {
+  display: grid;
+  grid-template-columns: 2ch auto minmax(0, 1fr) auto auto;
+  grid-template-areas:
+    'pos face name move points'
+    '. . bar bar bar';
+  align-items: center;
+  column-gap: var(--space-3);
+  row-gap: 6px;
+  padding: var(--space-2) var(--space-2);
+  margin: 0 calc(-1 * var(--space-2));
+  border-radius: var(--radius-control);
+  transition: background-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rankRow:hover {
+    background: var(--surface-hover);
+  }
+}
+
+.rankPos {
+  grid-area: pos;
+  font: var(--type-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}
+
+.rankRow > :nth-child(2) {
+  grid-area: face;
+}
+
+.teamSwatch {
+  width: 3px;
+  height: 16px;
+  border-radius: var(--radius-pill);
+  background: var(--team);
+}
+
+.rankName {
+  grid-area: name;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--type-body-dense);
+  color: var(--text-primary);
+}
+
+.rankMove {
+  grid-area: move;
+}
+
+.rankPoints {
+  grid-area: points;
+  font: var(--type-label);
+  color: var(--text-primary);
+}
+
+.rankBar {
+  grid-area: bar;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.rankBar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--team);
+  transform-origin: left;
+  transition: transform 600ms var(--ease-out) calc(var(--i, 0) * 40ms);
+
+  @starting-style {
+    transform: scaleX(0);
+  }
+}
+
+/* ---- Insights ---- */
+.insights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.insights li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font: var(--type-body-dense);
+  color: var(--text-primary);
+}
+
+.insights li:first-child {
+  padding-top: 0;
+}
+
+.insights li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.insightLink {
+  transition: color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .insightLink:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--border-hover);
+    text-underline-offset: 3px;
+  }
+}
+
+.basis {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 1280px) {
+  .bottom {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .bottom > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1100px) {
+  .top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .latestBody,
+  .bottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rankBar > span {
+    transition: none;
+  }
+}

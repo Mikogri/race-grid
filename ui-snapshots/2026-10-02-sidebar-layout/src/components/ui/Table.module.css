@@ -1,0 +1,195 @@
+/* Data table (Figma: Drivers Standings). Framed box (radius 8), 31 px header bar on the raised surface,
+   40 px rows (54 px with a portrait), 12/500 white text, no row rules. Figures are right-aligned with tabular digits.
+   No horizontal scrolling: tables adapt to their container (queries below). */
+.wrap {
+  min-width: 0;
+  container-type: inline-size;
+  border: var(--table-frame, 1px solid var(--border-subtle));
+  border-radius: var(--table-frame-radius, var(--radius-panel));
+  /* The table reads as its own surface inside the panel. */
+  background: var(--table-surface);
+  overflow: clip;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sticks under the top bar while the page scrolls; scroll containers set --table-sticky-top: 0.
+   The frosted layer under the raised tint keeps scrolled rows from showing through. */
+.table th {
+  position: sticky;
+  top: var(--table-sticky-top, var(--topbar-height));
+  z-index: 1;
+  height: var(--table-header-height);
+  padding: 0 var(--table-cell-padding-x);
+  /* Opaque so rows never show through the sticky header; quieter text than the data. */
+  background: var(--table-head);
+  /* Top rule only where the table has no frame of its own (flush in a panel); the bottom rule always. */
+  border-top: var(--table-head-top, 0);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font: var(--type-label);
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.table td {
+  height: var(--table-row-height);
+  padding: 0 var(--table-cell-padding-x);
+  color: var(--text-primary);
+  overflow-wrap: break-word;
+}
+
+.table th:first-child,
+.table td:first-child {
+  padding-left: var(--table-edge-padding-x);
+}
+
+.table th:last-child,
+.table td:last-child {
+  padding-right: var(--table-edge-padding-x);
+}
+
+.dense td {
+  height: var(--table-row-height-dense);
+}
+
+/* Rows with a portrait and a two-line cell. */
+.large td {
+  height: var(--table-row-height-lg);
+}
+
+.table .right {
+  text-align: right;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+/* Lap / sector times, gaps, intervals: fixed-format timing strings with tabular digits. */
+.table .time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.table .center {
+  text-align: center;
+}
+
+/* One emphasised value per row (points, lap time…). */
+.table .strong {
+  color: var(--text-primary);
+  font-weight: var(--weight-semibold);
+}
+
+.table .muted {
+  color: var(--text-tertiary);
+}
+
+.table .primary {
+  color: var(--text-primary);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .table tbody tr:hover td {
+    background: var(--surface-hover);
+  }
+}
+
+/* Selected row: neutral and clearly stronger than hover. */
+.table .selected td,
+.table .selected:hover td {
+  color: var(--text-primary);
+  background: var(--surface-active);
+}
+
+.table .selected .muted {
+  color: var(--text-secondary);
+}
+
+.link {
+  transition: color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--border-hover);
+    text-underline-offset: 3px;
+  }
+}
+
+.table .wrapText {
+  white-space: normal;
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+/* Sortable header: label + move-vertical icon (Figma). The active column shows its direction. */
+.sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.right .sort {
+  flex-direction: row-reverse;
+}
+
+.sort svg {
+  flex: none;
+  opacity: 0.5;
+  transition: opacity var(--duration-fast) ease;
+}
+
+th[aria-sort] .sort svg,
+.sort:hover svg {
+  opacity: 1;
+}
+
+.sort:focus-visible {
+  outline-offset: 2px;
+}
+
+/* Note under a table: inset from the panel edges on every side, framed or flush. */
+.caption {
+  padding: var(--space-3) var(--table-edge-padding-x);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+@container (max-width: 900px) {
+  .table {
+    --table-cell-padding-x: var(--space-2);
+    --table-edge-padding-x: var(--space-3);
+  }
+}
+
+@container (max-width: 760px) {
+  .table .optional {
+    display: none;
+  }
+}
+
+@container (max-width: 520px) {
+  .table .optionalNarrow {
+    display: none;
+  }
+}

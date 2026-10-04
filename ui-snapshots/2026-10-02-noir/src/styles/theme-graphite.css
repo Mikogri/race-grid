@@ -1,0 +1,27 @@
+/* EXPERIMENTAL theme "graphite" (reference: CoCreate dashboard, in grey). Near-black backdrop with a soft light (bottom left), faint topographic contour lines and grain,
+   clearly filled graphite panels with a soft hairline. Switched on by data-theme="graphite" on <html> (index.html);
+   "mono" and "crimson" stay available.
+   - Revert: set data-theme to another theme (or remove it) in index.html.
+   - Adopt:  move these values into tokens.css / global.css, then remove the attribute and the theme files. */
+:root[data-theme='graphite'] {
+  --background: #050505;
+  --surface-1: rgba(20, 21, 21, 0.84); /* panels: dark graphite, still lighter than the near-black ground */
+  --surface-2: rgba(255, 255, 255, 0.04);
+  --surface-3: rgba(255, 255, 255, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.05);
+  --surface-active: rgba(255, 255, 255, 0.09);
+  --surface-popover: #1c1e1e;
+  --table-surface: rgba(0, 0, 0, 0.22);
+  --table-head: #1a1b1b;
+  --surface-bar: rgba(11, 12, 12, 0.72);
+  --surface-frosted: rgba(28, 30, 30, 0.65);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --chart-grid: rgba(255, 255, 255, 0.07);
+  --chart-grid-minor: rgba(255, 255, 255, 0.03);
+}
+
+:root[data-theme='graphite'] body::before {
+  background: var(--background) url('../assets/app-background-graphite.webp') center / cover no-repeat;
+}

@@ -1,0 +1,155 @@
+/* Leaderboard: position, team bar, name, gap and points over a bar of 1 px ticks (red share of the leader). */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-2) 0;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font: var(--type-body-dense);
+  color: var(--text-primary);
+}
+
+.position {
+  flex: none;
+  width: 2ch;
+  font: var(--type-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}
+
+.marker {
+  flex: none;
+  align-self: center;
+  width: 3px;
+  height: 14px;
+  border-radius: var(--radius-pill);
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gap {
+  font: var(--type-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}
+
+.points {
+  font: var(--type-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+/* Share of the leader's points: a slim rounded track, the fill grows in once on mount (staggered). */
+.bar {
+  position: relative;
+  display: block;
+  height: 4px;
+  margin-left: calc(2ch + var(--space-2));
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: var(--team, var(--accent));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--team, var(--accent)) 50%, transparent);
+  transform-origin: left;
+  transition:
+    transform 600ms var(--ease-out) calc(var(--i, 0) * 50ms),
+    width 400ms var(--ease-out);
+
+  @starting-style {
+    transform: scaleX(0);
+  }
+}
+
+/* ---- Recent form (nested box) ---- */
+.form {
+  margin-top: var(--panel-header-gap);
+}
+
+.formList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 3.5ch repeat(5, minmax(0, 1fr));
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.acronym {
+  font: var(--type-label);
+  color: var(--text-primary);
+}
+
+/* Result chip: tint says how good the finish was. */
+.chip {
+  display: grid;
+  place-items: center;
+  height: 22px;
+  border-radius: var(--radius-chip);
+  font: var(--type-caption);
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.win {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--text-primary);
+}
+
+.podium {
+  background: var(--surface-active);
+  color: var(--text-primary);
+}
+
+.scored {
+  background: var(--surface-2);
+  color: var(--text-secondary);
+}
+
+.noPoints {
+  color: var(--text-tertiary);
+}
+
+.out {
+  background: var(--danger-subtle);
+  color: var(--danger);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

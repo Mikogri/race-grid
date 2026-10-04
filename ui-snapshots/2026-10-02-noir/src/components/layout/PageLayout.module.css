@@ -1,0 +1,66 @@
+/* Shared page grids: main content + optional contextual detail column. */
+.withPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--detail-width);
+  gap: var(--grid-gap);
+  align-items: start;
+}
+
+/* Sticks near the top of the page scroll area. */
+.panel {
+  position: sticky;
+  top: var(--space-2);
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  align-items: start;
+}
+
+/* A row of three summary cards (the detail column of a profile at 1200 px). */
+.threeCol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+  min-width: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--control-group-gap);
+  flex-wrap: wrap;
+}
+
+.note {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 1180px) {
+  .threeCol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .withPanel,
+  .twoCol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .panel {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .threeCol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

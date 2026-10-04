@@ -1,0 +1,244 @@
+/* RaceGrid design tokens — v7, Figma "F1" (Standings / Race Replay).
+   Source of truth: DESIGN_SYSTEM.md (values) and UI_RULES.md (usage).
+   Near-black ground with a blurred red-light backdrop; translucent panels with hairline edges; one accent (F1 red).
+   Components use these tokens only: no colour, size, radius or duration literals. Sizes flex where the layout allows. */
+:root {
+  color-scheme: dark;
+
+  /* ---- Surfaces ---- */
+  --background: #0d0d0d; /* app ground under the backdrop image */
+  --surface-1: rgba(10, 10, 10, 0.45); /* panels and inputs: dark, see-through over the backdrop */
+  --surface-2: rgba(70, 70, 70, 0.3); /* raised strip inside a panel: table header, card footer, icon badge */
+  --surface-3: rgba(85, 85, 85, 0.3); /* neutral fills: tags, progress tracks, skeletons */
+  --surface-hover: rgba(120, 120, 120, 0.1); /* fill only, clearly weaker than the active item */
+  --surface-active: rgba(85, 85, 85, 0.3); /* active nav item, tab, segment, selected row */
+  --table-surface: rgba(255, 255, 255, 0.02); /* a table inside a panel */
+  --surface-sheet: rgba(10, 10, 10, 0.55); /* the content sheet under the top menu; panels sit on it */
+  --table-head: #191919; /* opaque: the sticky header covers scrolled rows */
+  --table-band: transparent; /* every other row */
+  --surface-popover: #161616; /* opaque: menus and dropdowns float over content */
+  --surface-frosted: rgba(14, 14, 14, 0.6); /* tooltips and map labels, with --blur-frosted */
+  --blur-frosted: blur(10px);
+  --surface-bar: rgba(13, 13, 13, 0.72); /* sticky top bar and sticky table headers (with --blur-bar) */
+  --surface-inverted: #ffffff; /* primary button, play button, playhead */
+  --surface-inverted-hover: #d9d9d9;
+  --blur-bar: blur(20px);
+
+  /* ---- Lines ---- */
+  --border: rgba(80, 80, 80, 0.32); /* panel and control edges */
+  --border-subtle: #282828; /* table frame, inner boxes, row separators */
+  --border-hover: rgba(110, 110, 110, 0.55);
+  --border-highlight: var(--border); /* top edge of a panel (themes may light it) */
+
+  /* ---- Text ---- */
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3; /* KPI labels, body copy in data */
+  --text-tertiary: #8e8e8e; /* group labels, metadata, subtitles, inactive navigation */
+  --text-quaternary: #666666; /* quiet column headers */
+  --text-disabled: #525252;
+  --text-inverted: #111111; /* on --surface-inverted */
+
+  /* ---- Accent: F1 red. Page titles, primary data series, progress, current page. ---- */
+  --accent: #ff3f42;
+  --accent-hover: #ff5c5f;
+  --accent-text: #ff3f42;
+  --accent-subtle: rgba(255, 63, 66, 0.14);
+  --accent-border: rgba(255, 63, 66, 0.45);
+  --focus-color: rgba(255, 255, 255, 0.55);
+  --focus-ring: 0 0 0 2px var(--focus-color);
+  --selection: rgba(255, 63, 66, 0.35);
+  --header-accent: var(--accent); /* logo in the menu bar, highlighted word in a page title */
+
+  /* ---- Semantic ---- */
+  --success: #10b981; /* live / available dots */
+  --success-text: #3d9678; /* trend up */
+  --success-subtle: #162923;
+  --success-border: rgba(61, 150, 120, 0.4);
+  --warning: #ffae00;
+  --warning-subtle: rgba(255, 174, 0, 0.12);
+  --warning-border: rgba(255, 174, 0, 0.35);
+  --danger: #ef4444; /* errors, F1 red flag, brake */
+  --danger-subtle: rgba(239, 68, 68, 0.12);
+  --danger-border: rgba(239, 68, 68, 0.38);
+  --info: #6bb6ff;
+
+  /* Tone palette: icon tiles, highlights and accents that bring colour without large fills. */
+  --tone-red: #ff5a5f;
+  --tone-blue: #5b9dff;
+  --tone-green: #34d399;
+  --tone-amber: #f5b14c;
+  --tone-violet: #a78bfa;
+  --tone-cyan: #38d6e8;
+  --info-subtle: rgba(107, 182, 255, 0.12);
+  --info-border: rgba(107, 182, 255, 0.35);
+
+  /* ---- Race data (F1 conventions) ---- */
+  --fastest: #dd00ff; /* purple = fastest */
+  --personal-best: #22c55e; /* green = driver's best */
+  --sector-slower: #eab308; /* yellow = slower than personal best */
+  --gap-close: #6bffcd; /* interval within DRS range */
+  --gap-close-bg: #162923;
+  --gap-far: #eeff6b;
+  --gap-far-bg: #343719;
+  --tyre-soft: #ef4444;
+  --tyre-medium: #f7c948;
+  --tyre-hard: #e8e9ee;
+  --tyre-inter: #3ecf6e;
+  --tyre-wet: #4e96ff;
+  --tyre-unknown: #858585;
+
+  /* ---- Charts ---- */
+  --chart-1: var(--accent);
+  --chart-2: #8e9bff;
+  --chart-3: var(--success);
+  --chart-4: var(--warning);
+  --chart-neutral: #5c5c5c;
+  /* Replay telemetry: one calm, distinct hue per channel (no red / yellow / neon). */
+  --chart-speed: #6ea8fe;
+  --chart-throttle: #4fc3a1;
+  --chart-brake: #a78bfa;
+  --chart-rpm: #f29fc5;
+  --chart-gear: #94a3b8;
+  --chart-drs: #f5b971;
+  --chart-grid-minor: rgba(255, 255, 255, 0.035);
+  --chart-grid: var(--border-subtle);
+  --chart-axis: var(--text-tertiary);
+  --chart-cursor: var(--border-hover);
+  --chart-line: 2px;
+  --chart-line-secondary: 1.5px;
+
+  /* ---- Typography ---- */
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  --font-brand: 'Orbitron', var(--font-sans); /* wordmark only */
+  /* Inter Variable (local, @fontsource-variable/inter): weights sit a little under Figma's 500 / 600. */
+  --weight-regular: 400;
+  --weight-text: 440; /* body, tables, meta */
+  --weight-medium: 480; /* labels, navigation group, page title */
+  --weight-button: 520;
+  --weight-semibold: 560; /* panel titles, KPI */
+
+  /* Role tokens — `font` shorthand. The shorthand resets font-variant-numeric: set `tabular-nums` after it. */
+  --type-brand: 700 18px/23px var(--font-brand);
+  --type-page-title: var(--weight-medium) 28px/34px var(--font-sans);
+  --type-page-subtitle: var(--weight-text) 12px/15px var(--font-sans);
+  --type-heading-lg: var(--weight-semibold) 18px/24px var(--font-sans);
+  --type-heading: var(--weight-semibold) 14px/17px var(--font-sans); /* panel / card heading */
+  --type-body: var(--weight-text) 13px/18px var(--font-sans);
+  --type-body-dense: var(--weight-text) 12px/15px var(--font-sans); /* tables, dense lists */
+  --type-secondary: var(--weight-text) 12px/16px var(--font-sans); /* descriptions */
+  --type-meta: var(--weight-text) 12px/15px var(--font-sans);
+  --type-caption: var(--weight-text) 10px/12px var(--font-sans); /* chips, sub-lines under a name, tower header */
+  --type-nav: var(--weight-text) 13px/16px var(--font-sans);
+  --type-nav-group: var(--weight-medium) 12px/15px var(--font-sans);
+  --type-label: var(--weight-medium) 12px/15px var(--font-sans); /* tabs, segments, control labels */
+  --type-button: var(--weight-button) 13px/16px var(--font-sans);
+  --type-status: var(--weight-text) 14px/17px var(--font-sans); /* top bar status */
+  --type-kpi-label: var(--weight-semibold) 14px/17px var(--font-sans);
+  --type-kpi-value: var(--weight-semibold) 24px/30px var(--font-sans);
+  --type-fact: var(--weight-medium) 16px/20px var(--font-sans); /* header key facts */
+  --type-metric: var(--weight-text) 14px/17px var(--font-sans);
+  --type-chart: var(--weight-text) 12px/15px var(--font-sans);
+  --type-mono: 400 12px/16px var(--font-mono);
+  --type-mono-meta: 400 12px/16px var(--font-mono);
+  --tracking-page-title: -0.01em;
+  --tracking-heading-lg: -0.01em;
+  --tracking-nav-group: 0;
+
+  /* ---- Spacing ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Semantic spacing */
+  --page-gutter: 24px;
+  --sheet-padding: 24px; /* inside the content sheet */
+  --grid-gap: 24px; /* between page sections and main columns */
+  --grid-gap-tight: 16px; /* closely related panels (replay workspace) */
+  --section-spacing: 24px;
+  --panel-padding: 12px;
+  --panel-padding-lg: 18px; /* table panels */
+  --panel-header-gap: 16px;
+  --stack-gap: 4px;
+  --inline-gap: 8px;
+  --control-group-gap: 12px;
+
+  /* ---- Radii ---- */
+  --radius-hairline: 2px;
+  --radius-xs: 4px; /* trend chips, kbd hints */
+  --radius-chip: 5px; /* interval chips, pagination, speed segments */
+  --radius-control: 6px; /* buttons, inputs, tabs, nav items, icon badges */
+  --radius-panel: 8px;
+  --radius-popover: 8px;
+  --radius-modal: 12px;
+  --radius-surface: 16px;
+  --radius-pill: 9999px;
+
+  /* ---- Control and row sizes ---- */
+  --control-height-sm: 27px; /* speed segments */
+  --control-height-transport: 32px; /* replay transport buttons */
+  --control-height: 30px; /* buttons, selects */
+  --control-height-lg: 35px; /* search */
+  --tab-height: 31px;
+  --badge-height: 20px;
+  --icon-badge-size: 28px; /* icon tile in a card header */
+  --icon-badge-size-lg: 32px;
+  --avatar-size-sm: 24px;
+  --avatar-size: 35px;
+  --avatar-size-lg: 64px;
+  --icon-size-sm: 12px;
+  --icon-size: 15px;
+  --icon-size-lg: 18px;
+  --table-header-height: 31px;
+  --table-row-height: 40px;
+  --table-row-height-dense: 30px; /* timing tower */
+  --table-row-height-lg: 54px; /* rows with a portrait */
+  --table-cell-padding-x: 12px;
+  --table-edge-padding-x: 16px;
+
+  /* ---- Application shell: top menu over a centred content column ---- */
+  --content-width: 1300px;
+  --topbar-height: 64px;
+  --footer-height: 32px;
+  --nav-item-height: 32px;
+  --rail-width: 48px; /* a minimised side panel */
+  --detail-width: clamp(300px, 28vw, 360px); /* contextual column beside a table */
+
+  /* ---- Elevation: raised menus only; panels are flat ---- */
+  --shadow-popover: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.7);
+  --overlay: rgba(0, 0, 0, 0.6);
+
+  /* ---- Motion ---- */
+  --duration-fast: 120ms;
+  --duration-base: 150ms;
+  --duration-slow: 180ms;
+  --duration-layout: 240ms; /* panels and the menu opening / closing */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --page-gutter: 20px;
+    --grid-gap: 16px;
+    --section-spacing: 16px;
+    --type-page-title: var(--weight-medium) 24px/30px var(--font-sans);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page-gutter: 16px;
+    --sheet-padding: 12px;
+    --panel-padding-lg: 12px;
+    --type-page-title: var(--weight-medium) 22px/28px var(--font-sans);
+    --type-kpi-value: var(--weight-semibold) 20px/26px var(--font-sans);
+  }
+}

@@ -1,0 +1,31 @@
+/* EXPERIMENTAL theme "mono" (reference: Ovrall pricing page). Pure black with soft grey light,
+   panels as flat dark glass with a faintly brighter top edge; backdrop = soft diagonal light beams.
+   Switched on by data-theme="mono" on <html> (index.html); "crimson" stays available in theme-crimson.css.
+   - Revert: set data-theme back to "crimson" (or remove the attribute) in index.html.
+   - Adopt:  move these values into tokens.css / global.css, then remove the attribute and this file. */
+:root[data-theme='mono'] {
+  --background: #030303;
+  --surface-1: rgba(14, 14, 14, 0.62); /* flat dark glass */
+  --surface-2: rgba(255, 255, 255, 0.045);
+  --surface-3: rgba(255, 255, 255, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.05);
+  --surface-active: rgba(255, 255, 255, 0.1);
+  --surface-popover: #111111;
+  --surface-bar: rgba(3, 3, 3, 0.72);
+  --surface-frosted: rgba(16, 16, 16, 0.6);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.18);
+  --chart-grid: rgba(255, 255, 255, 0.07);
+  --chart-grid-minor: rgba(255, 255, 255, 0.03);
+}
+
+:root[data-theme='mono'] body::before {
+  background: var(--background) url('../assets/app-background-mono.webp') center / cover no-repeat;
+}
+
+/* Glass edge: light catches the top border of every panel. */
+:root[data-theme='mono'] section,
+:root[data-theme='mono'] aside > section {
+  border-top-color: rgba(255, 255, 255, 0.11);
+}

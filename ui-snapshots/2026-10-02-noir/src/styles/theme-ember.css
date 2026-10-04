@@ -1,0 +1,61 @@
+/* EXPERIMENTAL theme "ember" (reference: CY FOCUS incident dashboard). Warm near-black with an orange-red light from the
+   top left, flat warm-graphite panels with a soft hairline, light typography, one orange accent (primary button, logo, markers).
+   Switched on by data-theme="ember" on <html> (index.html). Part of the top-menu experiment: the full pre-experiment
+   source is in ui-snapshots/2026-10-02-sidebar-layout (see its README to revert everything). */
+:root[data-theme='ember'] {
+  --background: #0b0908;
+  --surface-sheet: rgba(15, 12, 11, 0.78); /* the content sheet: darker than the panels on it */
+  --surface-1: rgba(30, 26, 24, 0.82); /* panels: warm graphite, the ember light shows through a little */
+  --surface-2: rgba(255, 236, 224, 0.04);
+  --surface-3: rgba(255, 236, 224, 0.08);
+  --surface-hover: rgba(255, 236, 224, 0.045);
+  --surface-active: rgba(255, 236, 224, 0.085);
+  --surface-popover: #1f1a18;
+  --surface-frosted: rgba(31, 26, 24, 0.72);
+  --surface-bar: rgba(12, 10, 9, 0.55);
+  --table-surface: transparent;
+  --table-head: #1c1816;
+  --table-band: rgba(255, 236, 224, 0.025);
+  --border: rgba(255, 236, 224, 0.075);
+  --border-subtle: rgba(255, 236, 224, 0.05);
+  --border-hover: rgba(255, 236, 224, 0.17);
+
+  --text-primary: #f6f1ee;
+  --text-secondary: #b9b0aa;
+  --text-tertiary: #8b827c;
+  --text-quaternary: #655d58;
+  --text-disabled: #4f4844;
+
+  --accent: #f0531c;
+  --accent-hover: #ff6935;
+  --accent-text: #ff7b4a;
+  --accent-subtle: rgba(240, 83, 28, 0.14);
+  --accent-border: rgba(240, 83, 28, 0.45);
+  --selection: rgba(240, 83, 28, 0.35);
+
+  /* The one main action is orange (reference: "New task"). */
+  --button-primary: var(--accent);
+  --button-primary-hover: var(--accent-hover);
+  --button-primary-text: #ffffff;
+
+  --chart-2: #f5b14c;
+  --chart-grid: rgba(255, 236, 224, 0.06);
+  --chart-grid-minor: rgba(255, 236, 224, 0.03);
+
+  /* Lighter type: thin titles and values, small uppercase labels. */
+  --weight-text: 400;
+  --weight-medium: 450;
+  --weight-button: 480;
+  --weight-semibold: 520;
+  --weight-light: 340;
+  --type-page-title: var(--weight-light) 30px/36px var(--font-sans);
+  --type-kpi-value: var(--weight-light) 28px/34px var(--font-sans);
+  --type-heading-lg: var(--weight-medium) 18px/24px var(--font-sans);
+
+  --radius-panel: 12px;
+  --radius-popover: 10px;
+}
+
+:root[data-theme='ember'] body::before {
+  background: var(--background) url('../assets/app-background-ember.webp') center top / cover no-repeat;
+}

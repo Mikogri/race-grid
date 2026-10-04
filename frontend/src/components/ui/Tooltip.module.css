@@ -1,0 +1,56 @@
+/* Frosted bubble above the trigger; fades and lifts in quickly. */
+.trigger {
+  display: inline-flex;
+  cursor: default;
+}
+
+.trigger:focus-visible {
+  outline: none;
+  border-radius: var(--radius-xs);
+  box-shadow: var(--focus-ring);
+}
+
+.info {
+  display: flex;
+  flex: none;
+  color: var(--text-primary);
+  opacity: 0.3;
+  transition: opacity var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .info:hover {
+    opacity: 0.6;
+  }
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 100;
+  max-width: 260px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface-frosted);
+  backdrop-filter: var(--blur-frosted);
+  -webkit-backdrop-filter: var(--blur-frosted);
+  box-shadow: var(--shadow-popover);
+  font: var(--type-meta);
+  color: var(--text-primary);
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - var(--space-2)));
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+
+  @starting-style {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - var(--space-1)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    transition: opacity var(--duration-base) ease;
+  }
+}

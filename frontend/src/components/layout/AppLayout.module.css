@@ -1,0 +1,61 @@
+/* Shell: fixed top menu over a scrolling area: the centred page column (--content-width inside its padding), then the footer. */
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+/* The page's scroll area, below the menu; uses the browser's own scrollbar. */
+.scroll {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-spacing);
+  width: 100%;
+  max-width: calc(var(--content-width) + 2 * var(--sheet-padding) + 2px);
+  margin: 0 auto;
+  padding: var(--sheet-padding);
+  border-inline: 1px solid var(--border-subtle);
+  background: var(--surface-sheet);
+}
+
+/* Slim footer with the data source, reached by scrolling to the end of the page. */
+.footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  /* Same column as the page above it. */
+  width: 100%;
+  max-width: calc(var(--content-width) + 2 * var(--sheet-padding) + 2px);
+  height: var(--footer-height);
+  margin: 0 auto;
+  border-inline: 1px solid var(--border-subtle);
+  box-shadow: inset 0 1px 0 var(--border);
+  background: var(--surface-sheet);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--text-secondary);
+  transition: color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .source:hover {
+    color: var(--text-primary);
+  }
+}

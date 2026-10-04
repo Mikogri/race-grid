@@ -1,0 +1,256 @@
+/* Driver profile hero: portrait tile, identity with bio and form, and six key figures; the race number is a
+   watermark in the team colour behind it all. */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) minmax(260px, auto);
+  align-items: stretch;
+  gap: var(--space-8);
+  padding: var(--space-6);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--team);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.watermark {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.22em;
+  z-index: -1;
+  font: 700 260px/1 var(--font-brand);
+  color: var(--team);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+}
+
+.portrait {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--team) 18%, var(--surface-2));
+  overflow: hidden;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.initials {
+  align-self: center;
+  font: 700 40px/1 var(--font-brand);
+  color: var(--text-secondary);
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.number {
+  font: 700 20px/1 var(--font-brand);
+  font-variant-numeric: tabular-nums;
+  color: var(--team);
+}
+
+.name {
+  font: var(--weight-semibold) 32px/38px var(--font-sans);
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.firstName {
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+}
+
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-body);
+  color: var(--text-secondary);
+}
+
+.dot {
+  color: var(--text-tertiary);
+}
+
+.bio {
+  max-width: 64ch;
+  margin-top: var(--space-1);
+  font: var(--type-body);
+  line-height: 20px;
+  color: var(--text-secondary);
+}
+
+/* Key figures: 2 x 3 grid of label over a large value. */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  align-content: center;
+  margin: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--surface-2);
+}
+
+.stat dt {
+  font: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.stat dd {
+  margin: 0;
+  font: var(--weight-semibold) 22px/28px var(--font-sans);
+  color: var(--text-primary);
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.formLabel {
+  font: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.formChips {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.chip {
+  display: grid;
+  place-items: center;
+  min-width: 34px;
+  height: 26px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-chip);
+  font: var(--type-label);
+  font-variant-numeric: tabular-nums;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+}
+
+.chip[data-tone='win'] {
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+  color: var(--text-primary);
+}
+
+.chip[data-tone='podium'] {
+  background: var(--surface-active);
+  color: var(--text-primary);
+}
+
+.chip[data-tone='none'] {
+  background: none;
+  color: var(--text-tertiary);
+}
+
+.chip[data-tone='out'] {
+  background: var(--danger-subtle);
+  color: var(--danger);
+}
+
+/* Performance rates. */
+.rates {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rate {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.rateHead {
+  display: flex;
+  justify-content: space-between;
+  font: var(--type-body-dense);
+  color: var(--text-secondary);
+}
+
+.rateHead > :last-child {
+  color: var(--text-primary);
+}
+
+.rateTrack {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+/* Grows in once when the profile opens. */
+.rateFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transform-origin: left;
+  transition: transform 600ms var(--ease-out);
+
+  @starting-style {
+    transform: scaleX(0);
+  }
+}
+
+@media (max-width: 1180px) {
+  .hero {
+    grid-template-columns: 160px minmax(0, 1fr);
+  }
+  .stats {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+  .portrait {
+    width: 120px;
+  }
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rateFill {
+    transition: none;
+  }
+}

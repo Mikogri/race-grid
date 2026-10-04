@@ -1,0 +1,117 @@
+.team {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--inline-gap);
+}
+
+.provisional {
+  margin-left: 2px;
+  color: var(--text-tertiary);
+}
+
+.labelWithInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Method: component and weight, the formula behind an info icon; hairlines between. */
+.method {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.method li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font: var(--type-body-dense);
+}
+
+.methodName {
+  color: var(--text-primary);
+}
+
+.weight {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+/* Score breakdown (supporting column). */
+.breakdownHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.breakdownTeam {
+  font: var(--type-heading);
+  color: var(--text-primary);
+}
+
+.breakdownIndex {
+  font: var(--type-metric);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.components {
+  list-style: none;
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.componentHead,
+.componentMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+}
+
+.componentMeta {
+  margin-top: var(--space-1);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.meter {
+  height: 4px;
+  margin-top: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.meter > div {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  animation: fade-in var(--duration-slow) var(--ease-out) backwards;
+}
+
+.dependency {
+  font: var(--type-body-dense);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+}
+
+/* Local copy of the shared fade: CSS modules scope keyframe names, so the global rg-fade cannot be referenced here. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

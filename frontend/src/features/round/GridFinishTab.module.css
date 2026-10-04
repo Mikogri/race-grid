@@ -1,0 +1,51 @@
+.barHead {
+  width: 42%;
+}
+
+/* Positions gained / lost: thin bar either side of a centre axis. */
+.bar {
+  position: relative;
+  width: 100%;
+  min-width: 80px;
+  height: 16px;
+}
+
+.axis {
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  bottom: -4px;
+  width: 1px;
+  background: var(--border);
+}
+
+.gain,
+.loss {
+  position: absolute;
+  top: 5px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+}
+
+.gain {
+  background: var(--success);
+}
+
+.loss {
+  background: var(--danger);
+}
+
+.value {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font: var(--type-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+.caption {
+  padding: var(--space-3) var(--table-edge-padding-x);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}

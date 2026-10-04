@@ -1,0 +1,49 @@
+/* Shared page grids: main content + optional contextual detail column. */
+.withPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--detail-width);
+  gap: var(--grid-gap);
+  align-items: start;
+}
+
+/* Sticks below the 48 px top bar. */
+.panel {
+  position: sticky;
+  top: calc(var(--topbar-height) + var(--space-2));
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  align-items: start;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+  min-width: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--control-group-gap);
+  flex-wrap: wrap;
+}
+
+.note {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 1180px) {
+  .withPanel,
+  .twoCol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .panel {
+    position: static;
+  }
+}

@@ -1,0 +1,57 @@
+/* EXPERIMENTAL theme "noir" (vibe: Ovrall pricing page). Pure black with silky grey light folds at the sides,
+   graphite panels whose top edge catches the light, white as the only accent (white pills and primary buttons).
+   Switched on by data-theme="noir" on <html> (index.html); "ember" stays available in theme-ember.css.
+   Part of the top-menu experiment: see ui-snapshots/2026-10-02-sidebar-layout/README.md to revert everything. */
+:root[data-theme='noir'] {
+  --background: #030303;
+  --surface-sheet: rgba(7, 7, 7, 0.88); /* the page column under the menu */
+  --surface-1: rgba(22, 22, 22, 0.72);
+  --surface-2: rgba(255, 255, 255, 0.04);
+  --surface-3: rgba(255, 255, 255, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.05);
+  --surface-active: rgba(255, 255, 255, 0.1);
+  --surface-popover: #141414;
+  --surface-frosted: rgba(20, 20, 20, 0.72);
+  --surface-bar: rgba(5, 5, 5, 0.72);
+  --table-surface: transparent;
+  --table-head: #151515;
+  --table-band: rgba(255, 255, 255, 0.022);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.18);
+  --border-highlight: rgba(255, 255, 255, 0.14); /* top edge of a panel catching the light */
+
+  --text-primary: #f5f5f5;
+  --text-secondary: #ababab;
+  --text-tertiary: #7e7e7e;
+  --text-quaternary: #5c5c5c;
+
+  /* Monochrome: white is the accent. */
+  --accent: #f2f2f2;
+  --accent-hover: #ffffff;
+  --accent-text: #ffffff;
+  --accent-subtle: rgba(255, 255, 255, 0.1);
+  --accent-border: rgba(255, 255, 255, 0.3);
+  --selection: rgba(255, 255, 255, 0.22);
+
+  --chart-grid: rgba(255, 255, 255, 0.13); /* dotted, so a little brighter */
+  --chart-grid-minor: rgba(255, 255, 255, 0.06);
+
+  /* Confident, tight headings; quiet body text. */
+  --weight-text: 400;
+  --weight-medium: 460;
+  --weight-button: 520;
+  --weight-semibold: 560;
+  --type-page-title: var(--weight-semibold) 30px/36px var(--font-sans);
+  --tracking-page-title: -0.025em;
+  --type-kpi-value: var(--weight-semibold) 26px/32px var(--font-sans);
+
+  --radius-panel: 6px;
+  --radius-popover: 6px;
+  --radius-control: 4px;
+  --radius-chip: 3px;
+}
+
+:root[data-theme='noir'] body::before {
+  background: var(--background) url('../assets/app-background-noir.webp') center top / cover no-repeat;
+}

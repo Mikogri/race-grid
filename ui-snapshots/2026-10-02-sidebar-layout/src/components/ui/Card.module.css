@@ -1,0 +1,181 @@
+/* Surfaces (Figma: Item / Table / Column).
+   - Panel (.panel): on the page. Translucent fill, 1 px edge, radius 8, padding 12 (table panels 18), 14/600 title.
+   - Group (.group): a block inside a panel (Figma: Data). Hairline box, radius 8, padding 12. One level only.
+   - Column (.column): the supporting column; each Card in it is its own panel. */
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  overflow: clip;
+}
+
+.group {
+  --table-edge-padding-x: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-panel);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+  min-width: 0;
+}
+
+/* ---- Header: icon tile + title left, actions right ---- */
+.header,
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--control-group-gap);
+  padding: var(--panel-padding) var(--panel-padding) 0;
+  min-width: 0;
+}
+
+.toolbar {
+  padding: var(--panel-padding-lg) var(--panel-padding-lg) 0;
+}
+
+.group > .header {
+  padding: var(--space-3) var(--space-3) 0;
+}
+
+/* Title block takes the row; actions wrap under it only when the panel is too narrow. */
+.heading {
+  display: flex;
+  flex: 1 1 160px;
+  align-items: center;
+  gap: 10px; /* Figma: badge → title */
+  min-width: 0;
+}
+
+.headingText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap);
+  min-width: 0;
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--icon-badge-size);
+  height: var(--icon-badge-size);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface-2);
+}
+
+.badgeLarge {
+  width: var(--icon-badge-size-lg);
+  height: var(--icon-badge-size-lg);
+}
+
+.badge {
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.badge > svg {
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+  color: var(--accent);
+}
+
+.badgeLarge > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.title {
+  font: var(--type-heading);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  font: var(--type-secondary);
+  color: var(--text-tertiary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--inline-gap);
+  min-height: 20px;
+  font: var(--type-meta);
+  color: var(--text-secondary);
+  min-width: 0;
+}
+
+/* ---- Bodies ---- */
+.body {
+  flex: 1;
+  min-width: 0;
+  padding: var(--panel-padding);
+}
+
+.header + .body {
+  padding-top: var(--panel-header-gap);
+}
+
+.group > .body {
+  padding: var(--space-3);
+}
+
+/* Edge-to-edge content: a table here drops its own frame (the panel is the frame). */
+.flush {
+  --table-head-top: 1px solid var(--border);
+  --table-frame: none;
+  --table-frame-radius: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.header + .flush {
+  padding-top: var(--panel-header-gap);
+}
+
+/* Toolbar (tabs, filters) over a framed table or chart (Figma: table panel, 18 px inset and gap). */
+.toolbar + .flush {
+  --table-head-top: 0;
+  --table-frame: 1px solid var(--border-subtle);
+  --table-frame-radius: var(--radius-panel);
+  padding: var(--panel-padding-lg);
+}
+
+.group > .header + .flush {
+  padding-top: var(--space-2);
+}
+
+.workspaceBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--panel-header-gap);
+  padding: var(--panel-padding-lg);
+}
+
+/* ---- Footer (Figma: KPI footer) ---- */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 37px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-2);
+  font: var(--type-meta);
+  color: var(--text-primary);
+}

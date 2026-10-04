@@ -1,0 +1,147 @@
+/* KPI cards (Figma: Summary / Item). Each card is its own panel: 12 px content (header 28 → gap 16 → 32 px value),
+   then a 37 px footer on the raised surface with context text and a trend chip. */
+.group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: var(--grid-gap);
+  margin: 0;
+  min-width: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  overflow: clip;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--panel-header-gap);
+  padding: var(--panel-padding);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Figma: badge → title */
+  min-width: 0;
+  font: var(--type-kpi-label);
+  color: var(--text-secondary);
+}
+
+.labelText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tinted icon tile in the card's tone. */
+.badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--icon-badge-size);
+  height: var(--icon-badge-size);
+  border: 1px solid color-mix(in srgb, var(--tone) 35%, transparent);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--tone) 14%, transparent);
+}
+
+.badge > svg {
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+  color: var(--tone);
+}
+
+.hint {
+  display: flex;
+  flex: none;
+  color: var(--text-primary);
+  opacity: 0.3;
+  cursor: help;
+}
+
+.value {
+  margin: 0;
+  font: var(--type-kpi-value);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 37px;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-2);
+}
+
+.sub {
+  min-width: 0;
+  font: var(--type-meta);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 2px;
+  height: var(--badge-height);
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-xs);
+  font: var(--type-caption);
+}
+
+.trend[data-direction='up'] {
+  background: var(--success-subtle);
+  color: var(--success-text);
+}
+
+.trend[data-direction='down'] {
+  background: var(--danger-subtle);
+  color: var(--danger);
+}
+
+.trend[data-direction='flat'] {
+  background: var(--surface-3);
+  color: var(--text-secondary);
+}
+
+/* Phones: two cards per row instead of a tall stack. */
+@media (max-width: 640px) {
+  .group {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    gap: var(--space-3);
+  }
+}
+
+.compact .value {
+  font: var(--type-heading-lg);
+}
+
+.compact .content {
+  gap: var(--space-3);
+}

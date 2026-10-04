@@ -1,0 +1,20 @@
+/* Status chip (Figma: Trend / interval / Out). 20 px, radius 5, 10 px text; semantic tint, neutral grey fill. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: var(--badge-height);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-chip);
+  border: 1px solid transparent;
+  font: var(--type-caption);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.accent,
+.info { background: var(--info-subtle); color: var(--info); border-color: var(--info-border); }
+.success { background: var(--success-subtle); color: var(--success-text); }
+.warning { background: var(--warning-subtle); color: var(--warning); border-color: var(--warning-border); }
+.danger { background: var(--danger-subtle); color: var(--danger); border-color: var(--danger-border); }
+.neutral { background: var(--surface-3); color: var(--text-tertiary); }

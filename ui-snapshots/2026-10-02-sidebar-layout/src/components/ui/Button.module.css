@@ -1,0 +1,89 @@
+/* Buttons (Figma: Btn / Quick Analyze). 30 px, radius 6, colour-only transitions. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--inline-gap);
+  height: var(--control-height);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-control);
+  border: 1px solid transparent;
+  background: transparent;
+  font: var(--type-button);
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    transform 160ms var(--ease-out);
+}
+
+/* Press feedback: buttons confirm the click. */
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.button svg {
+  flex: none;
+}
+
+/* The one main action of a view: inverted. */
+.primary {
+  background: var(--surface-inverted);
+  color: var(--text-inverted);
+}
+
+/* Everyday action: panel surface with a hairline. */
+.secondary {
+  border-color: var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+}
+
+.secondary svg {
+  color: var(--text-secondary);
+}
+
+/* Text action (Cancel, View all). */
+.ghost {
+  padding: 0 var(--space-2);
+  color: var(--text-secondary);
+}
+
+/* Square icon action, borderless (top bar, row actions). */
+.icon {
+  width: var(--control-height);
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .primary:hover:not(:disabled) {
+    background: var(--surface-inverted-hover);
+  }
+  .secondary:hover:not(:disabled) {
+    border-color: var(--border-hover);
+    background: var(--surface-hover);
+  }
+  .ghost:hover:not(:disabled),
+  .icon:hover:not(:disabled) {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+  }
+}

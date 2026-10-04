@@ -1,0 +1,16 @@
+.caption {
+  margin-top: var(--space-2);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.picked td {
+  background: var(--surface-active);
+  color: var(--text-primary);
+}
+
+/* Overall fastest sector of the session. */
+.fastest {
+  color: var(--fastest) !important; /* F1 convention: purple = fastest */
+  font-weight: var(--weight-medium);
+}

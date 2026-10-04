@@ -1,0 +1,164 @@
+.picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--control-group-gap);
+  align-items: end;
+}
+
+/* Selected laps: removable tags. */
+.chips {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--control-height-sm);
+  padding: 0 var(--space-1) 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  font: var(--type-meta);
+  color: var(--text-secondary);
+}
+
+.chip button {
+  display: inline-flex;
+  padding: var(--space-1);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--text-tertiary);
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chip button:hover {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+  }
+}
+
+.lapLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Trace colour: same dot as the chart legend. */
+.swatch {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+}
+
+.best {
+  color: var(--fastest) !important; /* F1 convention: purple = fastest */
+  font-weight: var(--weight-medium);
+}
+
+.channels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.channelTitle {
+  margin-bottom: var(--space-1);
+  font: var(--type-label);
+  color: var(--text-secondary);
+}
+
+.pickers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+}
+
+.pickerSide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-2) var(--space-3);
+  min-width: 0;
+}
+
+.pickerSide > :last-child {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.sideLabel {
+  margin-bottom: var(--space-2);
+  font: var(--type-label);
+  color: var(--text-primary);
+}
+
+/* Head-to-head metric rows: A value │ metric │ B value. */
+.metricRow {
+  display: grid;
+  grid-template-columns: 1fr 180px 1fr;
+  align-items: center;
+  min-height: var(--table-row-height-dense);
+  border-top: 1px solid var(--border-subtle);
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+}
+
+.metricRow > :first-child {
+  text-align: right;
+}
+
+.metricLabel {
+  text-align: center;
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.metricValue {
+  color: var(--text-secondary);
+}
+
+.metricBetter {
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-body-dense);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.checkbox input {
+  accent-color: var(--accent);
+}
+
+.spaced {
+  margin-top: var(--space-4);
+}
+
+.metricHead {
+  border-top: 0;
+}

@@ -1,0 +1,38 @@
+/* Inner menu (left) and the view's controls (right). */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--control-group-gap);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--inline-gap);
+}
+
+/* Two equal columns; every row takes the height of its tallest panel, so all panels match. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: var(--grid-gap);
+}
+
+.card {
+  height: 100%;
+}
+
+.teamCell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--inline-gap);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

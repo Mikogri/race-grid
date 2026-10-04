@@ -1,0 +1,130 @@
+/* Team cards (portrait): team colour edge, name and position, total points, both drivers, wins. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--grid-gap-tight);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
+  min-height: 320px;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  transition:
+    border-color var(--duration-fast) ease,
+    transform 160ms var(--ease-out);
+}
+
+/* Team colour along the left edge. */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--team);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Quiet hover: only the edge brightens. */
+  .card:hover {
+    border-color: var(--border-hover);
+  }
+}
+
+.card:active {
+  transform: scale(0.985);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.name {
+  min-width: 0;
+  font: var(--type-heading-lg);
+  color: var(--text-primary);
+}
+
+.position {
+  font: var(--type-heading);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+.total {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.totalValue {
+  font: var(--type-kpi-value);
+  color: var(--text-primary);
+}
+
+.totalUnit {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.drivers {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.driver {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.driverText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.driverName {
+  font: var(--type-body);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.driverMeta {
+  font: var(--type-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+  font: var(--type-meta);
+  color: var(--text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:active {
+    transform: none;
+  }
+}

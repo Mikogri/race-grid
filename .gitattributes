@@ -1,0 +1,5 @@
+# Keep raw CSV exports byte-for-byte (metadata contains source hashes).
+*.csv -text -diff
+
+# Two trailing spaces are intentional Markdown line breaks.
+*.md whitespace=-blank-at-eol

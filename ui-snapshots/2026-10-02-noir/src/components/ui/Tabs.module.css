@@ -1,0 +1,94 @@
+/* Section tabs. 31 px pills, 12 px labels; a white pill slides under the active tab (dark label on it).
+   Tabs wrap instead of scrolling sideways. */
+.tabs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  min-width: 0;
+}
+
+.indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--radius-control);
+  background: var(--surface-inverted);
+  pointer-events: none;
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    width var(--duration-base) var(--ease-out),
+    opacity var(--duration-fast) ease;
+}
+
+.tab {
+  position: relative;
+  z-index: 1;
+  height: var(--tab-height);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: none;
+  font: var(--type-label);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: color var(--duration-fast) ease;
+}
+
+/* Large (workspace panels): tabs sit in a recessed track. */
+.lg {
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius-control) + 3px);
+  background: var(--surface-2);
+}
+
+.lg .indicator {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.lg .tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 32px;
+  padding: 0 var(--space-3);
+  font: var(--type-nav);
+}
+
+.lg .tab svg {
+  flex: none;
+  opacity: 0.6;
+  transition: opacity var(--duration-fast) ease;
+}
+
+.lg .active svg {
+  opacity: 1;
+}
+
+.tab:focus-visible {
+  outline-offset: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab:hover:not(:disabled):not(.active) {
+    color: var(--text-primary);
+  }
+}
+
+.tab:disabled {
+  color: var(--text-disabled);
+  cursor: default;
+}
+
+.active {
+  color: var(--text-inverted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: opacity var(--duration-fast) ease;
+  }
+}

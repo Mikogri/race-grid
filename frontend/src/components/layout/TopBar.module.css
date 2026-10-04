@@ -1,0 +1,192 @@
+/* Top menu: stays above the page's scroll area. */
+.bar {
+  position: relative;
+  flex: none;
+  z-index: 30;
+  backdrop-filter: var(--blur-bar);
+  background: var(--surface-bar);
+  /* Separates the menu from the page below (a shadow line: no extra height). */
+  box-shadow: inset 0 -1px 0 var(--border);
+}
+
+/* Logo at the far left, menu centred, season at the far right. */
+.inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-6);
+  height: var(--topbar-height);
+  padding: 0 var(--page-gutter);
+}
+
+.brand {
+  display: inline-flex;
+  justify-self: start;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-primary);
+}
+
+.logo {
+  display: flex;
+  color: var(--header-accent);
+}
+
+.wordmark {
+  font: var(--type-brand);
+  letter-spacing: 0.02em;
+}
+
+/* The sections sit on their own background. */
+.list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  border: 1px solid var(--border);
+  border-top-color: var(--border-highlight);
+  border-radius: var(--radius-panel);
+  background: var(--surface-1);
+}
+
+/* Highlight under the active section; slides when the section changes. */
+.indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--radius-control);
+  background: var(--surface-active);
+  pointer-events: none;
+  transition:
+    transform var(--duration-layout) var(--ease-out),
+    width var(--duration-layout) var(--ease-out),
+    opacity var(--duration-fast) ease;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--nav-item-height);
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-control);
+  font: var(--type-nav);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  transition:
+    color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--text-primary);
+  }
+}
+
+.active {
+  color: var(--text-primary);
+}
+
+.tools {
+  grid-column: 3;
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.season {
+  width: auto;
+  flex: none;
+}
+
+.menuButton {
+  display: none;
+}
+
+.backdrop {
+  display: none;
+}
+
+/* Narrow: the sections fold into a menu under the bar. */
+@media (max-width: 1240px) {
+  .menuButton {
+    display: inline-flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: calc(100% - var(--space-2));
+    right: var(--page-gutter);
+    z-index: 2;
+    width: min(260px, calc(100vw - 2 * var(--page-gutter)));
+    padding: var(--space-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-popover);
+    background: var(--surface-popover);
+    box-shadow: var(--shadow-popover);
+    transform-origin: top right;
+    transition:
+      opacity var(--duration-slow) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out),
+      visibility 0s;
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
+
+  .nav[data-open='false'] {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.97);
+    transition:
+      opacity var(--duration-fast) ease,
+      transform var(--duration-fast) ease,
+      visibility 0s var(--duration-fast);
+  }
+
+  .list {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+  .link {
+    border-radius: var(--radius-control);
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    gap: var(--space-3);
+  }
+  .wordmark {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: opacity var(--duration-fast) ease;
+  }
+  .nav,
+  .nav[data-open='false'] {
+    transition: none;
+  }
+}

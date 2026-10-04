@@ -1,0 +1,53 @@
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.line {
+  fill: none;
+  stroke: var(--text-primary);
+  transition-property: stroke, opacity;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition:
+    stroke var(--duration-slow) ease,
+    opacity var(--duration-slow) ease;
+}
+
+.detail .line {
+  stroke-width: 6;
+}
+
+.thumb .line {
+  stroke: var(--text-secondary);
+  stroke-width: 13;
+}
+
+.highlight {
+  stroke: var(--accent-text);
+}
+
+.dim {
+  opacity: 0.3;
+}
+
+.start rect:not([class]) {
+  stroke: var(--background);
+  stroke-width: 3;
+}
+
+.sectorCut {
+  stroke: var(--text-tertiary);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.checkerLight {
+  fill: var(--text-primary);
+}
+
+.checkerDark {
+  fill: var(--background);
+}

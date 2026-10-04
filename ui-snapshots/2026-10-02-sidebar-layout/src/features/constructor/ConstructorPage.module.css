@@ -1,0 +1,40 @@
+/* Driver contribution: name + points, then a thin share bar (reference: Busiest Domains bars). */
+.contribution {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.contributionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+.bar {
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.bar > div {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  animation: rg-fade var(--duration-slow) var(--ease-out) backwards;
+}
+
+.caption {
+  margin-top: var(--space-3);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}

@@ -1,0 +1,36 @@
+/* Shared motion (DESIGN_SYSTEM.md §14): short opacity fades only — no movement, no scale, no draw-in.
+   - rg-fade: content appearing after navigation, loading or opening
+   - rg-stagger: groups of tiles fading in together (20 ms steps, capped)
+   - rg-draw: chart lines and circuit outlines fading in (kept as a class so SVG paths opt in) */
+
+@keyframes rg-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.rg-fade,
+.rg-draw {
+  animation: rg-fade var(--duration-slow) var(--ease-out) backwards;
+}
+
+/* Children fade in one after another; only the first 8 get an extra delay so long lists stay immediate. */
+.rg-stagger > * {
+  animation: rg-fade var(--duration-slow) var(--ease-out) backwards;
+}
+.rg-stagger > :nth-child(2) { animation-delay: 20ms; }
+.rg-stagger > :nth-child(3) { animation-delay: 40ms; }
+.rg-stagger > :nth-child(4) { animation-delay: 60ms; }
+.rg-stagger > :nth-child(5) { animation-delay: 80ms; }
+.rg-stagger > :nth-child(6) { animation-delay: 100ms; }
+.rg-stagger > :nth-child(7) { animation-delay: 120ms; }
+.rg-stagger > :nth-child(n + 8) { animation-delay: 140ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rg-stagger > * {
+    animation-delay: 0ms !important;
+  }
+}

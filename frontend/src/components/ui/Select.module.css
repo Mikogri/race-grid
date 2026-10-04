@@ -1,0 +1,167 @@
+.field {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--inline-gap);
+  min-width: 0;
+}
+
+.label {
+  font: var(--type-label);
+  color: var(--text-secondary);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  height: var(--control-height);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-control);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  font: var(--type-nav);
+  color: var(--text-primary);
+  text-align: left;
+  transition:
+    border-color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .trigger:hover:not(:disabled) {
+    border-color: var(--border-hover);
+    background: var(--surface-hover);
+  }
+}
+
+.trigger:focus-visible {
+  outline: none;
+  border-color: var(--border-hover);
+  box-shadow: var(--focus-ring);
+}
+
+.trigger[data-open='true'] {
+  border-color: var(--border-hover);
+  background: var(--surface-active);
+}
+
+.trigger:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.start {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.start > svg {
+  flex: none;
+}
+
+.value,
+.placeholder {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--text-tertiary);
+}
+
+.chevron {
+  flex: none;
+  color: var(--text-secondary);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.trigger[data-open='true'] .chevron {
+  transform: rotate(180deg);
+}
+
+/* Raised menu, fixed to the window above everything (position set from the trigger).
+   Transition (not keyframes) so fast toggling retargets smoothly. */
+.list {
+  position: fixed;
+  z-index: 200;
+  max-width: 320px;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-popover);
+  background: var(--surface-popover);
+  box-shadow: var(--shadow-popover);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition:
+    opacity var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out),
+    visibility 0s linear var(--duration-fast);
+}
+
+.list[data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity var(--duration-base) ease,
+    transform var(--duration-base) var(--ease-out),
+    visibility 0s;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  height: var(--control-height);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-control);
+  font: var(--type-nav);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.optionLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Highlighted (pointer or keyboard). */
+.active {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.active[aria-selected='true'] {
+  background: var(--surface-active);
+}
+
+.option[aria-selected='true'] {
+  background: var(--surface-active);
+  color: var(--text-primary);
+}
+
+.check {
+  flex: none;
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list,
+  .list[data-open='true'] {
+    transform: none;
+  }
+}

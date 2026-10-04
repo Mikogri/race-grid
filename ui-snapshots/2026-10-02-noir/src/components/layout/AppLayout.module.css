@@ -1,0 +1,28 @@
+/* Shell: fixed top menu over a scrolling area holding the centred page column (--content-width inside its padding). */
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+/* The page's scroll area, below the menu; uses the browser's own scrollbar. */
+.scroll {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-spacing);
+  width: 100%;
+  max-width: calc(var(--content-width) + 2 * var(--sheet-padding) + 2px);
+  margin: 0 auto;
+  padding: var(--sheet-padding);
+  border-inline: 1px solid var(--border-subtle);
+  background: var(--surface-sheet);
+}

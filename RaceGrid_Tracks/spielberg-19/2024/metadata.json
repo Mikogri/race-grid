@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "generator_version": "1.1.0",
+  "status": "ready",
+  "created_at": "2026-09-26T14:01:05.010575+00:00",
+  "circuit_key": 19,
+  "circuit_name": "Spielberg",
+  "year": 2024,
+  "geometry_kind": "approximate_driver_reference_lap",
+  "source": {
+    "provider": "OpenF1",
+    "urls": {
+      "meetings": "https://api.openf1.org/v1/meetings",
+      "sessions": "https://api.openf1.org/v1/sessions?year=2024",
+      "laps": "https://api.openf1.org/v1/laps?session_key=9541",
+      "pit": "https://api.openf1.org/v1/pit?session_key=9541",
+      "location": "https://api.openf1.org/v1/location?date%3C=2024-06-29T14%3A59%3A34.600000%2B00%3A00&date%3E=2024-06-29T14%3A58%3A28.286000%2B00%3A00&driver_number=1&session_key=9541"
+    },
+    "session_key": 9541,
+    "meeting_key": 1239,
+    "session_name": "Qualifying",
+    "driver_number": 1,
+    "lap_number": 17,
+    "lap_duration_seconds": 64.314,
+    "lap_date_start": "2024-06-29T14:58:29.286000+00:00"
+  },
+  "coordinate_system": {
+    "raw": "OpenF1 arbitrary X/Y/Z units; not GPS longitude/latitude",
+    "distance": "Relative XY distance in source units, not verified metres",
+    "progress": "0..1 along sampled path, not official lap timing distance",
+    "svg": {
+      "view_box": [
+        0,
+        0,
+        1000,
+        1000
+      ],
+      "margin": 40,
+      "scale_x": 0.07372976438531816,
+      "scale_y": -0.07372976438531816,
+      "translate_x": 647.0171501843244,
+      "translate_y": 626.6677352139766,
+      "rotation_degrees": 0,
+      "formula": "svg_x=x*scale_x+translate_x; svg_y=y*scale_y+translate_y"
+    }
+  },
+  "processing": {
+    "sorted_by": "date",
+    "duplicate_timestamps": "last valid record retained",
+    "boundary_interpolation_max_bracket_seconds": 1.5,
+    "smoothing": "none",
+    "simplification": "none",
+    "closure": "SVG Z segment; only accepted if <=1% of sampled path length",
+    "source_location_includes": "Unchanged API records for reference lap plus time guards",
+    "all_points_means": "All accepted points of this one reference lap; not every session/car"
+  },
+  "sector_timing": {
+    "source_sector_seconds": [
+      16.254,
+      28.791,
+      19.269
+    ],
+    "boundary_offsets_seconds": [
+      0.0,
+      16.254,
+      45.045,
+      64.314
+    ],
+    "sum_minus_lap_seconds": 0.0,
+    "sum_tolerance_seconds": 0.05,
+    "finish_time_source": "date_start + lap_duration",
+    "method": "date_start plus cumulative duration_sector_1/2; time-aligned location",
+    "accuracy": "approximate; not surveyed timing-gate coordinates",
+    "sector_assignment": "S1=[START,S1_END), S2=[S1_END,S2_END), S3=[S2_END,FINISH]",
+    "range_indices": "inclusive endpoints, shared by neighbouring SVG sector paths"
+  },
+  "quality": {
+    "input_count": 264,
+    "point_count": 259,
+    "measured_point_count": 255,
+    "unique_valid_timestamp_count": 264,
+    "time_coverage": 0.9916969866592034,
+    "maximum_sample_gap_seconds": 0.48,
+    "median_sample_gap_seconds": 0.24,
+    "closure_gap_xy_units": 52.28730514435608,
+    "closure_gap_fraction": 0.001219663101837284,
+    "largest_step_fraction": 0.011137707567671578,
+    "sampled_length_xy_units": 42870.285298941315,
+    "interpolated_boundary_points": 4,
+    "sector_boundary_count": 4,
+    "checks_passed": true
+  },
+  "file_sha256": {
+    "track.svg": "95af43f52dc71f035a0d0e3f782004c76d3545b5d510c4efed0531713d229928",
+    "track_sectors.svg": "a9b1a82183a706f4471e4c4be8cf2c34c1be7a4cf6a7d14ad70d388465861fd9",
+    "sectors.json": "a4fc6f120b04a3421d0d0df278f16a42471f2829266df47658faba0aa8488d87",
+    "points.json": "9af1aae463d29c30242705749fec1c5f4f51f2359ff068437d2f4c61ee00cac7",
+    "points.csv": "d20b3b82052c768b36c8c80f3c2797fdab864531dcf8195140eb256a184ab577",
+    "source_location.json": "7cc88519d6f3068e5389a2fdb1b6d4db6147d239bc660bc7f0cfa7717987a95b",
+    "source_lap.json": "53b39276418a9e6bba25a45ac543d34156dd8cd03e513859d716baa99e9eab73",
+    "source_session.json": "bceddaae1732bff09f9eb7168000edff490a8e0d4e8f23b98a784e890d69298d",
+    "source_meetings.json": "e357529b7f5658d75358a431907e20be51729f80bcf66cda219540eeaad51210"
+  },
+  "limitations": [
+    "Heuristic checks are not a certificate of survey accuracy or official lap validity.",
+    "One selected lap per circuit/year; not a multi-car average or true circuit centerline.",
+    "No pit-lane path or track edges are manufactured.",
+    "Different years can differ due to measurement noise rather than circuit changes.",
+    "Sector gate times use approximate date_start; their positions are estimates, not official gate coordinates.",
+    "START and FINISH are distinct timestamps; measured coordinates can differ slightly. No snapping is applied."
+  ]
+}

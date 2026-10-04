@@ -1,0 +1,306 @@
+/* Lap picker inside the "Add lap" slot: the four selects stacked, then the button. */
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.picker > * {
+  width: 100%;
+}
+
+.addButton {
+  margin-top: var(--space-1);
+}
+
+/* Lap slots: chosen laps, the slot being built, then free slots. */
+.slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+}
+
+.filledSlot {
+  border-top: 2px solid var(--trace);
+  background: var(--surface-2);
+}
+
+.addSlot {
+  border-color: var(--border-hover);
+  background: var(--surface-1);
+}
+
+.freeSlot {
+  justify-content: center;
+  align-items: center;
+  min-height: 140px;
+  border-style: dashed;
+  text-align: center;
+}
+
+.slotHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.slotIndex {
+  font: var(--type-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.slotRemove {
+  display: inline-flex;
+  padding: var(--space-1);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: none;
+  color: var(--text-tertiary);
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .slotRemove:hover {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+  }
+}
+
+.slotDriver {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font: var(--type-heading-lg);
+  color: var(--text-primary);
+}
+
+.slotDriver > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--type-body);
+  color: var(--text-secondary);
+}
+
+.slotTime {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+  font: var(--type-mono);
+  color: var(--text-primary);
+}
+
+.slotTime > :first-child {
+  color: var(--text-tertiary);
+}
+
+/* Start: three numbered steps; the first holds the circuit select. */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-panel);
+  background: var(--surface-2);
+}
+
+.step:first-child {
+  border-color: var(--border-hover);
+}
+
+.stepIndex {
+  font: var(--type-mono);
+  color: var(--text-tertiary);
+}
+
+.stepTitle {
+  font: var(--type-heading);
+  color: var(--text-primary);
+}
+
+.stepText {
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.wide {
+  width: 100%;
+  margin-top: var(--space-1);
+}
+
+/* Empty overlay: the chart frame with a note over it, so the page keeps its shape before any lap. */
+.ghost {
+  position: relative;
+}
+
+.ghostText {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: var(--type-body);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+@media (max-width: 960px) {
+  .slots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .slots,
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.lapLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Trace colour: same dot as the chart legend. */
+.swatch {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+}
+
+.best {
+  color: var(--fastest) !important; /* F1 convention: purple = fastest */
+  font-weight: var(--weight-medium);
+}
+
+.channels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.channelTitle {
+  margin-bottom: var(--space-1);
+  font: var(--type-label);
+  color: var(--text-secondary);
+}
+
+.pickers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+}
+
+.pickerSide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-2) var(--space-3);
+  min-width: 0;
+}
+
+.pickerSide > :last-child {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.sideLabel {
+  margin-bottom: var(--space-2);
+  font: var(--type-label);
+  color: var(--text-primary);
+}
+
+/* Head-to-head metric rows: A value │ metric │ B value. */
+.metricRow {
+  display: grid;
+  grid-template-columns: minmax(max-content, 1fr) minmax(0, 1.4fr) minmax(max-content, 1fr);
+  column-gap: var(--space-2);
+  align-items: center;
+  min-height: var(--table-row-height-dense);
+  border-top: 1px solid var(--border-subtle);
+  font: var(--type-body-dense);
+  font-variant-numeric: tabular-nums;
+}
+
+.metricRow > :first-child {
+  text-align: right;
+}
+
+.metricLabel {
+  text-align: center;
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.metricValue {
+  color: var(--text-secondary);
+}
+
+.metricBetter {
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font: var(--type-meta);
+  color: var(--text-tertiary);
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-body-dense);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.checkbox input {
+  accent-color: var(--accent);
+}
+
+.spaced {
+  margin-top: var(--space-4);
+}
+
+.metricHead {
+  border-top: 0;
+}
