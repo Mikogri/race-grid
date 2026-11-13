@@ -1,8 +1,25 @@
 import { createBrowserRouter } from "react-router";
 import { AppLayout } from "../components/layout/AppLayout";
 import { NotFoundPage, RouteErrorPage } from "./RouteErrorPage";
+import { DashboardPage } from "../features/dashboard/DashboardPage";
+import { CalendarPage } from "../features/calendar/CalendarPage";
+import { RoundPage } from "../features/round/RoundPage";
+import { StandingsPage } from "../features/standings/StandingsPage";
+import { DriversPage } from "../features/driver/DriversPage";
+import { DriverPage } from "../features/driver/DriverPage";
+import { ConstructorsPage } from "../features/constructor/ConstructorsPage";
+import { ConstructorPage } from "../features/constructor/ConstructorPage";
+import { TracksPage } from "../features/tracks/TracksPage";
+import { TrackDetailsPage } from "../features/tracks/TrackDetailsPage";
+import { ReplayPickerPage } from "../features/replay/ReplayPickerPage";
+import { ReplayPage } from "../features/replay/ReplayPage";
+import {
+  ComparePage,
+  LapComparisonPage,
+} from "../features/compare/ComparePage";
+import { PerformancePage } from "../features/performance/PerformancePage";
+import { TrendsPage } from "../features/trends/TrendsPage";
 
-// Each feature is a separate chunk; heavy screens (replay, compare) load only when opened.
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -11,110 +28,67 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        lazy: async () => ({
-          Component: (await import("../features/dashboard/DashboardPage"))
-            .DashboardPage,
-        }),
+        Component: DashboardPage,
       },
       {
         path: "calendar",
-        lazy: async () => ({
-          Component: (await import("../features/calendar/CalendarPage"))
-            .CalendarPage,
-        }),
+        Component: CalendarPage,
       },
       {
         path: "rounds/:meetingKey",
-        lazy: async () => ({
-          Component: (await import("../features/round/RoundPage")).RoundPage,
-        }),
+        Component: RoundPage,
       },
       {
         path: "standings",
-        lazy: async () => ({
-          Component: (await import("../features/standings/StandingsPage"))
-            .StandingsPage,
-        }),
+        Component: StandingsPage,
       },
       {
         path: "drivers",
-        lazy: async () => ({
-          Component: (await import("../features/driver/DriversPage"))
-            .DriversPage,
-        }),
+        Component: DriversPage,
       },
       {
         path: "drivers/:year/:driverNumber",
-        lazy: async () => ({
-          Component: (await import("../features/driver/DriverPage")).DriverPage,
-        }),
+        Component: DriverPage,
       },
       {
         path: "constructors",
-        lazy: async () => ({
-          Component: (await import("../features/constructor/ConstructorsPage"))
-            .ConstructorsPage,
-        }),
+        Component: ConstructorsPage,
       },
       {
         path: "constructors/:year/:teamSlug",
-        lazy: async () => ({
-          Component: (await import("../features/constructor/ConstructorPage"))
-            .ConstructorPage,
-        }),
+        Component: ConstructorPage,
       },
       {
         path: "tracks",
-        lazy: async () => ({
-          Component: (await import("../features/tracks/TracksPage")).TracksPage,
-        }),
+        Component: TracksPage,
       },
       {
         path: "tracks/:slug",
-        lazy: async () => ({
-          Component: (await import("../features/tracks/TrackDetailsPage"))
-            .TrackDetailsPage,
-        }),
+        Component: TrackDetailsPage,
       },
       {
         path: "replay",
-        lazy: async () => ({
-          Component: (await import("../features/replay/ReplayPickerPage"))
-            .ReplayPickerPage,
-        }),
+        Component: ReplayPickerPage,
       },
       {
         path: "replay/:sessionKey",
-        lazy: async () => ({
-          Component: (await import("../features/replay/ReplayPage")).ReplayPage,
-        }),
+        Component: ReplayPage,
       },
       {
         path: "compare",
-        lazy: async () => ({
-          Component: (await import("../features/compare/ComparePage"))
-            .ComparePage,
-        }),
+        Component: ComparePage,
       },
       {
         path: "compare/laps",
-        lazy: async () => ({
-          Component: (await import("../features/compare/ComparePage"))
-            .LapComparisonPage,
-        }),
+        Component: LapComparisonPage,
       },
       {
         path: "performance",
-        lazy: async () => ({
-          Component: (await import("../features/performance/PerformancePage"))
-            .PerformancePage,
-        }),
+        Component: PerformancePage,
       },
       {
         path: "trends",
-        lazy: async () => ({
-          Component: (await import("../features/trends/TrendsPage")).TrendsPage,
-        }),
+        Component: TrendsPage,
       },
       { path: "*", Component: NotFoundPage },
     ],

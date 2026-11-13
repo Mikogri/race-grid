@@ -45,6 +45,8 @@ Builds generate circuit assets locally and never download headshots. Driver WebP
 
 ## Code layout
 
+Page components use static imports in `src/app/router.tsx`; their code loads with the application rather than on navigation. API data is still fetched by the active views, and replay data continues to load in time windows.
+
 ```
 src/api/openf1      raw client, endpoint map, types
 src/data            query hooks (season, meeting, session data, circuits, race pace)
