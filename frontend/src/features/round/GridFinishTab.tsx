@@ -58,13 +58,15 @@ export function GridFinishTab({ race, sessions, lookup }: { race: Session; sessi
                   <td className={`${table.right} ${table.strong}`}>{row.finish ?? (row.dnf ? 'DNF' : '—')}</td>
                   <td>
                     <div className={styles.bar}>
-                      <div className={styles.axis} />
-                      {row.change !== null && change !== 0 && (
-                        <div
-                          className={change > 0 ? styles.gain : styles.loss}
-                          style={{ width: `${(Math.abs(change) / maxChange) * 50}%`, [change > 0 ? 'left' : 'right']: '50%' }}
-                        />
-                      )}
+                      <div className={styles.track}>
+                        <div className={styles.axis} />
+                        {row.change !== null && change !== 0 && (
+                          <div
+                            className={change > 0 ? styles.gain : styles.loss}
+                            style={{ width: `${(Math.abs(change) / maxChange) * 50}%`, [change > 0 ? 'left' : 'right']: '50%' }}
+                          />
+                        )}
+                      </div>
                       <span className={styles.value}>{row.change === null ? '—' : change > 0 ? `+${change}` : change}</span>
                     </div>
                   </td>

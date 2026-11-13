@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
-import { IconArrowNarrowLeft, IconChevronRight, IconSmartHome } from '@tabler/icons-react';
+import { IconChevronRight, IconSmartHome } from '@tabler/icons-react';
 import styles from './PageHeader.module.css';
 
 export interface Crumb {
@@ -17,7 +17,7 @@ interface PageHeaderProps {
   title: ReactNode;
   /** One line under the title (Figma: "Explore every race of the season…"). */
   description?: ReactNode;
-  /** Parent pages, shown above the title as Back (to the nearest one) and a Home › … trail. */
+  /** Parent pages, shown above the title as a Home › … trail ending in Back (to the nearest one). */
   crumbs?: Crumb[];
   /** Panel around the header with the key facts as label-over-value blocks beside the title (replay). */
   boxed?: boolean;
@@ -40,15 +40,7 @@ export function PageHeader({ title, description, crumbs, boxed = false, leading,
           {crumbs && crumbs.length > 0 && (
             <nav aria-label="Breadcrumb">
               <ol className={styles.crumbs}>
-                {/* Back goes to the nearest parent page. */}
                 <li>
-                  <Link to={crumbs[crumbs.length - 1].to} className={`${styles.crumbLink} ${styles.back}`}>
-                    <IconArrowNarrowLeft size={14} stroke={1.5} aria-hidden="true" />
-                    Back
-                  </Link>
-                </li>
-                <li>
-                  <IconChevronRight className={styles.crumbSeparator} size={12} stroke={1.5} aria-hidden="true" />
                   <Link to="/" className={styles.crumbLink} aria-label="Dashboard">
                     <IconSmartHome size={14} stroke={1.5} aria-hidden="true" />
                   </Link>
@@ -61,6 +53,13 @@ export function PageHeader({ title, description, crumbs, boxed = false, leading,
                     </Link>
                   </li>
                 ))}
+                {/* Back: the last step of the trail, to the nearest parent page. */}
+                <li>
+                  <IconChevronRight className={styles.crumbSeparator} size={12} stroke={1.5} aria-hidden="true" />
+                  <Link to={crumbs[crumbs.length - 1].to} className={`${styles.crumbLink} ${styles.back}`}>
+                    Back
+                  </Link>
+                </li>
               </ol>
             </nav>
           )}

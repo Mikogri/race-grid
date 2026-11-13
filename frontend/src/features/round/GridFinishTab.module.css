@@ -2,12 +2,20 @@
   width: 42%;
 }
 
-/* Positions gained / lost: thin bar either side of a centre axis. */
+/* Positions gained / lost: thin bar either side of a centre axis, the figure beside it. The track clips to the cell. */
 .bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.track {
   position: relative;
-  width: 100%;
-  min-width: 80px;
+  flex: 1;
+  min-width: 0;
   height: 16px;
+  overflow: hidden;
 }
 
 .axis {
@@ -36,16 +44,10 @@
 }
 
 .value {
-  position: absolute;
-  right: 0;
-  top: 0;
+  flex: none;
+  min-width: 3ch;
+  text-align: right;
   font: var(--type-meta);
   font-variant-numeric: tabular-nums;
   color: var(--text-secondary);
-}
-
-.caption {
-  padding: var(--space-3) var(--table-edge-padding-x);
-  font: var(--type-meta);
-  color: var(--text-tertiary);
 }

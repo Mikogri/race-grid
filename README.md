@@ -37,6 +37,7 @@ Połącz repozytorium z Pages i ustaw gałąź produkcyjną `main`. Katalog gł�
 - Output directory: `frontend/dist` (również w `wrangler.toml`).
 - Node: `24`, zgodnie z `.node-version`; można też ustawić `NODE_VERSION=24` w Pages.
 - Nie są potrzebne sekrety ani własny backend. Tokenów OpenF1 nie należy dodawać do frontendu.
+- `SITE_URL`: adres strony (np. `https://racegrid.pl`) dla `sitemap.xml` i `robots.txt` generowanych przy buildzie; bez niej używany jest `https://race-grid.pages.dev`.
 
 Pages obsługuje trasy SPA automatycznie, o ile nie dodamy głównego `404.html`. Nagłówki bezpieczeństwa i CSP są w `frontend/public/_headers`. Dopuszczają używane fonty Google, API OpenF1 oraz zdjęcia i radio z domen F1. Lokalny `npm run preview` nie interpretuje `_headers`; do sprawdzenia zachowania Pages po buildzie użyj z katalogu repozytorium `npx wrangler pages dev`.
 

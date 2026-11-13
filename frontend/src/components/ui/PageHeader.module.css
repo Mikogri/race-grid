@@ -31,34 +31,25 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-2); /* the same space on both sides of every chevron */
   margin: 0 0 var(--space-2);
   padding: 0;
   list-style: none;
   font: var(--type-label);
+  line-height: 16px;
   color: var(--text-secondary);
 }
 
-/* Back: the first crumb, text only; the arrow nudges left on hover. */
+.crumbs li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 16px;
+}
+
+/* Back: the last step, a text link. */
 .back {
-  gap: var(--space-1);
   color: var(--text-secondary);
-}
-
-.back svg {
-  transition: transform var(--duration-base) var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .back:hover svg {
-    transform: translateX(-2px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .back svg {
-    transition: none;
-  }
 }
 
 .crumbSeparator {
