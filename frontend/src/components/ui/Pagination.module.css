@@ -47,7 +47,7 @@
   transform: scale(0.95);
 }
 
-.page[data-active='true'] {
+.page[data-active="true"] {
   border-color: var(--accent);
   color: var(--text-primary);
 }

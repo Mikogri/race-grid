@@ -1,28 +1,39 @@
-import { useState } from 'react';
-import { Link } from 'react-router';
-import { COMPONENT_LABEL, FORMULA, WEIGHTS, teamPerformance, type ComponentKey, type TeamPerformance } from '../../analytics/performance';
-import { useSelectedSeason } from '../../app/seasons';
-import layout from '../../components/layout/PageLayout.module.css';
-import { Badge } from '../../components/ui/Badge';
-import { Card, DetailPanel, Panel } from '../../components/ui/Card';
-import { PageHeader } from '../../components/ui/PageHeader';
-import { InfoTip } from '../../components/ui/Tooltip';
-import { EmptyState, ErrorState } from '../../components/ui/StateViews';
-import { PageSkeleton } from '../../components/ui/PageSkeleton';
-import table from '../../components/ui/Table.module.css';
-import { TeamMarker } from '../../components/ui/TeamMarker';
-import { useRacePace } from '../../data/seasonPace';
-import { useSeason } from '../../data/season';
-import { capitalize } from '../../lib/format';
-import { AnalysisBanner } from '../../components/AnalysisBanner';
-import { TeamBreakdown } from './TeamBreakdown';
-import styles from './PerformancePage.module.css';
+import { useState } from "react";
+import { Link } from "react-router";
+import {
+  COMPONENT_LABEL,
+  FORMULA,
+  WEIGHTS,
+  teamPerformance,
+  type ComponentKey,
+  type TeamPerformance,
+} from "../../analytics/performance";
+import { useSelectedSeason } from "../../app/seasons";
+import layout from "../../components/layout/PageLayout.module.css";
+import { Badge } from "../../components/ui/Badge";
+import { Card, DetailPanel, Panel } from "../../components/ui/Card";
+import { PageHeader } from "../../components/ui/PageHeader";
+import { InfoTip } from "../../components/ui/Tooltip";
+import { EmptyState, ErrorState } from "../../components/ui/StateViews";
+import { PageSkeleton } from "../../components/ui/PageSkeleton";
+import table from "../../components/ui/Table.module.css";
+import { TeamMarker } from "../../components/ui/TeamMarker";
+import { useRacePace } from "../../data/seasonPace";
+import { useSeason } from "../../data/season";
+import { capitalize } from "../../lib/format";
+import { AnalysisBanner } from "../../components/AnalysisBanner";
+import { TeamBreakdown } from "./TeamBreakdown";
+import styles from "./PerformancePage.module.css";
 
 const KEYS = Object.keys(WEIGHTS) as ComponentKey[];
 /** Hidden first when the table's panel is narrow; the index and its main drivers stay. */
-const SECONDARY = new Set<ComponentKey>(['consistency', 'twoCar', 'reliability']);
+const SECONDARY = new Set<ComponentKey>([
+  "consistency",
+  "twoCar",
+  "reliability",
+]);
 /** Also hidden on the narrowest panels (phones). */
-const TERTIARY = new Set<ComponentKey>(['qualifying', 'racePace']);
+const TERTIARY = new Set<ComponentKey>(["qualifying", "racePace"]);
 
 export function PerformancePage() {
   const { year } = useSelectedSeason();
@@ -33,21 +44,41 @@ export function PerformancePage() {
   if (error) return <ErrorState error={error} onRetry={refetch} />;
   if (isPending || !season) return <PageSkeleton layout="table" header />;
 
-  const teams = teamPerformance(season, racePace.pace.size ? racePace.pace : null);
-  const current: TeamPerformance | undefined = teams.find((t) => t.teamName === selected) ?? teams[0];
+  const teams = teamPerformance(
+    season,
+    racePace.pace.size ? racePace.pace : null,
+  );
+  const current: TeamPerformance | undefined =
+    teams.find((t) => t.teamName === selected) ?? teams[0];
 
   return (
     <>
       <PageHeader
         title={`${year} Team Performance`}
         meta={[
-          { label: 'Rounds analysed', value: season.completedRounds.length },
-          { label: 'Race pace data', value: `${racePace.progress.done} / ${racePace.progress.total} races` },
-          { label: 'Top index', value: teams[0]?.index != null ? `${teams[0].teamName} · ${teams[0].index.toFixed(1)}` : '—' },
+          { label: "Rounds analysed", value: season.completedRounds.length },
+          {
+            label: "Race pace data",
+            value: `${racePace.progress.done} / ${racePace.progress.total} races`,
+          },
+          {
+            label: "Top index",
+            value:
+              teams[0]?.index != null
+                ? `${teams[0].teamName} · ${teams[0].index.toFixed(1)}`
+                : "—",
+          },
         ]}
       />
-      {!racePace.complete && !racePace.error && <AnalysisBanner progress={racePace.progress} />}
-      {racePace.error ? <ErrorState title="Race pace could not be computed" error={racePace.error} /> : null}
+      {!racePace.complete && !racePace.error && (
+        <AnalysisBanner progress={racePace.progress} />
+      )}
+      {racePace.error ? (
+        <ErrorState
+          title="Race pace could not be computed"
+          error={racePace.error}
+        />
+      ) : null}
       {teams.length === 0 ? (
         <EmptyState title="No completed rounds yet" />
       ) : (
@@ -66,8 +97,14 @@ export function PerformancePage() {
                       <th>Team</th>
                       <th className={table.right}>Index</th>
                       {KEYS.map((k) => (
-                        <th key={k} className={`${table.right} ${SECONDARY.has(k) ? table.optional : ''} ${TERTIARY.has(k) ? table.optionalNarrow : ''}`} title={FORMULA[k]}>
-                          {COMPONENT_LABEL[k].replace(' pace', '').replace('Two-car strength', '2-car')}
+                        <th
+                          key={k}
+                          className={`${table.right} ${SECONDARY.has(k) ? table.optional : ""} ${TERTIARY.has(k) ? table.optionalNarrow : ""}`}
+                          title={FORMULA[k]}
+                        >
+                          {COMPONENT_LABEL[k]
+                            .replace(" pace", "")
+                            .replace("Two-car strength", "2-car")}
                         </th>
                       ))}
                       <th className={table.optionalNarrow}>Dependency</th>
@@ -77,29 +114,61 @@ export function PerformancePage() {
                     {teams.map((team, i) => (
                       <tr
                         key={team.teamName}
-                        className={`${table.clickable} ${current?.teamName === team.teamName ? table.selected : ''}`}
+                        className={`${table.clickable} ${current?.teamName === team.teamName ? table.selected : ""}`}
                         onClick={() => setSelected(team.teamName)}
                         aria-selected={current?.teamName === team.teamName}
                       >
-                        <td className={`${table.right} ${table.muted}`}>{i + 1}</td>
+                        <td className={`${table.right} ${table.muted}`}>
+                          {i + 1}
+                        </td>
                         <td>
                           <span className={styles.team}>
                             <TeamMarker color={team.color} />
-                            <Link to={`/constructors/${year}/${team.slug}`} className={`${table.primary} ${table.link}`} onClick={(e) => e.stopPropagation()}>
+                            <Link
+                              to={`/constructors/${year}/${team.slug}`}
+                              className={`${table.primary} ${table.link}`}
+                              onClick={(e) => e.stopPropagation()}
+                            >
                               {team.teamName}
                             </Link>
                           </span>
                         </td>
                         <td className={`${table.right} ${table.strong}`}>
-                          {team.index?.toFixed(1) ?? '—'}
-                          {team.provisional && <span className={styles.provisional} title="Some components are missing; weights renormalised">*</span>}
+                          {team.index?.toFixed(1) ?? "—"}
+                          {team.provisional && (
+                            <span
+                              className={styles.provisional}
+                              title="Some components are missing; weights renormalised"
+                            >
+                              *
+                            </span>
+                          )}
                         </td>
                         {KEYS.map((k) => (
-                          <td key={k} className={`${table.right} ${SECONDARY.has(k) ? table.optional : ''} ${TERTIARY.has(k) ? table.optionalNarrow : ''}`}>
-                            {team.components[k].score?.toFixed(0) ?? '—'}
+                          <td
+                            key={k}
+                            className={`${table.right} ${SECONDARY.has(k) ? table.optional : ""} ${TERTIARY.has(k) ? table.optionalNarrow : ""}`}
+                          >
+                            {team.components[k].score?.toFixed(0) ?? "—"}
                           </td>
                         ))}
-                        <td className={table.optionalNarrow}>{team.dependency.level ? <Badge tone={team.dependency.level === 'HIGH' ? 'danger' : team.dependency.level === 'MEDIUM' ? 'warning' : 'neutral'}>{capitalize(team.dependency.level.toLowerCase())}</Badge> : '—'}</td>
+                        <td className={table.optionalNarrow}>
+                          {team.dependency.level ? (
+                            <Badge
+                              tone={
+                                team.dependency.level === "HIGH"
+                                  ? "danger"
+                                  : team.dependency.level === "MEDIUM"
+                                    ? "warning"
+                                    : "neutral"
+                              }
+                            >
+                              {capitalize(team.dependency.level.toLowerCase())}
+                            </Badge>
+                          ) : (
+                            "—"
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -113,20 +182,29 @@ export function PerformancePage() {
               <ul className={styles.method}>
                 {KEYS.map((k) => (
                   <li key={k}>
-                    <span className={styles.methodName}>{COMPONENT_LABEL[k]}</span>
-                    <span className={styles.weight}>{Math.round(WEIGHTS[k] * 100)}%</span>
+                    <span className={styles.methodName}>
+                      {COMPONENT_LABEL[k]}
+                    </span>
+                    <span className={styles.weight}>
+                      {Math.round(WEIGHTS[k] * 100)}%
+                    </span>
                     <InfoTip content={FORMULA[k]} size={13} />
                   </li>
                 ))}
                 <li>
                   <span className={styles.methodName}>Driver dependency</span>
                   <span className={styles.weight}>—</span>
-                  <InfoTip content="Share of team points scored by its top scorer: ≥ 75% HIGH, 60–75% MEDIUM, below 60% LOW." size={13} />
+                  <InfoTip
+                    content="Share of team points scored by its top scorer: ≥ 75% HIGH, 60–75% MEDIUM, below 60% LOW."
+                    size={13}
+                  />
                 </li>
               </ul>
             </Card>
           </Panel>
-          <DetailPanel className={layout.panel}>{current && <TeamBreakdown team={current} season={season} />}</DetailPanel>
+          <DetailPanel className={layout.panel}>
+            {current && <TeamBreakdown team={current} season={season} />}
+          </DetailPanel>
         </div>
       )}
     </>

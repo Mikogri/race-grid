@@ -1,27 +1,42 @@
-import { useMemo, useState } from 'react';
-import { useParams } from 'react-router';
-import { computeBenchmarks, integrateDistanceKm, type BenchmarkSource } from '../../analytics/benchmarks';
-import type { Lap, Session } from '../../api/openf1/types';
-import layout from '../../components/layout/PageLayout.module.css';
-import { Card, DetailPanel, Panel } from '../../components/ui/Card';
-import { PageHeader } from '../../components/ui/PageHeader';
-import { Segmented } from '../../components/ui/Segmented';
-import { EmptyState, ErrorState, Skeleton } from '../../components/ui/StateViews';
-import { PageSkeleton } from '../../components/ui/PageSkeleton';
-import { TrackOutline } from '../../components/ui/TrackOutline';
-import { useCircuitIndex, useCircuitYear } from '../../data/circuits';
-import { useCircuitSessions, useMeetingDriversQueries, useSessionsLaps } from '../../data/circuitHistory';
-import { useSessionData } from '../../data/sessionData';
-import { BenchmarksCard } from './BenchmarksCard';
-import { CircuitHistoryTable, type CircuitMeetingRow } from './CircuitHistoryTable';
-import { ReferenceLapCard } from './ReferenceLapCard';
-import styles from './TrackDetailsPage.module.css';
+import { useMemo, useState } from "react";
+import { useParams } from "react-router";
+import {
+  computeBenchmarks,
+  integrateDistanceKm,
+  type BenchmarkSource,
+} from "../../analytics/benchmarks";
+import type { Lap, Session } from "../../api/openf1/types";
+import layout from "../../components/layout/PageLayout.module.css";
+import { Card, DetailPanel, Panel } from "../../components/ui/Card";
+import { PageHeader } from "../../components/ui/PageHeader";
+import { Segmented } from "../../components/ui/Segmented";
+import {
+  EmptyState,
+  ErrorState,
+  Skeleton,
+} from "../../components/ui/StateViews";
+import { PageSkeleton } from "../../components/ui/PageSkeleton";
+import { TrackOutline } from "../../components/ui/TrackOutline";
+import { useCircuitIndex, useCircuitYear } from "../../data/circuits";
+import {
+  useCircuitSessions,
+  useMeetingDriversQueries,
+  useSessionsLaps,
+} from "../../data/circuitHistory";
+import { useSessionData } from "../../data/sessionData";
+import { BenchmarksCard } from "./BenchmarksCard";
+import {
+  CircuitHistoryTable,
+  type CircuitMeetingRow,
+} from "./CircuitHistoryTable";
+import { ReferenceLapCard } from "./ReferenceLapCard";
+import styles from "./TrackDetailsPage.module.css";
 
 const SECTOR_OPTIONS = [
-  { value: 0, label: 'Full lap' },
-  { value: 1, label: 'S1' },
-  { value: 2, label: 'S2' },
-  { value: 3, label: 'S3' },
+  { value: 0, label: "Full lap" },
+  { value: 1, label: "S1" },
+  { value: 2, label: "S2" },
+  { value: 3, label: "S3" },
 ];
 
 function maxLapNumber(laps: Lap[] | undefined): number | null {
@@ -36,27 +51,44 @@ export function TrackDetailsPage() {
   const [pickedYear, setPickedYear] = useState<number | null>(null);
   const [sector, setSector] = useState(0);
   const year = pickedYear ?? circuit?.outlineYear ?? undefined;
-  const geometry = useCircuitYear(circuit?.readyYears.length ? slug : undefined, year);
+  const geometry = useCircuitYear(
+    circuit?.readyYears.length ? slug : undefined,
+    year,
+  );
 
   const sessions = useCircuitSessions(circuit?.circuitKey);
   const sessionList = useMemo(() => sessions.data ?? [], [sessions.data]);
   const lapsQueries = useSessionsLaps(sessionList);
-  const meetingKeys = useMemo(() => [...new Set(sessionList.map((s) => s.meeting_key))], [sessionList]);
+  const meetingKeys = useMemo(
+    () => [...new Set(sessionList.map((s) => s.meeting_key))],
+    [sessionList],
+  );
   const driversQueries = useMeetingDriversQueries(meetingKeys);
 
   const reference = geometry.data?.reference;
   const referenceTelemetry = useSessionData(
-    'car_data',
-    reference ? { session_key: reference.sessionKey, date_end: reference.lapDateStart } : null,
+    "car_data",
+    reference
+      ? { session_key: reference.sessionKey, date_end: reference.lapDateStart }
+      : null,
     reference
       ? {
           driver_number: reference.driverNumber,
-          'date>=': reference.lapDateStart,
-          'date<=': new Date(new Date(reference.lapDateStart).getTime() + reference.lapDuration * 1000).toISOString(),
+          "date>=": reference.lapDateStart,
+          "date<=": new Date(
+            new Date(reference.lapDateStart).getTime() +
+              reference.lapDuration * 1000,
+          ).toISOString(),
         }
       : {},
   );
-  const lapDistanceKm = useMemo(() => (referenceTelemetry.data ? integrateDistanceKm(referenceTelemetry.data) : null), [referenceTelemetry.data]);
+  const lapDistanceKm = useMemo(
+    () =>
+      referenceTelemetry.data
+        ? integrateDistanceKm(referenceTelemetry.data)
+        : null,
+    [referenceTelemetry.data],
+  );
 
   const lapsBySession = new Map<number, Lap[]>();
   sessionList.forEach((s, i) => {
@@ -64,11 +96,20 @@ export function TrackDetailsPage() {
     if (data) lapsBySession.set(s.session_key, data);
   });
   const acronyms = new Map<string, string>();
-  driversQueries.forEach((q) => q.data?.forEach((d) => acronyms.set(`${d.meeting_key}:${d.driver_number}`, d.name_acronym)));
+  driversQueries.forEach((q) =>
+    q.data?.forEach((d) =>
+      acronyms.set(`${d.meeting_key}:${d.driver_number}`, d.name_acronym),
+    ),
+  );
 
   const loadedLaps = lapsQueries.filter((q) => q.data).length;
-  const lapsDone = sessionList.length > 0 && loadedLaps === sessionList.length && driversQueries.every((q) => q.data);
-  const lapsError = lapsQueries.find((q) => q.error)?.error ?? driversQueries.find((q) => q.error)?.error;
+  const lapsDone =
+    sessionList.length > 0 &&
+    loadedLaps === sessionList.length &&
+    driversQueries.every((q) => q.data);
+  const lapsError =
+    lapsQueries.find((q) => q.error)?.error ??
+    driversQueries.find((q) => q.error)?.error;
 
   const toSource = (session: Session): BenchmarkSource => ({
     year: session.year,
@@ -78,47 +119,77 @@ export function TrackDetailsPage() {
   });
   const benchmarks = lapsDone
     ? computeBenchmarks(
-        sessionList.filter((s) => s.session_name === 'Qualifying').map(toSource),
-        sessionList.filter((s) => s.session_name === 'Race').map(toSource),
+        sessionList
+          .filter((s) => s.session_name === "Qualifying")
+          .map(toSource),
+        sessionList.filter((s) => s.session_name === "Race").map(toSource),
       )
     : [];
 
   const meetings: CircuitMeetingRow[] = meetingKeys.map((meetingKey) => {
-    const quali = sessionList.find((s) => s.meeting_key === meetingKey && s.session_name === 'Qualifying');
-    const race = sessionList.find((s) => s.meeting_key === meetingKey && s.session_name === 'Race');
+    const quali = sessionList.find(
+      (s) => s.meeting_key === meetingKey && s.session_name === "Qualifying",
+    );
+    const race = sessionList.find(
+      (s) => s.meeting_key === meetingKey && s.session_name === "Race",
+    );
     const qualiLaps = quali ? lapsBySession.get(quali.session_key) : undefined;
-    const poleLap = qualiLaps?.reduce<number | null>((best, l) => (l.lap_duration && (best === null || l.lap_duration < best) ? l.lap_duration : best), null);
+    const poleLap = qualiLaps?.reduce<number | null>(
+      (best, l) =>
+        l.lap_duration && (best === null || l.lap_duration < best)
+          ? l.lap_duration
+          : best,
+      null,
+    );
     return {
       meetingKey,
       year: (race ?? quali)?.year ?? 0,
-      date: (race ?? quali)?.date_start ?? '',
+      date: (race ?? quali)?.date_start ?? "",
       race: race ?? null,
       fastestQualifyingLap: poleLap ?? null,
       raceLaps: race ? maxLapNumber(lapsBySession.get(race.session_key)) : null,
       loading: !lapsDone,
     };
   });
-  const latestRaceLaps = [...meetings].reverse().find((m) => m.raceLaps !== null)?.raceLaps ?? null;
+  const latestRaceLaps =
+    [...meetings].reverse().find((m) => m.raceLaps !== null)?.raceLaps ?? null;
 
-  if (index.error) return <ErrorState error={index.error} onRetry={() => void index.refetch()} />;
+  if (index.error)
+    return (
+      <ErrorState error={index.error} onRetry={() => void index.refetch()} />
+    );
   if (index.isPending) return <PageSkeleton layout="detail" header />;
-  if (!circuit) return <EmptyState title="Unknown circuit">This circuit is not in the local circuit library.</EmptyState>;
+  if (!circuit)
+    return (
+      <EmptyState title="Unknown circuit">
+        This circuit is not in the local circuit library.
+      </EmptyState>
+    );
 
   const meeting = geometry.data?.meeting ?? circuit.meeting;
   return (
     <>
       <PageHeader
-        crumbs={[{ to: '/calendar', label: 'Calendar' }]}
+        crumbs={[{ to: "/calendar", label: "Calendar" }]}
         title={circuit.name}
         meta={[
-          { label: 'Location', value: meeting ? `${meeting.location}, ${meeting.countryName}` : '—' },
-          { label: 'Type', value: meeting?.circuitType ?? '—' },
-          { label: 'Race laps', value: latestRaceLaps ?? '—' },
           {
-            label: 'Lap distance ≈',
-            value: lapDistanceKm ? `${lapDistanceKm.toFixed(2)} km` : referenceTelemetry.isFetching ? '…' : '—',
+            label: "Location",
+            value: meeting
+              ? `${meeting.location}, ${meeting.countryName}`
+              : "—",
           },
-          { label: 'Turns', value: '—' },
+          { label: "Type", value: meeting?.circuitType ?? "—" },
+          { label: "Race laps", value: latestRaceLaps ?? "—" },
+          {
+            label: "Lap distance ≈",
+            value: lapDistanceKm
+              ? `${lapDistanceKm.toFixed(2)} km`
+              : referenceTelemetry.isFetching
+                ? "…"
+                : "—",
+          },
+          { label: "Turns", value: "—" },
         ]}
       />
       <div className={layout.withPanel}>
@@ -127,11 +198,19 @@ export function TrackDetailsPage() {
             title="Circuit map"
             actions={
               <>
-                <Segmented label="Highlight sector" options={SECTOR_OPTIONS} value={sector} onChange={setSector} />
+                <Segmented
+                  label="Highlight sector"
+                  options={SECTOR_OPTIONS}
+                  value={sector}
+                  onChange={setSector}
+                />
                 {circuit.readyYears.length > 1 && (
                   <Segmented
                     label="Outline season"
-                    options={circuit.readyYears.map((y) => ({ value: y, label: String(y) }))}
+                    options={circuit.readyYears.map((y) => ({
+                      value: y,
+                      label: String(y),
+                    }))}
                     value={year ?? 0}
                     onChange={setPickedYear}
                   />
@@ -141,7 +220,12 @@ export function TrackDetailsPage() {
           >
             {circuit.readyYears.length === 0 ? (
               <EmptyState title="No local outline for this circuit">
-                The local circuit library has no finished OpenF1 session here yet ({circuit.years.map((y) => `${y.year}: ${y.status.replace(/_/g, ' ')}`).join(', ')}).
+                The local circuit library has no finished OpenF1 session here
+                yet (
+                {circuit.years
+                  .map((y) => `${y.year}: ${y.status.replace(/_/g, " ")}`)
+                  .join(", ")}
+                ).
               </EmptyState>
             ) : geometry.error ? (
               <ErrorState error={geometry.error} />
@@ -151,7 +235,9 @@ export function TrackDetailsPage() {
                   outline={geometry.data.outline}
                   sectors={geometry.data.sectors}
                   highlightSector={sector || null}
-                  startGate={geometry.data.gates.find((g) => g.type === 'START') ?? null}
+                  startGate={
+                    geometry.data.gates.find((g) => g.type === "START") ?? null
+                  }
                   title={`${circuit.name} ${year} outline with timing sectors`}
                 />
               </div>
@@ -159,12 +245,20 @@ export function TrackDetailsPage() {
               <Skeleton rows={1} height="520px" />
             )}
           </Card>
-          <CircuitHistoryTable rows={meetings} loading={sessions.isPending} error={sessions.error} />
+          <CircuitHistoryTable
+            rows={meetings}
+            loading={sessions.isPending}
+            error={sessions.error}
+          />
         </Panel>
         <DetailPanel className={layout.panel}>
           <BenchmarksCard
             benchmarks={benchmarks}
-            loading={!lapsDone && !lapsError && (sessions.isPending || sessionList.length > 0)}
+            loading={
+              !lapsDone &&
+              !lapsError &&
+              (sessions.isPending || sessionList.length > 0)
+            }
             progress={{ done: loadedLaps, total: sessionList.length }}
             error={lapsError}
             seasons={[...new Set(sessionList.map((s) => s.year))]}

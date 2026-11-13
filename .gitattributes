@@ -3,3 +3,18 @@
 
 # Two trailing spaces are intentional Markdown line breaks.
 *.md whitespace=-blank-at-eol
+
+# Match Prettier's default LF endings, including Windows checkouts.
+/.prettierrc.json text eol=lf
+/.prettierignore text eol=lf
+/.vscode/*.json text eol=lf
+/.github/workflows/** text eol=lf
+/*.md text eol=lf
+/docs/** text=auto eol=lf
+/frontend/*.json text eol=lf
+/frontend/*.ts text eol=lf
+/frontend/*.html text eol=lf
+/frontend/*.md text eol=lf
+/frontend/scripts/** text eol=lf
+/frontend/src/** text=auto eol=lf
+/frontend/src/vendor/** !text !eol

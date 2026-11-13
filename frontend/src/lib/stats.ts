@@ -13,13 +13,20 @@ export function mean(values: number[]): number | null {
 export function stdDev(values: number[]): number | null {
   const avg = mean(values);
   if (avg === null || values.length < 2) return null;
-  return Math.sqrt(values.reduce((sum, v) => sum + (v - avg) ** 2, 0) / (values.length - 1));
+  return Math.sqrt(
+    values.reduce((sum, v) => sum + (v - avg) ** 2, 0) / (values.length - 1),
+  );
 }
 
-export const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+export const clamp = (value: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, value));
 
 /** Index of the last element with key(el) <= target in an array sorted by key; -1 if none. */
-export function lastIndexAtOrBefore<T>(items: T[], target: number, key: (item: T) => number): number {
+export function lastIndexAtOrBefore<T>(
+  items: T[],
+  target: number,
+  key: (item: T) => number,
+): number {
   let lo = 0;
   let hi = items.length - 1;
   let found = -1;

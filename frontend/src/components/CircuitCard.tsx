@@ -1,8 +1,8 @@
-import type { CSSProperties, ReactNode } from 'react';
-import { Link } from 'react-router';
-import { squareFrame } from '../lib/trackFrame';
-import { TrackOutline } from './ui/TrackOutline';
-import styles from './CircuitCard.module.css';
+import type { CSSProperties, ReactNode } from "react";
+import { Link } from "react-router";
+import { squareFrame } from "../lib/trackFrame";
+import { TrackOutline } from "./ui/TrackOutline";
+import styles from "./CircuitCard.module.css";
 
 export interface CardFact {
   label: string;
@@ -32,14 +32,40 @@ interface CircuitCardProps {
  * Card used by Calendar, Tracks and the replay list. Every card has the same anatomy (header, outline tile, title,
  * three facts, optional actions), and the outline is rotated to fill its tile the same way on every circuit.
  */
-export function CircuitCard({ to, outline, eyebrow, flag, badge, title, subtitle, facts, actions, accent, muted = false }: CircuitCardProps) {
+export function CircuitCard({
+  to,
+  outline,
+  eyebrow,
+  flag,
+  badge,
+  title,
+  subtitle,
+  facts,
+  actions,
+  accent,
+  muted = false,
+}: CircuitCardProps) {
   const frame = outline ? squareFrame(outline) : null;
-  const className = [styles.card, muted ? styles.muted : '', actions ? styles.static : ''].filter(Boolean).join(' ');
+  const className = [
+    styles.card,
+    muted ? styles.muted : "",
+    actions ? styles.static : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
   const body = (
     <>
       <div className={styles.top}>
         <span className={styles.eyebrow}>
-          {flag && <img src={flag} alt="" className={styles.flag} loading="lazy" onError={(e) => (e.currentTarget.hidden = true)} />}
+          {flag && (
+            <img
+              src={flag}
+              alt=""
+              className={styles.flag}
+              loading="lazy"
+              onError={(e) => (e.currentTarget.hidden = true)}
+            />
+          )}
           {eyebrow}
         </span>
         {badge}
@@ -68,7 +94,10 @@ export function CircuitCard({ to, outline, eyebrow, flag, badge, title, subtitle
             title
           )}
         </h3>
-        <p className={styles.subtitle} title={typeof subtitle === 'string' ? subtitle : undefined}>
+        <p
+          className={styles.subtitle}
+          title={typeof subtitle === "string" ? subtitle : undefined}
+        >
           {subtitle}
         </p>
       </div>
@@ -83,7 +112,9 @@ export function CircuitCard({ to, outline, eyebrow, flag, badge, title, subtitle
       {actions && <div className={styles.actions}>{actions}</div>}
     </>
   );
-  const style = accent ? ({ '--card-accent': accent } as CSSProperties) : undefined;
+  const style = accent
+    ? ({ "--card-accent": accent } as CSSProperties)
+    : undefined;
   return actions ? (
     <article className={className} style={style}>
       {body}

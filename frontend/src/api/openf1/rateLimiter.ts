@@ -24,7 +24,8 @@ function nextSlotDelay(now: number): number {
   if (pausedUntil !== null) delay = Math.max(delay, pausedUntil - now);
   const last = sentAt[sentAt.length - 1];
   if (last !== undefined) delay = Math.max(delay, last + MIN_SPACING_MS - now);
-  if (sentAt.length >= MAX_PER_WINDOW) delay = Math.max(delay, sentAt[0] + WINDOW_MS - now);
+  if (sentAt.length >= MAX_PER_WINDOW)
+    delay = Math.max(delay, sentAt[0] + WINDOW_MS - now);
   return delay;
 }
 
@@ -44,7 +45,8 @@ function pump() {
   }
   queue.shift();
   sentAt.push(now);
-  if (waiter.onAbort) waiter.signal?.removeEventListener('abort', waiter.onAbort);
+  if (waiter.onAbort)
+    waiter.signal?.removeEventListener("abort", waiter.onAbort);
   waiter.resolve();
   pump();
 }
@@ -63,7 +65,7 @@ export function acquireSlot(signal?: AbortSignal): Promise<void> {
         if (index >= 0) queue.splice(index, 1);
         reject(signal.reason);
       };
-      signal.addEventListener('abort', waiter.onAbort, { once: true });
+      signal.addEventListener("abort", waiter.onAbort, { once: true });
     }
     queue.push(waiter);
     pump();

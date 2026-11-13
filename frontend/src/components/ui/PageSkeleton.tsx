@@ -1,17 +1,28 @@
-import type { CSSProperties, ReactNode } from 'react';
-import { SurfaceContext } from './cardContext';
-import { Bone, Skeleton } from './StateViews';
-import styles from './PageSkeleton.module.css';
+import type { CSSProperties, ReactNode } from "react";
+import { SurfaceContext } from "./cardContext";
+import { Bone, Skeleton } from "./StateViews";
+import styles from "./PageSkeleton.module.css";
 
-export type SkeletonLayout = 'dashboard' | 'table' | 'cards' | 'charts' | 'profile' | 'replay' | 'detail';
+export type SkeletonLayout =
+  "dashboard" | "table" | "cards" | "charts" | "profile" | "replay" | "detail";
 
 /**
  * Loading state shaped like the page it stands in for: the same grid, panels and proportions, so the content
  * lands where the bones were. Panels rise in one after another under the shared light sweep.
  */
-export function PageSkeleton({ layout, header = false }: { layout: SkeletonLayout; header?: boolean }) {
+export function PageSkeleton({
+  layout,
+  header = false,
+}: {
+  layout: SkeletonLayout;
+  header?: boolean;
+}) {
   return (
-    <div className={`${styles.page} rg-stagger`} aria-busy="true" aria-label="Loading">
+    <div
+      className={`${styles.page} rg-stagger`}
+      aria-busy="true"
+      aria-label="Loading"
+    >
       {header && <HeaderBones />}
       {LAYOUTS[layout]}
     </div>
@@ -29,9 +40,22 @@ function HeaderBones() {
 }
 
 /** A panel with a title bone; its content counts as "inside a card" so row skeletons do not draw a second frame. */
-function Panel({ children, title = true, className, style }: { children?: ReactNode; title?: boolean; className?: string; style?: CSSProperties }) {
+function Panel({
+  children,
+  title = true,
+  className,
+  style,
+}: {
+  children?: ReactNode;
+  title?: boolean;
+  className?: string;
+  style?: CSSProperties;
+}) {
   return (
-    <div className={[styles.panel, className].filter(Boolean).join(' ')} style={style}>
+    <div
+      className={[styles.panel, className].filter(Boolean).join(" ")}
+      style={style}
+    >
       {title && <Bone width="140px" height="12px" />}
       <SurfaceContext value="panel">{children}</SurfaceContext>
     </div>
@@ -40,7 +64,10 @@ function Panel({ children, title = true, className, style }: { children?: ReactN
 
 function Kpis({ count }: { count: number }) {
   return (
-    <div className={`${styles.kpis} rg-stagger`} style={{ '--count': count } as CSSProperties}>
+    <div
+      className={`${styles.kpis} rg-stagger`}
+      style={{ "--count": count } as CSSProperties}
+    >
       {Array.from({ length: count }, (_, i) => (
         <Panel key={i} title={false}>
           <Bone width="45%" height="8px" />

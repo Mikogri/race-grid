@@ -2,7 +2,8 @@
 function pathPoints(d: string): { x: number; y: number }[] {
   const nums = d.match(/-?\d+(\.\d+)?/g)?.map(Number) ?? [];
   const points: { x: number; y: number }[] = [];
-  for (let i = 0; i + 1 < nums.length; i += 2) points.push({ x: nums[i], y: nums[i + 1] });
+  for (let i = 0; i + 1 < nums.length; i += 2)
+    points.push({ x: nums[i], y: nums[i + 1] });
   return points;
 }
 
@@ -14,11 +15,18 @@ export interface TrackFrame {
   viewBox: { x: number; y: number; width: number; height: number };
 }
 
-export function rotatePoint(frame: TrackFrame, x: number, y: number): { x: number; y: number } {
+export function rotatePoint(
+  frame: TrackFrame,
+  x: number,
+  y: number,
+): { x: number; y: number } {
   const rad = (frame.angle * Math.PI) / 180;
   const dx = x - frame.cx;
   const dy = y - frame.cy;
-  return { x: frame.cx + dx * Math.cos(rad) - dy * Math.sin(rad), y: frame.cy + dx * Math.sin(rad) + dy * Math.cos(rad) };
+  return {
+    x: frame.cx + dx * Math.cos(rad) - dy * Math.sin(rad),
+    y: frame.cy + dx * Math.sin(rad) + dy * Math.cos(rad),
+  };
 }
 
 const ANGLE_STEP = 3;
@@ -37,7 +45,12 @@ export function landscapeFrame(d: string): TrackFrame | null {
   let best: TrackFrame | null = null;
   let bestRatio = -Infinity;
   for (let angle = 0; angle < 180; angle += ANGLE_STEP) {
-    const frame: TrackFrame = { angle, cx, cy, viewBox: { x: 0, y: 0, width: 0, height: 0 } };
+    const frame: TrackFrame = {
+      angle,
+      cx,
+      cy,
+      viewBox: { x: 0, y: 0, width: 0, height: 0 },
+    };
     let minX = Infinity;
     let minY = Infinity;
     let maxX = -Infinity;
@@ -53,7 +66,12 @@ export function landscapeFrame(d: string): TrackFrame | null {
     if (ratio > bestRatio) {
       bestRatio = ratio;
       const pad = Math.max(maxX - minX, maxY - minY) * PADDING;
-      frame.viewBox = { x: minX - pad, y: minY - pad, width: maxX - minX + 2 * pad, height: maxY - minY + 2 * pad };
+      frame.viewBox = {
+        x: minX - pad,
+        y: minY - pad,
+        width: maxX - minX + 2 * pad,
+        height: maxY - minY + 2 * pad,
+      };
       best = frame;
     }
   }
@@ -95,7 +113,12 @@ export function squareFrame(d: string): TrackFrame | null {
   let best: TrackFrame | null = null;
   let bestSide = Infinity;
   for (let angle = 0; angle < 90; angle += ANGLE_STEP) {
-    const frame: TrackFrame = { angle, cx, cy, viewBox: { x: 0, y: 0, width: 0, height: 0 } };
+    const frame: TrackFrame = {
+      angle,
+      cx,
+      cy,
+      viewBox: { x: 0, y: 0, width: 0, height: 0 },
+    };
     let minX = Infinity;
     let minY = Infinity;
     let maxX = -Infinity;
@@ -111,7 +134,12 @@ export function squareFrame(d: string): TrackFrame | null {
     if (side < bestSide) {
       bestSide = side;
       const padded = side * (1 + 2 * PADDING);
-      frame.viewBox = { x: (minX + maxX) / 2 - padded / 2, y: (minY + maxY) / 2 - padded / 2, width: padded, height: padded };
+      frame.viewBox = {
+        x: (minX + maxX) / 2 - padded / 2,
+        y: (minY + maxY) / 2 - padded / 2,
+        width: padded,
+        height: padded,
+      };
       best = frame;
     }
   }

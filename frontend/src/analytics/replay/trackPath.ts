@@ -10,7 +10,11 @@ export interface TrackPath {
 
 export function buildTrackPath(points: [number, number, number][]): TrackPath {
   const n = points.length;
-  const path: TrackPath = { xs: new Float64Array(n), ys: new Float64Array(n), progress: new Float64Array(n) };
+  const path: TrackPath = {
+    xs: new Float64Array(n),
+    ys: new Float64Array(n),
+    progress: new Float64Array(n),
+  };
   points.forEach(([x, y, p], i) => {
     path.xs[i] = x;
     path.ys[i] = y;
@@ -37,7 +41,10 @@ export function snapToPath(path: TrackPath, x: number, y: number): Snap {
     const dx = path.xs[j] - ax;
     const dy = path.ys[j] - ay;
     const len2 = dx * dx + dy * dy;
-    const t = len2 === 0 ? 0 : Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / len2));
+    const t =
+      len2 === 0
+        ? 0
+        : Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / len2));
     const px = ax + dx * t;
     const py = ay + dy * t;
     const d2 = (x - px) ** 2 + (y - py) ** 2;
@@ -52,7 +59,10 @@ export function snapToPath(path: TrackPath, x: number, y: number): Snap {
 }
 
 /** SVG point at a lap progress 0..1. */
-export function pointAtProgress(path: TrackPath, progress: number): [number, number] {
+export function pointAtProgress(
+  path: TrackPath,
+  progress: number,
+): [number, number] {
   const p = ((progress % 1) + 1) % 1;
   const n = path.progress.length;
   let lo = 0;
@@ -66,10 +76,16 @@ export function pointAtProgress(path: TrackPath, progress: number): [number, num
     // closing segment back to the start
     const p0 = path.progress[n - 1];
     const t = (p - p0) / (1 - p0 || 1);
-    return [path.xs[n - 1] + (path.xs[0] - path.xs[n - 1]) * t, path.ys[n - 1] + (path.ys[0] - path.ys[n - 1]) * t];
+    return [
+      path.xs[n - 1] + (path.xs[0] - path.xs[n - 1]) * t,
+      path.ys[n - 1] + (path.ys[0] - path.ys[n - 1]) * t,
+    ];
   }
   const p0 = path.progress[lo];
   const p1 = path.progress[hi];
   const t = p1 === p0 ? 0 : (p - p0) / (p1 - p0);
-  return [path.xs[lo] + (path.xs[hi] - path.xs[lo]) * t, path.ys[lo] + (path.ys[hi] - path.ys[lo]) * t];
+  return [
+    path.xs[lo] + (path.xs[hi] - path.xs[lo]) * t,
+    path.ys[lo] + (path.ys[hi] - path.ys[lo]) * t,
+  ];
 }

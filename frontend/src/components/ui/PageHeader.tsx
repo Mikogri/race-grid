@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
-import { Link } from 'react-router';
-import { IconChevronRight, IconSmartHome } from '@tabler/icons-react';
-import styles from './PageHeader.module.css';
+import type { ReactNode } from "react";
+import { Link } from "react-router";
+import { IconChevronRight, IconSmartHome } from "@tabler/icons-react";
+import styles from "./PageHeader.module.css";
 
 export interface Crumb {
   label: string;
@@ -31,9 +31,20 @@ interface PageHeaderProps {
 }
 
 /** Page header: breadcrumbs, a light 30 px title (one accent <mark> word allowed), 12 px subtitle and key facts, the page's actions on the right. */
-export function PageHeader({ title, description, crumbs, boxed = false, leading, meta = [], actions, children }: PageHeaderProps) {
+export function PageHeader({
+  title,
+  description,
+  crumbs,
+  boxed = false,
+  leading,
+  meta = [],
+  actions,
+  children,
+}: PageHeaderProps) {
   return (
-    <header className={boxed ? `${styles.header} ${styles.boxed}` : styles.header}>
+    <header
+      className={boxed ? `${styles.header} ${styles.boxed}` : styles.header}
+    >
       <div className={styles.row}>
         {leading && <div className={styles.leading}>{leading}</div>}
         <div className={styles.titleBlock}>
@@ -41,13 +52,22 @@ export function PageHeader({ title, description, crumbs, boxed = false, leading,
             <nav aria-label="Breadcrumb">
               <ol className={styles.crumbs}>
                 <li>
-                  <Link to="/" className={styles.crumbLink} aria-label="Dashboard">
+                  <Link
+                    to="/"
+                    className={styles.crumbLink}
+                    aria-label="Dashboard"
+                  >
                     <IconSmartHome size={14} stroke={1.5} aria-hidden="true" />
                   </Link>
                 </li>
                 {crumbs.map((crumb) => (
                   <li key={crumb.label}>
-                    <IconChevronRight className={styles.crumbSeparator} size={12} stroke={1.5} aria-hidden="true" />
+                    <IconChevronRight
+                      className={styles.crumbSeparator}
+                      size={12}
+                      stroke={1.5}
+                      aria-hidden="true"
+                    />
                     <Link to={crumb.to} className={styles.crumbLink}>
                       {crumb.label}
                     </Link>
@@ -55,8 +75,16 @@ export function PageHeader({ title, description, crumbs, boxed = false, leading,
                 ))}
                 {/* Back: the last step of the trail, to the nearest parent page. */}
                 <li>
-                  <IconChevronRight className={styles.crumbSeparator} size={12} stroke={1.5} aria-hidden="true" />
-                  <Link to={crumbs[crumbs.length - 1].to} className={`${styles.crumbLink} ${styles.back}`}>
+                  <IconChevronRight
+                    className={styles.crumbSeparator}
+                    size={12}
+                    stroke={1.5}
+                    aria-hidden="true"
+                  />
+                  <Link
+                    to={crumbs[crumbs.length - 1].to}
+                    className={`${styles.crumbLink} ${styles.back}`}
+                  >
                     Back
                   </Link>
                 </li>

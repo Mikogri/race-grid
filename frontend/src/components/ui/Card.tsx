@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
-import { SurfaceContext, useSurface } from './cardContext';
-import { InfoTip } from './Tooltip';
-import styles from './Card.module.css';
+import type { ReactNode } from "react";
+import { SurfaceContext, useSurface } from "./cardContext";
+import { InfoTip } from "./Tooltip";
+import styles from "./Card.module.css";
 
 interface HeaderProps {
   /** Tabler icon shown in a small tile before the title (Figma: card header badge). */
@@ -16,15 +16,32 @@ interface HeaderProps {
 }
 
 /** Icon tile of a card header. */
-export function IconBadge({ children, large = false }: { children: ReactNode; large?: boolean }) {
+export function IconBadge({
+  children,
+  large = false,
+}: {
+  children: ReactNode;
+  large?: boolean;
+}) {
   return (
-    <span className={large ? `${styles.badge} ${styles.badgeLarge}` : styles.badge} aria-hidden="true">
+    <span
+      className={large ? `${styles.badge} ${styles.badgeLarge}` : styles.badge}
+      aria-hidden="true"
+    >
       {children}
     </span>
   );
 }
 
-function Heading({ icon, title, description, info, large = false }: Pick<HeaderProps, 'icon' | 'title' | 'description' | 'info'> & { large?: boolean }) {
+function Heading({
+  icon,
+  title,
+  description,
+  info,
+  large = false,
+}: Pick<HeaderProps, "icon" | "title" | "description" | "info"> & {
+  large?: boolean;
+}) {
   return (
     <div className={styles.heading}>
       {icon && <IconBadge large={large}>{icon}</IconBadge>}
@@ -45,7 +62,14 @@ function Header({ icon, title, description, info, actions }: HeaderProps) {
   if (!title && !description && !actions) return null;
   return (
     <header className={styles.header}>
-      {(title || description) && <Heading icon={icon} title={title} description={description} info={info} />}
+      {(title || description) && (
+        <Heading
+          icon={icon}
+          title={title}
+          description={description}
+          info={info}
+        />
+      )}
       {actions && <div className={styles.actions}>{actions}</div>}
     </header>
   );
@@ -58,15 +82,36 @@ interface CardProps extends HeaderProps {
   className?: string;
   /** Remove body padding for edge-to-edge tables and charts. */
   flush?: boolean;
-  as?: 'section' | 'div' | 'article';
+  as?: "section" | "div" | "article";
 }
 
 /** A titled block. On the page it is a panel; inside a panel it becomes a hairline group, never a panel in a panel. */
-export function Card({ icon, title, description, info, actions, children, footer, className, flush = false, as: Tag = 'section' }: CardProps) {
+export function Card({
+  icon,
+  title,
+  description,
+  info,
+  actions,
+  children,
+  footer,
+  className,
+  flush = false,
+  as: Tag = "section",
+}: CardProps) {
   const surface = useSurface();
   return (
-    <Tag className={[surface === 'page' ? styles.panel : styles.group, className].filter(Boolean).join(' ')}>
-      <Header icon={icon} title={title} description={description} info={info} actions={actions} />
+    <Tag
+      className={[surface === "page" ? styles.panel : styles.group, className]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <Header
+        icon={icon}
+        title={title}
+        description={description}
+        info={info}
+        actions={actions}
+      />
       <div className={flush ? styles.flush : styles.body}>
         <SurfaceContext value="panel">{children}</SurfaceContext>
       </div>
@@ -88,12 +133,27 @@ interface PanelProps {
 }
 
 /** Workspace panel: one section holding its tabs/tools and the data they control. */
-export function Panel({ icon, title, description, toolbar, children, className, padded = true }: PanelProps) {
+export function Panel({
+  icon,
+  title,
+  description,
+  toolbar,
+  children,
+  className,
+  padded = true,
+}: PanelProps) {
   return (
-    <section className={[styles.panel, className].filter(Boolean).join(' ')}>
+    <section className={[styles.panel, className].filter(Boolean).join(" ")}>
       {(title || description || toolbar) && (
         <div className={styles.toolbar}>
-          {(title || description) && <Heading icon={icon} title={title} description={description} large />}
+          {(title || description) && (
+            <Heading
+              icon={icon}
+              title={title}
+              description={description}
+              large
+            />
+          )}
           {toolbar}
         </div>
       )}
@@ -105,6 +165,16 @@ export function Panel({ icon, title, description, toolbar, children, className, 
 }
 
 /** Supporting column beside the main content: a stack of separate panels (Figma: Leaderboard column). */
-export function DetailPanel({ children, className }: { children: ReactNode; className?: string }) {
-  return <aside className={[styles.column, className].filter(Boolean).join(' ')}>{children}</aside>;
+export function DetailPanel({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <aside className={[styles.column, className].filter(Boolean).join(" ")}>
+      {children}
+    </aside>
+  );
 }

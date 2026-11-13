@@ -1,0 +1,34 @@
+# Dependencies, builds, caches and local tools
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/coverage/
+.git/
+.agents/
+.claude/
+.serena/
+.wrangler/
+**/*.tsbuildinfo
+**/*.log
+**/*.tmp
+**/*.bak
+.env*
+
+# Generated files, clients and dependency metadata
+**/generated/
+**/__generated__/
+**/generated-clients/
+**/*.generated.*
+**/package-lock.json
+skills-lock.json
+frontend/public/circuits/
+frontend/public/assets/
+frontend/public/sitemap.xml
+frontend/public/robots.txt
+
+# Third-party code, raw data, references and archived UI versions
+**/src/vendor/
+RaceGrid_Tracks/
+race_grid_menu_icons/
+references/
+ui-snapshots/

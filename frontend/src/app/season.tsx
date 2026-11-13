@@ -1,7 +1,7 @@
-import { useState, type ReactNode } from 'react';
-import { CURRENT_SEASON, SEASONS, SeasonContext } from './seasons';
+import { useState, type ReactNode } from "react";
+import { CURRENT_SEASON, SEASONS, SeasonContext } from "./seasons";
 
-const STORAGE_KEY = 'racegrid.season';
+const STORAGE_KEY = "racegrid.season";
 
 function readStoredSeason(): number {
   try {
@@ -20,7 +20,7 @@ export function SeasonProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem(STORAGE_KEY, String(next));
     } catch (error) {
-      console.warn('RaceGrid: could not persist season selection', error);
+      console.warn("RaceGrid: could not persist season selection", error);
     }
   };
   return <SeasonContext value={{ year, setYear }}>{children}</SeasonContext>;

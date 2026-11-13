@@ -1,25 +1,40 @@
-import { useState, type CSSProperties, type ReactNode } from 'react';
-import { Link } from 'react-router';
-import { IconArrowRight, IconBulb, IconListDetails, IconPlayerPlayFilled, IconRoute } from '@tabler/icons-react';
-import { formTable, seasonInsights } from '../../analytics/insights';
-import type { RoundInfo, SeasonModel } from '../../analytics/season';
-import { useSelectedSeason } from '../../app/seasons';
-import { PositionChange } from '../../components/PositionChange';
-import { Avatar } from '../../components/ui/Avatar';
-import { ButtonLink } from '../../components/ui/Button';
-import { Card } from '../../components/ui/Card';
-import { PageHeader } from '../../components/ui/PageHeader';
-import { EmptyState, ErrorState, Skeleton } from '../../components/ui/StateViews';
-import { PageSkeleton } from '../../components/ui/PageSkeleton';
-import { TeamMarker } from '../../components/ui/TeamMarker';
-import { TrackOutline } from '../../components/ui/TrackOutline';
-import { useCircuitsByKey } from '../../data/circuits';
-import { useSeason } from '../../data/season';
-import { useSessionData } from '../../data/sessionData';
-import { formatDateRange, formatDuration, formatGap, formatPoints } from '../../lib/format';
-import { UNKNOWN_TEAM_COLOR } from '../../lib/teams';
-import { squareFrame } from '../../lib/trackFrame';
-import styles from './DashboardPage.module.css';
+import { useState, type CSSProperties, type ReactNode } from "react";
+import { Link } from "react-router";
+import {
+  IconArrowRight,
+  IconBulb,
+  IconListDetails,
+  IconPlayerPlayFilled,
+  IconRoute,
+} from "@tabler/icons-react";
+import { formTable, seasonInsights } from "../../analytics/insights";
+import type { RoundInfo, SeasonModel } from "../../analytics/season";
+import { useSelectedSeason } from "../../app/seasons";
+import { PositionChange } from "../../components/PositionChange";
+import { Avatar } from "../../components/ui/Avatar";
+import { ButtonLink } from "../../components/ui/Button";
+import { Card } from "../../components/ui/Card";
+import { PageHeader } from "../../components/ui/PageHeader";
+import {
+  EmptyState,
+  ErrorState,
+  Skeleton,
+} from "../../components/ui/StateViews";
+import { PageSkeleton } from "../../components/ui/PageSkeleton";
+import { TeamMarker } from "../../components/ui/TeamMarker";
+import { TrackOutline } from "../../components/ui/TrackOutline";
+import { useCircuitsByKey } from "../../data/circuits";
+import { useSeason } from "../../data/season";
+import { useSessionData } from "../../data/sessionData";
+import {
+  formatDateRange,
+  formatDuration,
+  formatGap,
+  formatPoints,
+} from "../../lib/format";
+import { UNKNOWN_TEAM_COLOR } from "../../lib/teams";
+import { squareFrame } from "../../lib/trackFrame";
+import styles from "./DashboardPage.module.css";
 
 /**
  * Season dashboard. Top: the latest race as a hero (winner, podium, circuit) beside the next round's countdown and
@@ -31,11 +46,16 @@ export function DashboardPage() {
 
   const grandPrix = season?.rounds.filter((r) => r.round !== null) ?? [];
   const latest = season?.completedRounds[season.completedRounds.length - 1];
-  const next = grandPrix.find((r) => r.status === 'upcoming' || r.status === 'in-progress');
+  const next = grandPrix.find(
+    (r) => r.status === "upcoming" || r.status === "in-progress",
+  );
 
   return (
     <>
-      <PageHeader title={`${year} Season`} description="The latest race, what is next, and where both championships stand." />
+      <PageHeader
+        title={`${year} Season`}
+        description="The latest race, what is next, and where both championships stand."
+      />
       {error ? (
         <ErrorState error={error} onRetry={refetch} />
       ) : isPending || !season ? (
@@ -45,7 +65,11 @@ export function DashboardPage() {
           <div className={`${styles.top} rg-stagger`}>
             <LatestRace season={season} round={latest} />
             <div className={styles.side}>
-              {next ? <NextRound round={next} /> : <SeasonComplete year={year} />}
+              {next ? (
+                <NextRound round={next} />
+              ) : (
+                <SeasonComplete year={year} />
+              )}
               <SeasonProgress season={season} rounds={grandPrix} />
             </div>
           </div>
@@ -56,14 +80,24 @@ export function DashboardPage() {
           <Insights season={season} />
         </>
       ) : (
-        <EmptyState title="No completed Grand Prix yet">Results appear after the first race of the {year} season.</EmptyState>
+        <EmptyState title="No completed Grand Prix yet">
+          Results appear after the first race of the {year} season.
+        </EmptyState>
       )}
     </>
   );
 }
 
 /** Circuit outline rotated to fill a square box; the circuit name when the local library has no outline for it. */
-function CircuitMap({ outline, name, className }: { outline: string | null | undefined; name: string; className: string }) {
+function CircuitMap({
+  outline,
+  name,
+  className,
+}: {
+  outline: string | null | undefined;
+  name: string;
+  className: string;
+}) {
   const frame = outline ? squareFrame(outline) : null;
   return (
     <div className={className}>
@@ -88,24 +122,48 @@ function CircuitMap({ outline, name, className }: { outline: string | null | und
 }
 
 /** Hero: race and winner on the left, the circuit drawn large on the right, P2 and P3 under the winner. */
-function LatestRace({ season, round }: { season: SeasonModel; round: RoundInfo }) {
+function LatestRace({
+  season,
+  round,
+}: {
+  season: SeasonModel;
+  round: RoundInfo;
+}) {
   const circuits = useCircuitsByKey();
-  const results = useSessionData('session_result', round.race);
+  const results = useSessionData("session_result", round.race);
   const circuit = circuits.byKey.get(round.meeting.circuit_key);
   const rows = results.data ?? [];
-  const podium = rows.filter((r) => r.position !== null && r.position <= 3).sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
+  const podium = rows
+    .filter((r) => r.position !== null && r.position <= 3)
+    .sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
   const [winner, ...runnersUp] = podium;
-  const winnerInfo = winner ? season.drivers.get(winner.driver_number) : undefined;
-  const classified = rows.filter((r) => r.position !== null && !r.dnf && !r.dns && !r.dsq).length;
+  const winnerInfo = winner
+    ? season.drivers.get(winner.driver_number)
+    : undefined;
+  const classified = rows.filter(
+    (r) => r.position !== null && !r.dnf && !r.dns && !r.dsq,
+  ).length;
 
   return (
-    <section className={styles.hero} style={{ '--team': winnerInfo?.color ?? UNKNOWN_TEAM_COLOR } as CSSProperties}>
+    <section
+      className={styles.hero}
+      style={
+        { "--team": winnerInfo?.color ?? UNKNOWN_TEAM_COLOR } as CSSProperties
+      }
+    >
       <div className={styles.heroText}>
         <p className={styles.eyebrow}>
-          Latest race · Round {round.round} · {formatDateRange(round.meeting.date_start, round.meeting.date_end)}
+          Latest race · Round {round.round} ·{" "}
+          {formatDateRange(round.meeting.date_start, round.meeting.date_end)}
         </p>
         <h2 className={styles.heroTitle}>
-          {round.meeting.country_flag && <img src={round.meeting.country_flag} alt="" className={styles.flag} />}
+          {round.meeting.country_flag && (
+            <img
+              src={round.meeting.country_flag}
+              alt=""
+              className={styles.flag}
+            />
+          )}
           {round.meeting.meeting_name}
         </h2>
         <p className={styles.heroSub}>
@@ -116,14 +174,29 @@ function LatestRace({ season, round }: { season: SeasonModel; round: RoundInfo }
           <Skeleton rows={3} />
         ) : winner ? (
           <>
-            <Link to={`/drivers/${season.year}/${winner.driver_number}`} className={styles.winner}>
-              <Avatar src={winnerInfo?.headshotUrl} name={winnerInfo?.fullName ?? `#${winner.driver_number}`} size="lg" ring={winnerInfo?.color} />
+            <Link
+              to={`/drivers/${season.year}/${winner.driver_number}`}
+              className={styles.winner}
+            >
+              <Avatar
+                src={winnerInfo?.headshotUrl}
+                name={winnerInfo?.fullName ?? `#${winner.driver_number}`}
+                size="lg"
+                ring={winnerInfo?.color}
+              />
               <span className={styles.winnerText}>
                 <span className={styles.eyebrow}>Winner</span>
-                <span className={styles.winnerName}>{winnerInfo?.fullName ?? `#${winner.driver_number}`}</span>
+                <span className={styles.winnerName}>
+                  {winnerInfo?.fullName ?? `#${winner.driver_number}`}
+                </span>
                 <span className={styles.winnerMeta}>
                   {winnerInfo?.teamName}
-                  {typeof winner.duration === 'number' && <span className="mono"> · {formatDuration(winner.duration)}</span>}
+                  {typeof winner.duration === "number" && (
+                    <span className="mono">
+                      {" "}
+                      · {formatDuration(winner.duration)}
+                    </span>
+                  )}
                 </span>
               </span>
             </Link>
@@ -132,11 +205,20 @@ function LatestRace({ season, round }: { season: SeasonModel; round: RoundInfo }
                 const driver = season.drivers.get(r.driver_number);
                 return (
                   <li key={r.driver_number}>
-                    <Link to={`/drivers/${season.year}/${r.driver_number}`} className={styles.runner}>
+                    <Link
+                      to={`/drivers/${season.year}/${r.driver_number}`}
+                      className={styles.runner}
+                    >
                       <span className={styles.runnerPos}>P{r.position}</span>
                       <TeamMarker color={driver?.color ?? UNKNOWN_TEAM_COLOR} />
-                      <span className={styles.runnerName}>{driver?.lastName ?? `#${r.driver_number}`}</span>
-                      <span className={styles.runnerGap}>{Array.isArray(r.gap_to_leader) ? '' : formatGap(r.gap_to_leader)}</span>
+                      <span className={styles.runnerName}>
+                        {driver?.lastName ?? `#${r.driver_number}`}
+                      </span>
+                      <span className={styles.runnerGap}>
+                        {Array.isArray(r.gap_to_leader)
+                          ? ""
+                          : formatGap(r.gap_to_leader)}
+                      </span>
                     </Link>
                   </li>
                 );
@@ -149,26 +231,38 @@ function LatestRace({ season, round }: { season: SeasonModel; round: RoundInfo }
 
         <div className={styles.heroActions}>
           {round.race && (
-            <ButtonLink to={`/replay/${round.race.session_key}`} variant="primary" icon={<IconPlayerPlayFilled size={14} aria-hidden="true" />}>
+            <ButtonLink
+              to={`/replay/${round.race.session_key}`}
+              variant="primary"
+              icon={<IconPlayerPlayFilled size={14} aria-hidden="true" />}
+            >
               Open replay
             </ButtonLink>
           )}
-          <ButtonLink to={`/rounds/${round.meeting.meeting_key}`} variant="secondary" icon={<IconListDetails size={15} stroke={1.5} aria-hidden="true" />}>
+          <ButtonLink
+            to={`/rounds/${round.meeting.meeting_key}`}
+            variant="secondary"
+            icon={<IconListDetails size={15} stroke={1.5} aria-hidden="true" />}
+          >
             Race details
           </ButtonLink>
         </div>
       </div>
 
       <div className={styles.heroVisual}>
-        <CircuitMap outline={circuit?.outline} name={circuit?.name ?? round.meeting.circuit_short_name} className={styles.heroMap} />
+        <CircuitMap
+          outline={circuit?.outline}
+          name={circuit?.name ?? round.meeting.circuit_short_name}
+          className={styles.heroMap}
+        />
         <dl className={styles.facts}>
           <div>
             <dt>Laps</dt>
-            <dd>{winner?.number_of_laps ?? '—'}</dd>
+            <dd>{winner?.number_of_laps ?? "—"}</dd>
           </div>
           <div>
             <dt>Classified</dt>
-            <dd>{rows.length ? `${classified}/${rows.length}` : '—'}</dd>
+            <dd>{rows.length ? `${classified}/${rows.length}` : "—"}</dd>
           </div>
         </dl>
       </div>
@@ -180,22 +274,35 @@ function LatestRace({ season, round }: { season: SeasonModel; round: RoundInfo }
 function NextRound({ round }: { round: RoundInfo }) {
   const circuits = useCircuitsByKey();
   const circuit = circuits.byKey.get(round.meeting.circuit_key);
-  const live = round.status === 'in-progress';
+  const live = round.status === "in-progress";
   // Read the clock once per mount: a day countdown does not need to tick.
   const [now] = useState(Date.now);
-  const days = Math.max(0, Math.ceil((new Date(round.meeting.date_start).getTime() - now) / 86_400_000));
+  const days = Math.max(
+    0,
+    Math.ceil(
+      (new Date(round.meeting.date_start).getTime() - now) / 86_400_000,
+    ),
+  );
 
   return (
     <Link to={`/rounds/${round.meeting.meeting_key}`} className={styles.next}>
       <div className={styles.nextText}>
-        <p className={styles.eyebrow}>{live ? 'This weekend' : `Next · Round ${round.round}`}</p>
+        <p className={styles.eyebrow}>
+          {live ? "This weekend" : `Next · Round ${round.round}`}
+        </p>
         <p className={styles.nextName}>
-          {round.meeting.country_flag && <img src={round.meeting.country_flag} alt="" className={styles.flag} />}
+          {round.meeting.country_flag && (
+            <img
+              src={round.meeting.country_flag}
+              alt=""
+              className={styles.flag}
+            />
+          )}
           {round.meeting.meeting_name}
         </p>
         <p className={styles.heroSub}>
           {formatDateRange(round.meeting.date_start, round.meeting.date_end)}
-          {round.sprint ? ' · Sprint' : ''}
+          {round.sprint ? " · Sprint" : ""}
         </p>
         {live ? (
           <span className={styles.live}>
@@ -204,12 +311,18 @@ function NextRound({ round }: { round: RoundInfo }) {
           </span>
         ) : (
           <p className={styles.countdown}>
-            <span className={styles.countdownValue}>{String(days).padStart(2, '0')}</span>
-            {days === 1 ? 'day to go' : 'days to go'}
+            <span className={styles.countdownValue}>
+              {String(days).padStart(2, "0")}
+            </span>
+            {days === 1 ? "day to go" : "days to go"}
           </p>
         )}
       </div>
-      <CircuitMap outline={circuit?.outline} name={circuit?.name ?? round.meeting.circuit_short_name} className={styles.nextMap} />
+      <CircuitMap
+        outline={circuit?.outline}
+        name={circuit?.name ?? round.meeting.circuit_short_name}
+        className={styles.nextMap}
+      />
     </Link>
   );
 }
@@ -221,7 +334,8 @@ function SeasonComplete({ year }: { year: number }) {
         <p className={styles.eyebrow}>Season complete</p>
         <p className={styles.nextName}>The {year} season is over</p>
         <Link to="/calendar" className={styles.link}>
-          Browse the calendar <IconArrowRight size={14} stroke={1.5} aria-hidden="true" />
+          Browse the calendar{" "}
+          <IconArrowRight size={14} stroke={1.5} aria-hidden="true" />
         </Link>
       </div>
     </div>
@@ -229,22 +343,43 @@ function SeasonComplete({ year }: { year: number }) {
 }
 
 /** One segment per Grand Prix, then three season figures. */
-function SeasonProgress({ season, rounds }: { season: SeasonModel; rounds: RoundInfo[] }) {
-  const completed = rounds.filter((r) => r.status === 'completed').length;
+function SeasonProgress({
+  season,
+  rounds,
+}: {
+  season: SeasonModel;
+  rounds: RoundInfo[];
+}) {
+  const completed = rounds.filter((r) => r.status === "completed").length;
   const [leader, second] = season.driverStandings;
-  const winners = new Set([...season.results].filter(([, rs]) => rs.some((r) => r.finish === 1)).map(([n]) => n)).size;
+  const winners = new Set(
+    [...season.results]
+      .filter(([, rs]) => rs.some((r) => r.finish === 1))
+      .map(([n]) => n),
+  ).size;
 
   return (
-    <Card title="Season progress" description={`${completed} of ${rounds.length} Grands Prix`} className={styles.progressCard}>
+    <Card
+      title="Season progress"
+      description={`${completed} of ${rounds.length} Grands Prix`}
+      className={styles.progressCard}
+    >
       <ol className={styles.segments} aria-label="Rounds">
         {rounds.map((r) => (
-          <li key={r.meeting.meeting_key} className={styles.segment} data-status={r.status} title={`R${r.round} ${r.meeting.meeting_name}`} />
+          <li
+            key={r.meeting.meeting_key}
+            className={styles.segment}
+            data-status={r.status}
+            title={`R${r.round} ${r.meeting.meeting_name}`}
+          />
         ))}
       </ol>
       <dl className={styles.facts}>
         <div>
           <dt>Complete</dt>
-          <dd>{rounds.length ? Math.round((completed / rounds.length) * 100) : 0}%</dd>
+          <dd>
+            {rounds.length ? Math.round((completed / rounds.length) * 100) : 0}%
+          </dd>
         </div>
         <div>
           <dt>Winners</dt>
@@ -252,7 +387,11 @@ function SeasonProgress({ season, rounds }: { season: SeasonModel; rounds: Round
         </div>
         <div>
           <dt>Lead</dt>
-          <dd>{leader && second ? `+${formatPoints(leader.points - second.points)}` : '—'}</dd>
+          <dd>
+            {leader && second
+              ? `+${formatPoints(leader.points - second.points)}`
+              : "—"}
+          </dd>
         </div>
       </dl>
     </Card>
@@ -280,11 +419,28 @@ interface RankingRowProps {
 }
 
 /** A championship row: position, visual, name, optional move, points, and a team-colour bar against the leader. */
-function RankingRow({ to, color, index, position, visual, name, sub, move, points, leaderPoints }: RankingRowProps) {
+function RankingRow({
+  to,
+  color,
+  index,
+  position,
+  visual,
+  name,
+  sub,
+  move,
+  points,
+  leaderPoints,
+}: RankingRowProps) {
   return (
     <li>
-      <Link to={to} className={styles.rankRow} style={{ '--team': color, '--i': index } as CSSProperties}>
-        <span className={styles.rankPos}>{String(position ?? '—').padStart(2, '0')}</span>
+      <Link
+        to={to}
+        className={styles.rankRow}
+        style={{ "--team": color, "--i": index } as CSSProperties}
+      >
+        <span className={styles.rankPos}>
+          {String(position ?? "—").padStart(2, "0")}
+        </span>
         {visual}
         <span className={styles.rankName}>
           {name}
@@ -293,7 +449,11 @@ function RankingRow({ to, color, index, position, visual, name, sub, move, point
         <span className={styles.rankMove}>{move}</span>
         <span className={styles.rankPoints}>{formatPoints(points)}</span>
         <span className={styles.rankBar} aria-hidden="true">
-          <span style={{ width: `${leaderPoints ? (points / leaderPoints) * 100 : 0}%` }} />
+          <span
+            style={{
+              width: `${leaderPoints ? (points / leaderPoints) * 100 : 0}%`,
+            }}
+          />
         </span>
       </Link>
     </li>
@@ -318,10 +478,19 @@ function DriversChampionship({ season }: { season: SeasonModel }) {
               color={driver?.color ?? UNKNOWN_TEAM_COLOR}
               index={i}
               position={s.position}
-              visual={<Avatar src={driver?.headshotUrl} name={name} size="sm" />}
+              visual={
+                <Avatar src={driver?.headshotUrl} name={name} size="sm" />
+              }
               name={name}
               sub={driver?.teamName}
-              move={move != null ? <PositionChange from={(s.position ?? 0) + move} to={s.position} /> : null}
+              move={
+                move != null ? (
+                  <PositionChange
+                    from={(s.position ?? 0) + move}
+                    to={s.position}
+                  />
+                ) : null
+              }
               points={s.points}
               leaderPoints={leaderPoints}
             />
@@ -343,7 +512,7 @@ function ConstructorsChampionship({ season }: { season: SeasonModel }) {
           return (
             <RankingRow
               key={t.teamName}
-              to={`/constructors/${season.year}/${team?.slug ?? ''}`}
+              to={`/constructors/${season.year}/${team?.slug ?? ""}`}
               color={color}
               index={i}
               position={t.position}
@@ -364,7 +533,10 @@ function Insights({ season }: { season: SeasonModel }) {
   const insights = seasonInsights(season);
   if (insights.length === 0) return null;
   return (
-    <section className={styles.insightsSection} aria-labelledby="insights-title">
+    <section
+      className={styles.insightsSection}
+      aria-labelledby="insights-title"
+    >
       <h2 id="insights-title" className={styles.sectionTitle}>
         RaceGrid insights
       </h2>
@@ -372,7 +544,12 @@ function Insights({ season }: { season: SeasonModel }) {
         {insights.map((insight) => {
           const body = (
             <>
-              <IconBulb className={styles.insightIcon} size={16} stroke={1.5} aria-hidden="true" />
+              <IconBulb
+                className={styles.insightIcon}
+                size={16}
+                stroke={1.5}
+                aria-hidden="true"
+              />
               <span className={styles.insightText}>{insight.text}</span>
               <span className={styles.basis}>{insight.basis}</span>
             </>

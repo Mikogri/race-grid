@@ -51,16 +51,16 @@
 > The v1 red reference (`references/reference-ui-design.png`) below still defines layout, density and
 > component anatomy; v2 replaces colour, radii and motion.
 >
-> | v2 change | Value |
-> |---|---|
-> | Page | navy → violet gradient with soft violet light (fixed `body::before`) |
-> | Surfaces | translucent `rgba(30,32,70,.62)`, hairline `rgba(255,255,255,.07)`, top highlight |
-> | Accent | violet `#7C62EE` (hover `#8B74F2`, text `#B3A3FF`) |
-> | Active nav / tabs / selected row | **solid violet pill**, white text, soft violet glow |
-> | Secondary button | violet outline; primary = solid violet |
-> | Status pills | tinted fill + matching border (info blue, success green, warning amber, danger red, accent violet) |
-> | Radii | controls 8, cards 14, badges 6 |
-> | Fastest sector | violet (F1 convention: purple = fastest) |
+> | v2 change                        | Value                                                                                              |
+> | -------------------------------- | -------------------------------------------------------------------------------------------------- |
+> | Page                             | navy → violet gradient with soft violet light (fixed `body::before`)                               |
+> | Surfaces                         | translucent `rgba(30,32,70,.62)`, hairline `rgba(255,255,255,.07)`, top highlight                  |
+> | Accent                           | violet `#7C62EE` (hover `#8B74F2`, text `#B3A3FF`)                                                 |
+> | Active nav / tabs / selected row | **solid violet pill**, white text, soft violet glow                                                |
+> | Secondary button                 | violet outline; primary = solid violet                                                             |
+> | Status pills                     | tinted fill + matching border (info blue, success green, warning amber, danger red, accent violet) |
+> | Radii                            | controls 8, cards 14, badges 6                                                                     |
+> | Fastest sector                   | violet (F1 convention: purple = fastest)                                                           |
 >
 > **Motion rules (Emil Kowalski):** ease-out `cubic-bezier(.23,1,.32,1)` for enter, ease-in-out
 > `cubic-bezier(.77,0,.175,1)` for on-screen movement; UI ≤ 320 ms; press = `scale(.97)`; hover effects only
@@ -123,39 +123,39 @@ Struktura (desktop, trzy kolumny + topbar):
 
 Surfaces (próbkowane, neutralne):
 
-| Token | Wartość | Użycie |
-|---|---|---|
-| `--bg-app` | `#050505` | tło aplikacji, sidebar |
-| `--bg-surface` | `#0A0A0B` | karty: header, tabela, detail panel |
-| `--bg-surface-raised` | `#111112` **[?]** | inputy, grupy wewnątrz kart, hover |
-| `--bg-selected` | `#1D1D1E` | aktywny item nawigacji |
-| `--border-subtle` | `rgba(255,255,255,0.06)` | krawędzie kart, dividery sekcji |
-| `--border-default` | `rgba(255,255,255,0.10)` **[?]** | inputy, ikonowe przyciski |
+| Token                 | Wartość                          | Użycie                              |
+| --------------------- | -------------------------------- | ----------------------------------- |
+| `--bg-app`            | `#050505`                        | tło aplikacji, sidebar              |
+| `--bg-surface`        | `#0A0A0B`                        | karty: header, tabela, detail panel |
+| `--bg-surface-raised` | `#111112` **[?]**                | inputy, grupy wewnątrz kart, hover  |
+| `--bg-selected`       | `#1D1D1E`                        | aktywny item nawigacji              |
+| `--border-subtle`     | `rgba(255,255,255,0.06)`         | krawędzie kart, dividery sekcji     |
+| `--border-default`    | `rgba(255,255,255,0.10)` **[?]** | inputy, ikonowe przyciski           |
 
 Text:
 
-| Token | Wartość | Użycie |
-|---|---|---|
-| `--text-primary` | `#F5F5F5` | tytuły, wartości, aktywne taby/nav |
-| `--text-secondary` | `#A0A0A0` | treść wierszy, nieaktywny nav |
-| `--text-tertiary` | `#7A7A7A` | micro-labels kluczy, placeholdery, liczniki „(8 tasks)” |
+| Token              | Wartość   | Użycie                                                  |
+| ------------------ | --------- | ------------------------------------------------------- |
+| `--text-primary`   | `#F5F5F5` | tytuły, wartości, aktywne taby/nav                      |
+| `--text-secondary` | `#A0A0A0` | treść wierszy, nieaktywny nav                           |
+| `--text-tertiary`  | `#7A7A7A` | micro-labels kluczy, placeholdery, liczniki „(8 tasks)” |
 
 Accent (czerwień — rdzeń marki):
 
-| Token | Wartość | Użycie |
-|---|---|---|
-| `--accent` | `#E10A23` (pik próbki `#FF132F`, z poświatą) | underline taba, wskaźnik nav, border secondary CTA |
-| `--accent-strong` | `#B0141F` **[?]** | wypełnienie primary CTA, highlight wybranego wiersza (prawy koniec) |
-| `--accent-muted` | `#320B0D` | tło primary CTA/badge, lewy koniec gradientu wiersza |
-| `--accent-border` | `#4A0A0E` | obrys secondary CTA (outline) |
+| Token             | Wartość                                      | Użycie                                                              |
+| ----------------- | -------------------------------------------- | ------------------------------------------------------------------- |
+| `--accent`        | `#E10A23` (pik próbki `#FF132F`, z poświatą) | underline taba, wskaźnik nav, border secondary CTA                  |
+| `--accent-strong` | `#B0141F` **[?]**                            | wypełnienie primary CTA, highlight wybranego wiersza (prawy koniec) |
+| `--accent-muted`  | `#320B0D`                                    | tło primary CTA/badge, lewy koniec gradientu wiersza                |
+| `--accent-border` | `#4A0A0E`                                    | obrys secondary CTA (outline)                                       |
 
 Status / data:
 
-| Token | Wartość | Użycie |
-|---|---|---|
-| `--status-info-bg` / `-fg` | ciemny granat `~#16202B` / `#AFC4D5` | badge „IN PROGRESS” |
-| `--status-accent-bg` / `-fg` | `#300B08` / `#E0A8A0` **[?]** | badge „ACTIVE” |
-| team colors | z danych | tylko małe markery |
+| Token                        | Wartość                              | Użycie              |
+| ---------------------------- | ------------------------------------ | ------------------- |
+| `--status-info-bg` / `-fg`   | ciemny granat `~#16202B` / `#AFC4D5` | badge „IN PROGRESS” |
+| `--status-accent-bg` / `-fg` | `#300B08` / `#E0A8A0` **[?]**        | badge „ACTIVE”      |
+| team colors                  | z danych                             | tylko małe markery  |
 
 Uwagi: nie widać zieleni/żółci statusów (sukces/ostrzeżenie) — **do zdefiniowania** w tym samym stylu (ciemne tło o niskiej saturacji + jasny tekst).
 
@@ -165,15 +165,15 @@ Uwagi: nie widać zieleni/żółci statusów (sukces/ostrzeżenie) — **do zdef
 - **Logo:** wordmark uppercase, szeroki tracking (~0.15em), cienki/regular.
 - Skala (szacunek @1440):
 
-| Rola | Rozmiar / waga | Przykład z referencji |
-|---|---|---|
-| Page title | 22–24 / 600 | „Syncro” |
-| Meta value | 18–20 / 500 | „Mar 21, 2024” |
-| Panel title | 15–16 / 600 | „Multi-select in contact list” |
-| Body / nav / tab | 14 / 400–500 | nav items, taby |
-| Table cell | 13–14 / 400 | wiersze |
-| Micro label | 10–11 / 600, uppercase, tracking ~0.08em | „TODAY'S DATE”, „TEAM”, „DETAILS” |
-| Badge | 10 / 600, uppercase | „ACTIVE”, „IN PROGRESS” |
+| Rola             | Rozmiar / waga                           | Przykład z referencji             |
+| ---------------- | ---------------------------------------- | --------------------------------- |
+| Page title       | 22–24 / 600                              | „Syncro”                          |
+| Meta value       | 18–20 / 500                              | „Mar 21, 2024”                    |
+| Panel title      | 15–16 / 600                              | „Multi-select in contact list”    |
+| Body / nav / tab | 14 / 400–500                             | nav items, taby                   |
+| Table cell       | 13–14 / 400                              | wiersze                           |
+| Micro label      | 10–11 / 600, uppercase, tracking ~0.08em | „TODAY'S DATE”, „TEAM”, „DETAILS” |
+| Badge            | 10 / 600, uppercase                      | „ACTIVE”, „IN PROGRESS”           |
 
 - Hierarchia przez **wagę i kolor**, nie przez duże rozmiary. Największy tekst na ekranie ma ~24 px.
 - Aktywny stan (tab, nav) = kolor primary + waga 500–600; nieaktywny = secondary, 400.
@@ -199,10 +199,11 @@ Uwagi: nie widać zieleni/żółci statusów (sukces/ostrzeżenie) — **do zdef
 **Toolbar** — lewa: search input; prawa: tekstowe filtry z ikoną (secondary, bez tła), na końcu secondary CTA.
 
 **Buttons**
-- *Primary* („Add people”): tło gradientowe ciemna→głębsza czerwień (`--accent-muted` → `--accent-strong`), tekst biały 500, ikona 16 px, radius 8, h ~40 px, delikatna czerwona poświata **[?]**. Maks. jeden na ekran.
-- *Secondary* („Create Task”): tło przezroczyste/ciemne, border 1 px czerwony (`--accent-border`/`--accent`), tekst primary, ikona w czerwieni.
-- *Ghost/text* („My tasks”, „All filters”): ikona + tekst secondary, bez tła i borderu.
-- *Icon button*: kwadrat ~32 px, border default, radius 8, ikona tertiary/secondary.
+
+- _Primary_ („Add people”): tło gradientowe ciemna→głębsza czerwień (`--accent-muted` → `--accent-strong`), tekst biały 500, ikona 16 px, radius 8, h ~40 px, delikatna czerwona poświata **[?]**. Maks. jeden na ekran.
+- _Secondary_ („Create Task”): tło przezroczyste/ciemne, border 1 px czerwony (`--accent-border`/`--accent`), tekst primary, ikona w czerwieni.
+- _Ghost/text_ („My tasks”, „All filters”): ikona + tekst secondary, bez tła i borderu.
+- _Icon button_: kwadrat ~32 px, border default, radius 8, ikona tertiary/secondary.
 
 **Inputs** — tło `--bg-surface-raised` lub przezroczyste, border hairline, radius 8, h ~36–40 px, ikona lupy 16 px po lewej, placeholder tertiary. Textarea (comment) — ten sam styl.
 
@@ -217,6 +218,7 @@ Uwagi: nie widać zieleni/żółci statusów (sukces/ostrzeżenie) — **do zdef
 **Icons** — outline, stroke ~1.5 px, 16–18 px, kolor secondary; w stylu Lucide. Bez kafelków/boxów wokół ikon.
 
 **Stany hover/focus (wnioskowane — nie widoczne na referencji):**
+
 - nav / wiersz hover: tło `--bg-surface-raised`, bez zmiany koloru akcentu;
 - tab hover: tekst → primary;
 - primary CTA hover: jaśniejsza czerwień, secondary hover: tło `--accent-muted`;
@@ -238,6 +240,7 @@ Uwagi: nie widać zieleni/żółci statusów (sukces/ostrzeżenie) — **do zdef
 11. **Weryfikacja wizualna** każdego ekranu vs referencja: najpierw kompozycja i proporcje kolumn, potem gęstość, potem kolor.
 
 ### Otwarte kwestie **[?]**
+
 - Dokładny font (Inter vs SF Pro vs inny grotesk).
 - Czy sidebar/topbar mają własne bordery, czy tylko różnicę tła.
 - Dokładne kolory hairline borderów i `--bg-surface-raised` (zbyt mały kontrast w zdjęciu).

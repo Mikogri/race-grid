@@ -1,8 +1,8 @@
-import { Outlet, useLocation } from 'react-router';
-import { IconArrowUpRight } from '@tabler/icons-react';
-import { LiveNotice } from './LiveNotice';
-import { TopBar } from './TopBar';
-import styles from './AppLayout.module.css';
+import { Outlet, useLocation } from "react-router";
+import { IconArrowUpRight } from "@tabler/icons-react";
+import { LiveNotice } from "./LiveNotice";
+import { TopBar } from "./TopBar";
+import styles from "./AppLayout.module.css";
 
 export function AppLayout() {
   const { pathname } = useLocation();
@@ -18,7 +18,12 @@ export function AppLayout() {
         {/* Page footer, at the very end of the scroll: the one place that names the data source. */}
         <footer className={styles.footer}>
           <span>Data source</span>
-          <a href="https://openf1.org" target="_blank" rel="noreferrer" className={styles.source}>
+          <a
+            href="https://openf1.org"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.source}
+          >
             OpenF1
             <IconArrowUpRight size={12} stroke={1.5} aria-hidden="true" />
           </a>

@@ -1,6 +1,9 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from "react";
 
-const REDUCED = typeof matchMedia !== 'undefined' ? matchMedia('(prefers-reduced-motion: reduce)') : null;
+const REDUCED =
+  typeof matchMedia !== "undefined"
+    ? matchMedia("(prefers-reduced-motion: reduce)")
+    : null;
 
 /**
  * FLIP re-ordering: children marked with `data-flip-key` glide from their previous position to the new
@@ -14,18 +17,24 @@ export function useFlip<T extends HTMLElement>(orderKey: string) {
   useLayoutEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    const items = container.querySelectorAll<HTMLElement>('[data-flip-key]');
+    const items = container.querySelectorAll<HTMLElement>("[data-flip-key]");
     const next = new Map<string, number>();
     items.forEach((item) => {
-      const key = item.dataset.flipKey ?? '';
+      const key = item.dataset.flipKey ?? "";
       const top = item.offsetTop; // layout position, independent of page scroll
       next.set(key, top);
       const before = previous.current.get(key);
       if (before === undefined || before === top || REDUCED?.matches) return;
-      item.animate([{ transform: `translateY(${before - top}px)` }, { transform: 'translateY(0)' }], {
-        duration: 280,
-        easing: 'cubic-bezier(0.77, 0, 0.175, 1)',
-      });
+      item.animate(
+        [
+          { transform: `translateY(${before - top}px)` },
+          { transform: "translateY(0)" },
+        ],
+        {
+          duration: 280,
+          easing: "cubic-bezier(0.77, 0, 0.175, 1)",
+        },
+      );
     });
     previous.current = next;
   }, [orderKey]);

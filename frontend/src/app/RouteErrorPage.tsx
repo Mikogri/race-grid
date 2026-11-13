@@ -1,18 +1,37 @@
-import type { ReactNode } from 'react';
-import { Link, isRouteErrorResponse, useNavigate, useRouteError } from 'react-router';
-import { IconArrowLeft, IconRefresh } from '@tabler/icons-react';
-import { Button, ButtonLink } from '../components/ui/Button';
-import { LogoSymbol } from '../components/ui/Logo';
-import styles from './RouteErrorPage.module.css';
+import type { ReactNode } from "react";
+import {
+  Link,
+  isRouteErrorResponse,
+  useNavigate,
+  useRouteError,
+} from "react-router";
+import { IconArrowLeft, IconRefresh } from "@tabler/icons-react";
+import { Button, ButtonLink } from "../components/ui/Button";
+import { LogoSymbol } from "../components/ui/Logo";
+import styles from "./RouteErrorPage.module.css";
 
 const SHORTCUTS = [
-  { to: '/calendar', label: 'Calendar' },
-  { to: '/standings', label: 'Standings' },
-  { to: '/replay', label: 'Race Replay' },
+  { to: "/calendar", label: "Calendar" },
+  { to: "/standings", label: "Standings" },
+  { to: "/replay", label: "Race Replay" },
 ];
 
 /** Shared layout of every error screen: a large outlined code, a title, one line of help, then the way out. */
-function ErrorScreen({ code, eyebrow, title, text, actions, detail }: { code: string; eyebrow: string; title: string; text: string; actions: ReactNode; detail?: string }) {
+function ErrorScreen({
+  code,
+  eyebrow,
+  title,
+  text,
+  actions,
+  detail,
+}: {
+  code: string;
+  eyebrow: string;
+  title: string;
+  text: string;
+  actions: ReactNode;
+  detail?: string;
+}) {
   return (
     <section className={styles.screen} aria-labelledby="error-title">
       <p className={styles.code} aria-hidden="true">
@@ -50,7 +69,11 @@ export function NotFoundPage() {
           <ButtonLink to="/" variant="primary">
             Back to dashboard
           </ButtonLink>
-          <Button variant="secondary" icon={<IconArrowLeft size={14} stroke={1.5} aria-hidden="true" />} onClick={() => navigate(-1)}>
+          <Button
+            variant="secondary"
+            icon={<IconArrowLeft size={14} stroke={1.5} aria-hidden="true" />}
+            onClick={() => navigate(-1)}
+          >
             Go back
           </Button>
         </>
@@ -61,7 +84,10 @@ export function NotFoundPage() {
 
 /** A lazy page chunk that no longer exists on the server: the app was redeployed since this tab loaded. */
 const isStaleBuild = (error: unknown) =>
-  error instanceof Error && /dynamically imported module|Importing a module script failed|error loading dynamically imported/i.test(error.message);
+  error instanceof Error &&
+  /dynamically imported module|Importing a module script failed|error loading dynamically imported/i.test(
+    error.message,
+  );
 
 /**
  * Last-resort boundary for the whole app (rendering bugs, failed chunk loads). It replaces the layout,
@@ -70,7 +96,11 @@ const isStaleBuild = (error: unknown) =>
 export function RouteErrorPage() {
   const error = useRouteError();
   const reload = (
-    <Button variant="primary" icon={<IconRefresh size={14} stroke={1.5} aria-hidden="true" />} onClick={() => window.location.reload()}>
+    <Button
+      variant="primary"
+      icon={<IconRefresh size={14} stroke={1.5} aria-hidden="true" />}
+      onClick={() => window.location.reload()}
+    >
       Reload
     </Button>
   );
@@ -80,7 +110,13 @@ export function RouteErrorPage() {
     screen = <NotFoundPage />;
   } else if (isStaleBuild(error)) {
     screen = (
-      <ErrorScreen code="New" eyebrow="Update available" title="RaceGrid has been updated" text="This tab is running an older version. Reload to continue with the latest one." actions={reload} />
+      <ErrorScreen
+        code="New"
+        eyebrow="Update available"
+        title="RaceGrid has been updated"
+        text="This tab is running an older version. Reload to continue with the latest one."
+        actions={reload}
+      />
     );
   } else {
     screen = (

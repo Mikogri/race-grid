@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export type ReplaySpeed = 1 | 2 | 5 | 10;
 
@@ -9,7 +9,7 @@ export interface ClockState {
   speed: ReplaySpeed;
 }
 
-type Listener = (state: ClockState, reason: 'tick' | 'change') => void;
+type Listener = (state: ClockState, reason: "tick" | "change") => void;
 
 /**
  * Replay clock outside React: the map reads it every frame, panels subscribe at a lower rate.
@@ -40,34 +40,38 @@ export class ReplayClock {
     };
   }
 
-  private emit(reason: 'tick' | 'change') {
+  private emit(reason: "tick" | "change") {
     this.listeners.forEach((listener) => listener(this.state, reason));
   }
 
   private loop = (now: number) => {
     const elapsed = Math.min(1000, now - this.lastFrame);
     this.lastFrame = now;
-    const time = Math.min(this.end, this.state.time + elapsed * this.state.speed);
+    const time = Math.min(
+      this.end,
+      this.state.time + elapsed * this.state.speed,
+    );
     const finished = time >= this.end;
     this.state = { ...this.state, time, playing: !finished };
-    this.emit(finished ? 'change' : 'tick');
+    this.emit(finished ? "change" : "tick");
     if (!finished) this.raf = requestAnimationFrame(this.loop);
   };
 
   play() {
     if (this.state.playing) return;
-    if (this.state.time >= this.end) this.state = { ...this.state, time: this.start };
+    if (this.state.time >= this.end)
+      this.state = { ...this.state, time: this.start };
     this.state = { ...this.state, playing: true };
     this.lastFrame = performance.now();
     this.raf = requestAnimationFrame(this.loop);
-    this.emit('change');
+    this.emit("change");
   }
 
   pause() {
     if (!this.state.playing) return;
     cancelAnimationFrame(this.raf);
     this.state = { ...this.state, playing: false };
-    this.emit('change');
+    this.emit("change");
   }
 
   toggle() {
@@ -76,13 +80,16 @@ export class ReplayClock {
   }
 
   seek(time: number) {
-    this.state = { ...this.state, time: Math.min(this.end, Math.max(this.start, time)) };
-    this.emit('change');
+    this.state = {
+      ...this.state,
+      time: Math.min(this.end, Math.max(this.start, time)),
+    };
+    this.emit("change");
   }
 
   setSpeed(speed: ReplaySpeed) {
     this.state = { ...this.state, speed };
-    this.emit('change');
+    this.emit("change");
   }
 
   dispose() {
@@ -101,7 +108,7 @@ export function useClock(clock: ReplayClock, fps: number): ClockState {
     let last = 0;
     return clock.subscribe((next, reason) => {
       const now = performance.now();
-      if (reason === 'change' || now - last >= 1000 / fps) {
+      if (reason === "change" || now - last >= 1000 / fps) {
         last = now;
         setState(next);
       }

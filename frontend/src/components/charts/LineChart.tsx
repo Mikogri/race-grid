@@ -1,6 +1,6 @@
-import { useId, useState, type MouseEvent } from 'react';
-import { useElementSize } from './useElementSize';
-import styles from './LineChart.module.css';
+import { useId, useState, type MouseEvent } from "react";
+import { useElementSize } from "./useElementSize";
+import styles from "./LineChart.module.css";
 
 export interface ChartPoint {
   x: number;
@@ -54,16 +54,22 @@ const X_AXIS_HEIGHT = 24;
 const CHAR_PX = 7;
 
 function niceTicks(min: number, max: number, count: number): number[] {
-  if (!Number.isFinite(min) || !Number.isFinite(max) || min === max) return [min];
+  if (!Number.isFinite(min) || !Number.isFinite(max) || min === max)
+    return [min];
   const raw = (max - min) / count;
   const magnitude = 10 ** Math.floor(Math.log10(raw));
-  const step = [1, 2, 2.5, 5, 10].map((m) => m * magnitude).find((s) => s >= raw) ?? raw;
+  const step =
+    [1, 2, 2.5, 5, 10].map((m) => m * magnitude).find((s) => s >= raw) ?? raw;
   const ticks: number[] = [];
-  for (let v = Math.ceil(min / step) * step; v <= max + step * 1e-9; v += step) ticks.push(Number(v.toFixed(10)));
+  for (let v = Math.ceil(min / step) * step; v <= max + step * 1e-9; v += step)
+    ticks.push(Number(v.toFixed(10)));
   return ticks;
 }
 
-function extent(series: ChartSeries[], pick: (p: ChartPoint) => number): [number, number] {
+function extent(
+  series: ChartSeries[],
+  pick: (p: ChartPoint) => number,
+): [number, number] {
   let min = Infinity;
   let max = -Infinity;
   for (const s of series) {
@@ -86,7 +92,9 @@ function nearest(points: ChartPoint[], x: number): ChartPoint | null {
     if (points[mid].x < x) lo = mid;
     else hi = mid;
   }
-  return Math.abs(points[lo].x - x) <= Math.abs(points[hi].x - x) ? points[lo] : points[hi];
+  return Math.abs(points[lo].x - x) <= Math.abs(points[hi].x - x)
+    ? points[lo]
+    : points[hi];
 }
 
 /**
@@ -95,9 +103,12 @@ function nearest(points: ChartPoint[], x: number): ChartPoint | null {
  */
 function smoothPath(points: [number, number][]): string {
   const n = points.length;
-  if (n === 0) return '';
+  if (n === 0) return "";
   const fmt = (v: number) => v.toFixed(1);
-  if (n < 3) return points.map(([x, y], i) => `${i ? 'L' : 'M'}${fmt(x)},${fmt(y)}`).join('');
+  if (n < 3)
+    return points
+      .map(([x, y], i) => `${i ? "L" : "M"}${fmt(x)},${fmt(y)}`)
+      .join("");
   const dx: number[] = [];
   const slope: number[] = [];
   for (let i = 0; i < n - 1; i++) {
@@ -108,7 +119,11 @@ function smoothPath(points: [number, number][]): string {
     if (i === 0) return slope[0];
     if (i === n - 1) return slope[n - 2];
     if (slope[i - 1] * slope[i] <= 0) return 0;
-    return (3 * (dx[i - 1] + dx[i])) / ((2 * dx[i] + dx[i - 1]) / slope[i - 1] + (dx[i] + 2 * dx[i - 1]) / slope[i]);
+    return (
+      (3 * (dx[i - 1] + dx[i])) /
+      ((2 * dx[i] + dx[i - 1]) / slope[i - 1] +
+        (dx[i] + 2 * dx[i - 1]) / slope[i])
+    );
   });
   let d = `M${fmt(points[0][0])},${fmt(points[0][1])}`;
   for (let i = 0; i < n - 1; i++) {
@@ -145,19 +160,29 @@ export function LineChart({
   const [ref, size] = useElementSize<HTMLDivElement>();
   const width = size.width;
   // Fill mode follows the measured plot, never below `height`.
-  const height = fill ? Math.max(minHeight, Math.floor(size.height)) : minHeight;
+  const height = fill
+    ? Math.max(minHeight, Math.floor(size.height))
+    : minHeight;
   const [hoverX, setHoverX] = useState<number | null>(null);
   const gradientId = useId();
 
   const [x0, x1] = xDomain ?? extent(series, (p) => p.x);
   const autoY = extent(series, (p) => p.y);
-  const [y0, y1] = yDomain ?? [autoY[0], autoY[1] === autoY[0] ? autoY[0] + 1 : autoY[1]];
+  const [y0, y1] = yDomain ?? [
+    autoY[0],
+    autoY[1] === autoY[0] ? autoY[0] + 1 : autoY[1],
+  ];
   const gridY = yTicks ?? niceTicks(Math.min(y0, y1), Math.max(y0, y1), 4);
   // Left gutter sized to the longest Y label (lap times need more room than percentages).
   const PAD = {
     ...PAD_BASE,
     bottom: showXAxis ? X_AXIS_HEIGHT : 8,
-    left: yAxisWidth ?? Math.max(36, Math.max(...gridY.map((t) => formatY(t).length)) * CHAR_PX + 12),
+    left:
+      yAxisWidth ??
+      Math.max(
+        36,
+        Math.max(...gridY.map((t) => formatY(t).length)) * CHAR_PX + 12,
+      ),
   };
   const innerW = Math.max(10, width - PAD.left - PAD.right);
   const innerH = height - PAD.top - PAD.bottom;
@@ -170,7 +195,7 @@ export function LineChart({
   // Continuous series are smoothed; discrete channels (gear, DRS) keep their steps.
   const paths = series.map((s) => {
     if (!s.step) return smoothPath(s.points.map((p) => [sx(p.x), sy(p.y)]));
-    let d = '';
+    let d = "";
     s.points.forEach((p, i) => {
       const px = sx(p.x).toFixed(1);
       const py = sy(p.y).toFixed(1);
@@ -180,21 +205,54 @@ export function LineChart({
   });
 
   // Primary lines use the 2 px chart token; crowded charts drop to the secondary weight so lines stay readable.
-  const lineWidth = (s: ChartSeries) => s.width ?? (s.dashed || series.length > 2 ? 'var(--chart-line-secondary)' : 'var(--chart-line)');
+  const lineWidth = (s: ChartSeries) =>
+    s.width ??
+    (s.dashed || series.length > 2
+      ? "var(--chart-line-secondary)"
+      : "var(--chart-line)");
 
   // One soft fade under a single continuous series (reference area charts); never with several series.
-  const area = series.length === 1 && !series[0].step && !series[0].dashed && series[0].points.length > 1 ? series[0] : null;
+  const area =
+    series.length === 1 &&
+    !series[0].step &&
+    !series[0].dashed &&
+    series[0].points.length > 1
+      ? series[0]
+      : null;
   const areaPath =
     area && paths[0]
       ? `${paths[0]}L${sx(area.points[area.points.length - 1].x).toFixed(1)},${(PAD.top + innerH).toFixed(1)}L${sx(area.points[0].x).toFixed(1)},${(PAD.top + innerH).toFixed(1)}Z`
       : null;
 
   // X ticks spaced by the longest label (round names are long in the mono face), so labels never overlap.
-  const labelPx = Math.max(...Array.from({ length: 21 }, (_, i) => formatX(x0 + ((x1 - x0) * i) / 20).length)) * CHAR_PX + 24;
-  const gridX = xTicks ?? niceTicks(x0, x1, Math.max(2, Math.floor(innerW / Math.max(detailedGrid ? 64 : 110, labelPx))));
+  const labelPx =
+    Math.max(
+      ...Array.from(
+        { length: 21 },
+        (_, i) => formatX(x0 + ((x1 - x0) * i) / 20).length,
+      ),
+    ) *
+      CHAR_PX +
+    24;
+  const gridX =
+    xTicks ??
+    niceTicks(
+      x0,
+      x1,
+      Math.max(
+        2,
+        Math.floor(innerW / Math.max(detailedGrid ? 64 : 110, labelPx)),
+      ),
+    );
   // Labels near either end of the axis grow inwards, so the first and last are never cut off.
-  const xAnchor = (px: number) => (px - labelPx / 2 < 0 ? 'start' : px + labelPx / 2 > width ? 'end' : 'middle');
-  const between = (ticks: number[]) => ticks.slice(1).map((t, i) => (t + ticks[i]) / 2);
+  const xAnchor = (px: number) =>
+    px - labelPx / 2 < 0
+      ? "start"
+      : px + labelPx / 2 > width
+        ? "end"
+        : "middle";
+  const between = (ticks: number[]) =>
+    ticks.slice(1).map((t, i) => (t + ticks[i]) / 2);
   const minorX = detailedGrid ? between(gridX) : [];
   const minorY = detailedGrid ? between(gridY) : [];
 
@@ -210,21 +268,36 @@ export function LineChart({
       ? []
       : series
           .map((s) => ({ s, p: nearest(s.points, tooltipX) }))
-          .filter((row): row is { s: ChartSeries; p: ChartPoint } => row.p !== null);
+          .filter(
+            (row): row is { s: ChartSeries; p: ChartPoint } => row.p !== null,
+          );
 
   return (
-    <div className={[styles.chart, fill ? styles.fill : '', className].filter(Boolean).join(' ')}>
+    <div
+      className={[styles.chart, fill ? styles.fill : "", className]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {showLegend && (series.length > 1 || alwaysShowLegend) && (
         <ul className={styles.legend}>
           {series.map((s) => (
             <li key={s.id}>
-              <span className={s.dashed ? styles.swatchDashed : styles.swatch} style={s.dashed ? { borderColor: s.color } : { background: s.color }} />
+              <span
+                className={s.dashed ? styles.swatchDashed : styles.swatch}
+                style={
+                  s.dashed ? { borderColor: s.color } : { background: s.color }
+                }
+              />
               {s.label}
             </li>
           ))}
         </ul>
       )}
-      <div ref={ref} className={fill ? `${styles.plot} ${styles.fillPlot}` : styles.plot} style={fill ? { minHeight } : { height }}>
+      <div
+        ref={ref}
+        className={fill ? `${styles.plot} ${styles.fillPlot}` : styles.plot}
+        style={fill ? { minHeight } : { height }}
+      >
         {width > 0 && (
           <svg
             width={width}
@@ -240,21 +313,51 @@ export function LineChart({
               <defs>
                 <linearGradient id={gradientId} x1="0" x2="0" y1="0" y2="1">
                   <stop offset="0%" stopColor={area.color} stopOpacity={0.16} />
-                  <stop offset="100%" stopColor={area.color} stopOpacity={0.02} />
+                  <stop
+                    offset="100%"
+                    stopColor={area.color}
+                    stopOpacity={0.02}
+                  />
                 </linearGradient>
               </defs>
             )}
             {/* The plot is always closed by a dotted frame on all four sides. */}
-            <rect x={PAD.left} y={PAD.top} width={innerW} height={innerH} className={styles.gridFrame} />
+            <rect
+              x={PAD.left}
+              y={PAD.top}
+              width={innerW}
+              height={innerH}
+              className={styles.gridFrame}
+            />
             {minorY.map((t) => (
-              <line key={`my${t}`} x1={PAD.left} x2={width - PAD.right} y1={sy(t)} y2={sy(t)} className={styles.gridMinor} />
+              <line
+                key={`my${t}`}
+                x1={PAD.left}
+                x2={width - PAD.right}
+                y1={sy(t)}
+                y2={sy(t)}
+                className={styles.gridMinor}
+              />
             ))}
             {minorX.map((t) => (
-              <line key={`mx${t}`} x1={sx(t)} x2={sx(t)} y1={PAD.top} y2={PAD.top + innerH} className={styles.gridMinor} />
+              <line
+                key={`mx${t}`}
+                x1={sx(t)}
+                x2={sx(t)}
+                y1={PAD.top}
+                y2={PAD.top + innerH}
+                className={styles.gridMinor}
+              />
             ))}
             {gridY.map((t) => (
               <g key={`y${t}`}>
-                <line x1={PAD.left} x2={width - PAD.right} y1={sy(t)} y2={sy(t)} className={styles.grid} />
+                <line
+                  x1={PAD.left}
+                  x2={width - PAD.right}
+                  y1={sy(t)}
+                  y2={sy(t)}
+                  className={styles.grid}
+                />
                 <text x={PAD.left - 8} y={sy(t)} className={styles.tickY}>
                   {formatY(t)}
                 </text>
@@ -263,45 +366,91 @@ export function LineChart({
             {/* Vertical grid at every X tick; labels only on the shared bottom axis. */}
             {gridX.map((t) => (
               <g key={`x${t}`}>
-                <line x1={sx(t)} x2={sx(t)} y1={PAD.top} y2={PAD.top + innerH} className={styles.grid} />
+                <line
+                  x1={sx(t)}
+                  x2={sx(t)}
+                  y1={PAD.top}
+                  y2={PAD.top + innerH}
+                  className={styles.grid}
+                />
                 {showXAxis && (
-                  <text x={sx(t)} y={height - 6} className={styles.tickX} style={{ textAnchor: xAnchor(sx(t)) }}>
+                  <text
+                    x={sx(t)}
+                    y={height - 6}
+                    className={styles.tickX}
+                    style={{ textAnchor: xAnchor(sx(t)) }}
+                  >
                     {formatX(t)}
                   </text>
                 )}
               </g>
             ))}
-            {areaPath && <path d={areaPath} fill={`url(#${gradientId})`} className="rg-fade" />}
+            {areaPath && (
+              <path
+                d={areaPath}
+                fill={`url(#${gradientId})`}
+                className="rg-fade"
+              />
+            )}
             {series.map((s, i) => (
               <path
                 key={s.id}
                 d={paths[i]}
-                className={s.dashed ? `rg-fade ${styles.line}` : `${styles.line} ${styles.draw}`}
+                className={
+                  s.dashed
+                    ? `rg-fade ${styles.line}`
+                    : `${styles.line} ${styles.draw}`
+                }
                 pathLength={s.dashed ? undefined : 1}
                 stroke={s.color}
                 strokeWidth={lineWidth(s)}
-                strokeDasharray={s.dashed ? '4 3' : undefined}
+                strokeDasharray={s.dashed ? "4 3" : undefined}
               />
             ))}
             {cursorX !== null && cursorX >= x0 && cursorX <= x1 && (
-              <line x1={sx(cursorX)} x2={sx(cursorX)} y1={PAD.top} y2={PAD.top + innerH} className={styles.cursor} />
+              <line
+                x1={sx(cursorX)}
+                x2={sx(cursorX)}
+                y1={PAD.top}
+                y2={PAD.top + innerH}
+                className={styles.cursor}
+              />
             )}
             {tooltipX !== null && (
               <>
-                <line x1={sx(tooltipX)} x2={sx(tooltipX)} y1={PAD.top} y2={PAD.top + innerH} className={styles.hoverLine} />
+                <line
+                  x1={sx(tooltipX)}
+                  x2={sx(tooltipX)}
+                  y1={PAD.top}
+                  y2={PAD.top + innerH}
+                  className={styles.hoverLine}
+                />
                 {tooltipRows.map(({ s, p }) => (
-                  <circle key={s.id} cx={sx(p.x)} cy={sy(p.y)} r={3.5} fill={s.color} className={styles.hoverPoint} />
+                  <circle
+                    key={s.id}
+                    cx={sx(p.x)}
+                    cy={sy(p.y)}
+                    r={3.5}
+                    fill={s.color}
+                    className={styles.hoverPoint}
+                  />
                 ))}
               </>
             )}
           </svg>
         )}
         {tooltipX !== null && tooltipRows.length > 0 && (
-          <div className={styles.tooltip} style={{ left: Math.min(sx(tooltipX) + 12, width - 180) }}>
+          <div
+            className={styles.tooltip}
+            style={{ left: Math.min(sx(tooltipX) + 12, width - 180) }}
+          >
             <p className={styles.tooltipTitle}>{formatX(tooltipX)}</p>
             {tooltipRows.map(({ s, p }) => (
               <p key={s.id} className={styles.tooltipRow}>
-                <span className={styles.swatch} style={{ background: s.color }} />
+                <span
+                  className={styles.swatch}
+                  style={{ background: s.color }}
+                />
                 <span className={styles.tooltipLabel}>{s.label}</span>
                 <span className={styles.tooltipValue}>{formatY(p.y)}</span>
               </p>

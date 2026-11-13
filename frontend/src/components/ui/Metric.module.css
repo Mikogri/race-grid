@@ -104,17 +104,17 @@
   font: var(--type-caption);
 }
 
-.trend[data-direction='up'] {
+.trend[data-direction="up"] {
   background: var(--success-subtle);
   color: var(--success-text);
 }
 
-.trend[data-direction='down'] {
+.trend[data-direction="down"] {
   background: var(--danger-subtle);
   color: var(--danger);
 }
 
-.trend[data-direction='flat'] {
+.trend[data-direction="flat"] {
   background: var(--surface-3);
   color: var(--text-secondary);
 }

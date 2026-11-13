@@ -1,4 +1,11 @@
-import { HOUR, IMMUTABLE, MINUTE, openf1, type OpenF1Params, type RequestOptions } from './client';
+import {
+  HOUR,
+  IMMUTABLE,
+  MINUTE,
+  openf1,
+  type OpenF1Params,
+  type RequestOptions,
+} from "./client";
 import type {
   CarDataRecord,
   ChampionshipDriver,
@@ -18,7 +25,7 @@ import type {
   Stint,
   TeamRadio,
   WeatherRecord,
-} from './types';
+} from "./types";
 
 interface Endpoints {
   meetings: Meeting;
@@ -54,7 +61,9 @@ export function fetchOpenF1<E extends Endpoint>(
 /** Sessions that ended more than a few hours ago are final in OpenF1; before that data may still change. */
 export function ttlForSessionEnd(dateEnd: string | null | undefined): number {
   if (!dateEnd) return MINUTE;
-  return Date.now() - new Date(dateEnd).getTime() > 6 * HOUR ? IMMUTABLE : MINUTE;
+  return Date.now() - new Date(dateEnd).getTime() > 6 * HOUR
+    ? IMMUTABLE
+    : MINUTE;
 }
 
 /** Season-wide lists: past seasons are final, the running season is refreshed every 15 minutes. */

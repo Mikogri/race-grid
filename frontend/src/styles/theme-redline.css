@@ -2,23 +2,45 @@
    colours from tokens.css (dark see-through panels, F1 red accent) over a black backdrop with red light streaks.
    Switched on by data-theme="redline" on <html> (index.html). Revert: data-theme="noir"
    (snapshot of that state: ui-snapshots/2026-10-02-noir). */
-:root[data-theme='redline'] {
+:root[data-theme="redline"] {
   /* More see-through than the original: the blurred streaks show through panels and the page column. */
   --surface-sheet: rgba(8, 8, 8, 0.5);
-  --surface-1: rgba(14, 14, 14, 0.5); /* on the column: about 75 % dark in total, the backdrop still glows through */
+  --surface-1: rgba(
+    14,
+    14,
+    14,
+    0.5
+  ); /* on the column: about 75 % dark in total, the backdrop still glows through */
   --selection: rgba(255, 255, 255, 0.22); /* selected text: grey, not red */
-  --header-accent: var(--text-primary); /* no red in the menu bar or page titles */
+  --header-accent: var(
+    --text-primary
+  ); /* no red in the menu bar or page titles */
   --table-band: rgba(255, 255, 255, 0.02);
-  --chart-grid: rgba(255, 255, 255, 0.12); /* dotted grid needs a little more light than the solid one */
+  --chart-grid: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ); /* dotted grid needs a little more light than the solid one */
   --chart-grid-minor: rgba(255, 255, 255, 0.05);
 }
 
 /* Blurred backdrop, darkened towards the left and right edges only; the layer overhangs the window so the
    blur has no soft edge. */
-:root[data-theme='redline'] body::before {
+:root[data-theme="redline"] body::before {
   inset: -60px;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.45) 18%, rgba(0, 0, 0, 0.12) 35%, transparent 50%, rgba(0, 0, 0, 0.12) 65%, rgba(0, 0, 0, 0.45) 82%, rgba(0, 0, 0, 0.75)),
-    var(--background) url('../assets/app-background-redline.webp') center / cover no-repeat;
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0.45) 18%,
+      rgba(0, 0, 0, 0.12) 35%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.12) 65%,
+      rgba(0, 0, 0, 0.45) 82%,
+      rgba(0, 0, 0, 0.75)
+    ),
+    var(--background) url("../assets/app-background-redline.webp") center /
+      cover no-repeat;
   filter: blur(28px);
 }

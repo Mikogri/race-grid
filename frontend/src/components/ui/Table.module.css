@@ -115,18 +115,42 @@
   animation-delay: calc(min(var(--row, 12), 12) * 18ms);
 }
 
-.table tbody tr:nth-child(1) { --row: 0; }
-.table tbody tr:nth-child(2) { --row: 1; }
-.table tbody tr:nth-child(3) { --row: 2; }
-.table tbody tr:nth-child(4) { --row: 3; }
-.table tbody tr:nth-child(5) { --row: 4; }
-.table tbody tr:nth-child(6) { --row: 5; }
-.table tbody tr:nth-child(7) { --row: 6; }
-.table tbody tr:nth-child(8) { --row: 7; }
-.table tbody tr:nth-child(9) { --row: 8; }
-.table tbody tr:nth-child(10) { --row: 9; }
-.table tbody tr:nth-child(11) { --row: 10; }
-.table tbody tr:nth-child(12) { --row: 11; }
+.table tbody tr:nth-child(1) {
+  --row: 0;
+}
+.table tbody tr:nth-child(2) {
+  --row: 1;
+}
+.table tbody tr:nth-child(3) {
+  --row: 2;
+}
+.table tbody tr:nth-child(4) {
+  --row: 3;
+}
+.table tbody tr:nth-child(5) {
+  --row: 4;
+}
+.table tbody tr:nth-child(6) {
+  --row: 5;
+}
+.table tbody tr:nth-child(7) {
+  --row: 6;
+}
+.table tbody tr:nth-child(8) {
+  --row: 7;
+}
+.table tbody tr:nth-child(9) {
+  --row: 8;
+}
+.table tbody tr:nth-child(10) {
+  --row: 9;
+}
+.table tbody tr:nth-child(11) {
+  --row: 10;
+}
+.table tbody tr:nth-child(12) {
+  --row: 11;
+}
 
 /* Live tables (replay) reorder rows while playing: no entry animation, or every move would replay it. */
 .live tbody tr {

@@ -1,7 +1,13 @@
 /** RaceGrid symbol (RaceGrid-logo-symbol.svg). Uses currentColor. */
 export function LogoSymbol({ size = 28 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 1147 1147" fill="currentColor" aria-hidden="true">
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 1147 1147"
+      fill="currentColor"
+      aria-hidden="true"
+    >
       <path d="M344 505L155 506L24 639H210L344 505Z" />
       <path d="M45 810H290L302 807L314 800L475 641H210L45 810Z" />
       <path d="M337 459H883L884 460L823 519L803 529L794 531H624L606 533L589 538L566 552L480 638H531L545 642L557 649L724 824H942L753 615L747 610L735 595L919 594L936 590L951 583L962 575L1107 431L1120 407L1122 398V376L1115 355L1101 338L1083 327L1064 322H479L472 327L337 459Z" />

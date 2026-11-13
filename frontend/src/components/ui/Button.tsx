@@ -1,17 +1,25 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
-import { Link, type LinkProps } from 'react-router';
-import styles from './Button.module.css';
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { Link, type LinkProps } from "react-router";
+import styles from "./Button.module.css";
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'icon';
+type Variant = "primary" | "secondary" | "ghost" | "icon";
 
-const cx = (variant: Variant, className?: string) => [styles.button, styles[variant], className].filter(Boolean).join(' ');
+const cx = (variant: Variant, className?: string) =>
+  [styles.button, styles[variant], className].filter(Boolean).join(" ");
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   icon?: ReactNode;
 }
 
-export function Button({ variant = 'secondary', icon, children, className, type = 'button', ...rest }: ButtonProps) {
+export function Button({
+  variant = "secondary",
+  icon,
+  children,
+  className,
+  type = "button",
+  ...rest
+}: ButtonProps) {
   return (
     <button type={type} className={cx(variant, className)} {...rest}>
       {icon}
@@ -25,9 +33,21 @@ interface ButtonLinkProps extends LinkProps {
   icon?: ReactNode;
 }
 
-export function ButtonLink({ variant = 'secondary', icon, children, className, ...rest }: ButtonLinkProps) {
+export function ButtonLink({
+  variant = "secondary",
+  icon,
+  children,
+  className,
+  ...rest
+}: ButtonLinkProps) {
   return (
-    <Link className={cx(variant, typeof className === 'string' ? className : undefined)} {...rest}>
+    <Link
+      className={cx(
+        variant,
+        typeof className === "string" ? className : undefined,
+      )}
+      {...rest}
+    >
       {icon}
       {children}
     </Link>

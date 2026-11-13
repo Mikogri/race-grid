@@ -150,7 +150,10 @@
   display: grid;
   grid-template-columns: 310px minmax(0, 1fr) 260px;
   gap: var(--grid-gap-tight);
-  height: calc(100dvh - var(--topbar-height) - var(--footer-height) - 2 * var(--sheet-padding) - 120px);
+  height: calc(
+    100dvh - var(--topbar-height) - var(--footer-height) - 2 *
+      var(--sheet-padding) - 120px
+  );
   min-height: 420px;
 }
 

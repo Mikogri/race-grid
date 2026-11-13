@@ -1,8 +1,8 @@
-import { useQueries } from '@tanstack/react-query';
-import type { Lap } from '../api/openf1/types';
-import { racePaceByDriver } from '../analytics/laps';
-import type { RoundInfo } from '../analytics/season';
-import { sessionQuery } from './sessionData';
+import { useQueries } from "@tanstack/react-query";
+import type { Lap } from "../api/openf1/types";
+import { racePaceByDriver } from "../analytics/laps";
+import type { RoundInfo } from "../analytics/season";
+import { sessionQuery } from "./sessionData";
 
 export type DriverPace = Map<number, { median: number; laps: number }>;
 export type RacePaceByRound = Map<number, DriverPace>;
@@ -26,7 +26,7 @@ export function useRacePace(rounds: RoundInfo[], enabled = true) {
   const races = rounds.filter((r) => r.race && r.round !== null);
   const results = useQueries({
     queries: races.map((round) => ({
-      ...sessionQuery('laps', round.race ?? { session_key: -1, date_end: '' }),
+      ...sessionQuery("laps", round.race ?? { session_key: -1, date_end: "" }),
       enabled,
       staleTime: Infinity,
     })),

@@ -384,16 +384,16 @@
   background: var(--surface-3);
 }
 
-.segment[data-status='completed'] {
+.segment[data-status="completed"] {
   background: var(--text-primary);
   opacity: 0.85;
 }
 
-.segment[data-status='in-progress'] {
+.segment[data-status="in-progress"] {
   background: var(--success);
 }
 
-.segment[data-status='cancelled'] {
+.segment[data-status="cancelled"] {
   background: none;
   border: 1px dashed var(--border-hover);
 }
@@ -413,8 +413,8 @@
   display: grid;
   grid-template-columns: 2.5ch auto minmax(0, 1fr) auto 5ch;
   grid-template-areas:
-    'pos face name move points'
-    '. . bar bar bar';
+    "pos face name move points"
+    ". . bar bar bar";
   align-items: center;
   column-gap: var(--space-3);
   row-gap: 6px;

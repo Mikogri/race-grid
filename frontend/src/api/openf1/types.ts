@@ -19,7 +19,7 @@ export interface Meeting {
   is_cancelled: boolean;
 }
 
-export type SessionType = 'Practice' | 'Qualifying' | 'Race';
+export type SessionType = "Practice" | "Qualifying" | "Race";
 
 export interface Session {
   session_key: number;
@@ -154,7 +154,14 @@ export interface CarDataRecord {
   rpm: number;
 }
 
-export type TyreCompound = 'SOFT' | 'MEDIUM' | 'HARD' | 'INTERMEDIATE' | 'WET' | 'UNKNOWN' | 'TEST_UNKNOWN';
+export type TyreCompound =
+  | "SOFT"
+  | "MEDIUM"
+  | "HARD"
+  | "INTERMEDIATE"
+  | "WET"
+  | "UNKNOWN"
+  | "TEST_UNKNOWN";
 
 export interface Stint {
   session_key: number;

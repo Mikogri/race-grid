@@ -13,8 +13,26 @@
 }
 
 .accent,
-.info { background: var(--info-subtle); color: var(--info); border-color: var(--info-border); }
-.success { background: var(--success-subtle); color: var(--success-text); }
-.warning { background: var(--warning-subtle); color: var(--warning); border-color: var(--warning-border); }
-.danger { background: var(--danger-subtle); color: var(--danger); border-color: var(--danger-border); }
-.neutral { background: var(--surface-3); color: var(--text-tertiary); }
+.info {
+  background: var(--info-subtle);
+  color: var(--info);
+  border-color: var(--info-border);
+}
+.success {
+  background: var(--success-subtle);
+  color: var(--success-text);
+}
+.warning {
+  background: var(--warning-subtle);
+  color: var(--warning);
+  border-color: var(--warning-border);
+}
+.danger {
+  background: var(--danger-subtle);
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+.neutral {
+  background: var(--surface-3);
+  color: var(--text-tertiary);
+}

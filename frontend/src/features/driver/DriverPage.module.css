@@ -159,22 +159,22 @@
   color: var(--text-secondary);
 }
 
-.chip[data-tone='win'] {
+.chip[data-tone="win"] {
   background: color-mix(in srgb, var(--accent) 24%, transparent);
   color: var(--text-primary);
 }
 
-.chip[data-tone='podium'] {
+.chip[data-tone="podium"] {
   background: var(--surface-active);
   color: var(--text-primary);
 }
 
-.chip[data-tone='none'] {
+.chip[data-tone="none"] {
   background: none;
   color: var(--text-tertiary);
 }
 
-.chip[data-tone='out'] {
+.chip[data-tone="out"] {
   background: var(--danger-subtle);
   color: var(--danger);
 }

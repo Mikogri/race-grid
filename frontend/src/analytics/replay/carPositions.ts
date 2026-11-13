@@ -1,6 +1,6 @@
-import type { LocationRecord } from '../../api/openf1/types';
-import { lastIndexAtOrBefore, toMs } from '../../lib/stats';
-import { pointAtProgress, snapToPath, type TrackPath } from './trackPath';
+import type { LocationRecord } from "../../api/openf1/types";
+import { lastIndexAtOrBefore, toMs } from "../../lib/stats";
+import { pointAtProgress, snapToPath, type TrackPath } from "./trackPath";
 
 export interface CarSample {
   ms: number;
@@ -23,7 +23,11 @@ const SNAP_THRESHOLD = 10;
 /** Longer gaps between samples mean missing data: hold the car instead of sliding across the map. */
 const MAX_INTERPOLATION_MS = 4000;
 
-export function buildCarSamples(records: LocationRecord[], transform: SvgTransform, path: TrackPath | null): Map<number, CarSample[]> {
+export function buildCarSamples(
+  records: LocationRecord[],
+  transform: SvgTransform,
+  path: TrackPath | null,
+): Map<number, CarSample[]> {
   const byDriver = new Map<number, CarSample[]>();
   for (const r of records) {
     if (r.x === 0 && r.y === 0) continue; // car not transmitting
@@ -31,7 +35,13 @@ export function buildCarSamples(records: LocationRecord[], transform: SvgTransfo
     const y = r.y * transform.scaleY + transform.translateY;
     const snap = path ? snapToPath(path, x, y) : null;
     const list = byDriver.get(r.driver_number) ?? [];
-    list.push({ ms: toMs(r.date), x, y, progress: snap?.progress ?? 0, onTrack: snap !== null && snap.distance <= SNAP_THRESHOLD });
+    list.push({
+      ms: toMs(r.date),
+      x,
+      y,
+      progress: snap?.progress ?? 0,
+      onTrack: snap !== null && snap.distance <= SNAP_THRESHOLD,
+    });
     byDriver.set(r.driver_number, list);
   }
   for (const list of byDriver.values()) list.sort((a, b) => a.ms - b.ms);
@@ -45,12 +55,17 @@ export interface CarPoint {
   stale: boolean;
 }
 
-export function carPointAt(samples: CarSample[], ms: number, path: TrackPath | null): CarPoint | null {
+export function carPointAt(
+  samples: CarSample[],
+  ms: number,
+  path: TrackPath | null,
+): CarPoint | null {
   const i = lastIndexAtOrBefore(samples, ms, (s) => s.ms);
   if (i < 0) return null;
   const a = samples[i];
   const b = samples[i + 1];
-  if (!b || b.ms - a.ms > MAX_INTERPOLATION_MS) return { x: a.x, y: a.y, stale: ms - a.ms > MAX_INTERPOLATION_MS };
+  if (!b || b.ms - a.ms > MAX_INTERPOLATION_MS)
+    return { x: a.x, y: a.y, stale: ms - a.ms > MAX_INTERPOLATION_MS };
   const f = (ms - a.ms) / (b.ms - a.ms);
   if (path && a.onTrack && b.onTrack) {
     let dp = b.progress - a.progress;
@@ -80,7 +95,10 @@ export function fitTransform(records: LocationRecord[]): SvgTransform | null {
   }
   if (!Number.isFinite(minX) || maxX === minX || maxY === minY) return null;
   const margin = 40;
-  const scale = Math.min((1000 - 2 * margin) / (maxX - minX), (1000 - 2 * margin) / (maxY - minY));
+  const scale = Math.min(
+    (1000 - 2 * margin) / (maxX - minX),
+    (1000 - 2 * margin) / (maxY - minY),
+  );
   return {
     scaleX: scale,
     scaleY: -scale,
@@ -90,9 +108,13 @@ export function fitTransform(records: LocationRecord[]): SvgTransform | null {
 }
 
 /** Trail of one driver over one lap, used as a reconstructed outline when no local outline exists. */
-export function trailPath(samples: CarSample[], fromMs: number, toMs: number): string {
+export function trailPath(
+  samples: CarSample[],
+  fromMs: number,
+  toMs: number,
+): string {
   return samples
     .filter((s) => s.ms >= fromMs && s.ms <= toMs)
-    .map((s, i) => `${i === 0 ? 'M' : 'L'}${s.x.toFixed(1)},${s.y.toFixed(1)}`)
-    .join('');
+    .map((s, i) => `${i === 0 ? "M" : "L"}${s.x.toFixed(1)},${s.y.toFixed(1)}`)
+    .join("");
 }

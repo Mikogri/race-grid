@@ -1,5 +1,11 @@
-import { useRef, useState, type KeyboardEvent, type PointerEvent, type RefObject } from 'react';
-import styles from './ReplayPage.module.css';
+import {
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type PointerEvent,
+  type RefObject,
+} from "react";
+import styles from "./ReplayPage.module.css";
 
 const MIN_HEIGHT = 160;
 /** The map keeps at least this much of the workspace. */
@@ -15,15 +21,24 @@ interface PanelResizerProps {
 }
 
 /** Drag handle above the analysis panel: drag or use ↑/↓ to change its height within limits. */
-export function PanelResizer({ panel, workspace, onResize, onCommit, onDragChange }: PanelResizerProps) {
+export function PanelResizer({
+  panel,
+  workspace,
+  onResize,
+  onCommit,
+  onDragChange,
+}: PanelResizerProps) {
   const drag = useRef<{ y: number; height: number } | null>(null);
   const [dragging, setDragging] = useState(false);
 
   const clamp = (value: number) => {
     const max = (workspace.current?.clientHeight ?? 0) - MAP_MIN_HEIGHT;
-    return Math.round(Math.min(Math.max(value, MIN_HEIGHT), Math.max(MIN_HEIGHT, max)));
+    return Math.round(
+      Math.min(Math.max(value, MIN_HEIGHT), Math.max(MIN_HEIGHT, max)),
+    );
   };
-  const current = () => panel.current?.getBoundingClientRect().height ?? MIN_HEIGHT;
+  const current = () =>
+    panel.current?.getBoundingClientRect().height ?? MIN_HEIGHT;
 
   const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -43,9 +58,11 @@ export function PanelResizer({ panel, workspace, onResize, onCommit, onDragChang
     onCommit(current());
   };
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+    if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
     event.preventDefault();
-    const next = clamp(current() + (event.key === 'ArrowUp' ? KEY_STEP : -KEY_STEP));
+    const next = clamp(
+      current() + (event.key === "ArrowUp" ? KEY_STEP : -KEY_STEP),
+    );
     onResize(next);
     onCommit(next);
   };

@@ -29,6 +29,12 @@ npm run build
 npm run preview
 ```
 
+## Formatowanie kodu
+
+W katalogu `frontend` uruchom `npm run format`, aby sformatować kod, lub `npm run format:check`, aby sprawdzić go bez zmian. Używamy domyślnych zasad Prettier, z wersją przypiętą dokładnie w `package.json`. Pliki generowane, zależności, biblioteki zewnętrzne i archiwalne warianty UI wyklucza `.prettierignore`.
+
+W VS Code zainstaluj zalecane rozszerzenie `esbenp.prettier-vscode`; ustawienia projektu włączają formatowanie przy zapisie dla React, TypeScript, JavaScript, CSS i JSON. Oxlint nadal odpowiada za jakość kodu. GitHub Actions sprawdza również formatowanie.
+
 ## Cloudflare Pages
 
 Połącz repozytorium z Pages i ustaw gałąź produkcyjną `main`. Katalog główny buildu pozostaw na poziomie repozytorium — generowanie torów wymaga dostępu do `RaceGrid_Tracks` obok `frontend`.

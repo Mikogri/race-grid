@@ -14,8 +14,8 @@
     grid-template-columns var(--duration-layout) var(--ease-out),
     grid-template-rows var(--duration-layout) var(--ease-out);
   grid-template-areas:
-    'tower map driver'
-    'tower analysis driver';
+    "tower map driver"
+    "tower analysis driver";
   gap: var(--grid-gap-tight);
   flex: 1;
   min-height: 0;
@@ -26,7 +26,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--grid-gap-tight);
-  height: calc(100dvh - var(--topbar-height) - var(--footer-height) - 2 * var(--sheet-padding));
+  height: calc(
+    100dvh - var(--topbar-height) - var(--footer-height) - 2 *
+      var(--sheet-padding)
+  );
   min-height: 0;
 }
 
@@ -41,21 +44,21 @@
   opacity: 0.5;
 }
 
-.workspace[data-tower-collapsed='true'] {
+.workspace[data-tower-collapsed="true"] {
   --tower-w: var(--rail-width);
 }
 
-.workspace[data-driver-collapsed='true'] {
+.workspace[data-driver-collapsed="true"] {
   --driver-w: var(--rail-width);
 }
 
 /* Minimised analysis: a rail strip like the side panels. */
-.workspace[data-analysis-collapsed='true'] {
+.workspace[data-analysis-collapsed="true"] {
   --analysis-row: var(--rail-width);
 }
 
 /* Dragging the resizer follows the pointer directly. */
-.workspace[data-resizing='true'] {
+.workspace[data-resizing="true"] {
   transition: none;
 }
 
@@ -73,7 +76,7 @@
   transition: opacity var(--duration-layout) var(--ease-out);
 }
 
-.slot[data-collapsed='true'] > :first-child {
+.slot[data-collapsed="true"] > :first-child {
   opacity: 0;
   pointer-events: none;
 }
@@ -185,7 +188,7 @@
   transition: opacity var(--duration-layout) var(--ease-out);
 }
 
-.analysisArea[data-collapsed='true'] .analysisTile {
+.analysisArea[data-collapsed="true"] .analysisTile {
   opacity: 0;
   pointer-events: none;
 }
@@ -211,7 +214,7 @@
 }
 
 .resizer::before {
-  content: '';
+  content: "";
   width: 40px;
   height: 4px;
   border-radius: var(--radius-pill);
@@ -221,7 +224,7 @@
 
 .resizer:hover::before,
 .resizer:focus-visible::before,
-.resizer[data-dragging='true']::before {
+.resizer[data-dragging="true"]::before {
   background: var(--text-tertiary);
 }
 
@@ -327,7 +330,7 @@
 }
 
 .sectorTag::before {
-  content: '';
+  content: "";
   width: 6px;
   height: 6px;
   border-radius: var(--radius-pill);
@@ -1047,8 +1050,8 @@
   .workspace {
     grid-template-columns: var(--tower-w) minmax(0, 1fr);
     grid-template-areas:
-      'tower map'
-      'driver analysis';
+      "tower map"
+      "driver analysis";
   }
 }
 
@@ -1066,7 +1069,7 @@
   .workspace {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto;
-    grid-template-areas: 'map' 'tower' 'driver' 'analysis';
+    grid-template-areas: "map" "tower" "driver" "analysis";
   }
   .towerTile {
     max-height: 560px;

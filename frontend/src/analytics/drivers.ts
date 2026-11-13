@@ -1,5 +1,5 @@
-import type { Driver } from '../api/openf1/types';
-import { UNKNOWN_TEAM_COLOR, teamColor } from '../lib/teams';
+import type { Driver } from "../api/openf1/types";
+import { UNKNOWN_TEAM_COLOR, teamColor } from "../lib/teams";
 
 export interface DriverLabel {
   driverNumber: number;
@@ -19,8 +19,9 @@ export function driverLookup(drivers: Driver[] | undefined): DriverLookup {
     map.set(d.driver_number, {
       driverNumber: d.driver_number,
       acronym: d.name_acronym,
-      name: [d.first_name, d.last_name].filter(Boolean).join(' ') || d.full_name,
-      teamName: d.team_name ?? 'Unknown team',
+      name:
+        [d.first_name, d.last_name].filter(Boolean).join(" ") || d.full_name,
+      teamName: d.team_name ?? "Unknown team",
       color: teamColor(d.team_colour),
       headshotUrl: d.headshot_url,
     });
@@ -28,6 +29,18 @@ export function driverLookup(drivers: Driver[] | undefined): DriverLookup {
   return map;
 }
 
-export function labelFor(lookup: DriverLookup, driverNumber: number): DriverLabel {
-  return lookup.get(driverNumber) ?? { driverNumber, acronym: `#${driverNumber}`, name: `Car ${driverNumber}`, teamName: '—', color: UNKNOWN_TEAM_COLOR, headshotUrl: null };
+export function labelFor(
+  lookup: DriverLookup,
+  driverNumber: number,
+): DriverLabel {
+  return (
+    lookup.get(driverNumber) ?? {
+      driverNumber,
+      acronym: `#${driverNumber}`,
+      name: `Car ${driverNumber}`,
+      teamName: "—",
+      color: UNKNOWN_TEAM_COLOR,
+      headshotUrl: null,
+    }
+  );
 }

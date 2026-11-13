@@ -1,6 +1,6 @@
-@import './tokens.css';
-@import './theme-noir.css'; /* experimental: see the file header */
-@import './theme-redline.css'; /* experimental: see the file header */
+@import "./tokens.css";
+@import "./theme-noir.css"; /* experimental: see the file header */
+@import "./theme-redline.css"; /* experimental: see the file header */
 
 *,
 *::before,
@@ -32,11 +32,12 @@ body {
 
 /* Backdrop: the red-light image, pre-blurred (37.5 px) at 50 % over black. Fixed behind every surface. */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: var(--background) url('../assets/app-background.webp') center top / cover no-repeat;
+  background: var(--background) url("../assets/app-background.webp") center
+    top / cover no-repeat;
   pointer-events: none;
 }
 

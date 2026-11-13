@@ -1,6 +1,6 @@
 // Counting stats derived from per-round results (RaceGrid derived, based on OpenF1 session_result/starting_grid).
-import type { DriverRoundResult, SeasonModel } from './season';
-import { mean, median } from '../lib/stats';
+import type { DriverRoundResult, SeasonModel } from "./season";
+import { mean, median } from "../lib/stats";
 
 export interface DriverSummary {
   starts: number;
@@ -21,19 +21,25 @@ export interface DriverSummary {
 }
 
 export function summarize(results: DriverRoundResult[]): DriverSummary {
-  const started = results.filter((r) => r.status !== 'dns');
-  const finishes = results.map((r) => r.finish).filter((p): p is number => p !== null);
-  const grids = results.map((r) => r.grid).filter((p): p is number => p !== null);
-  const gained = results.filter((r) => r.grid !== null && r.finish !== null).map((r) => (r.grid ?? 0) - (r.finish ?? 0));
+  const started = results.filter((r) => r.status !== "dns");
+  const finishes = results
+    .map((r) => r.finish)
+    .filter((p): p is number => p !== null);
+  const grids = results
+    .map((r) => r.grid)
+    .filter((p): p is number => p !== null);
+  const gained = results
+    .filter((r) => r.grid !== null && r.finish !== null)
+    .map((r) => (r.grid ?? 0) - (r.finish ?? 0));
   return {
     starts: started.length,
     wins: results.filter((r) => r.finish === 1).length,
     podiums: results.filter((r) => r.finish !== null && r.finish <= 3).length,
     poles: results.filter((r) => r.qualifyingPosition === 1).length,
     pointsFinishes: results.filter((r) => r.points > 0).length,
-    dnf: results.filter((r) => r.status === 'dnf').length,
-    dns: results.filter((r) => r.status === 'dns').length,
-    dsq: results.filter((r) => r.status === 'dsq').length,
+    dnf: results.filter((r) => r.status === "dnf").length,
+    dns: results.filter((r) => r.status === "dns").length,
+    dsq: results.filter((r) => r.status === "dsq").length,
     bestFinish: finishes.length ? Math.min(...finishes) : null,
     medianGrid: median(grids),
     medianFinish: median(finishes),
@@ -44,7 +50,10 @@ export function summarize(results: DriverRoundResult[]): DriverSummary {
 }
 
 /** Driver numbers that drove for a team in the season (from per-round entries, not just final identity). */
-export function teamDriverNumbers(season: SeasonModel, teamName: string): number[] {
+export function teamDriverNumbers(
+  season: SeasonModel,
+  teamName: string,
+): number[] {
   const numbers = new Set<number>();
   for (const [driverNumber, results] of season.results) {
     if (results.some((r) => r.teamName === teamName)) numbers.add(driverNumber);
@@ -65,7 +74,10 @@ export interface HeadToHead {
 }
 
 /** A − B in the highest qualifying phase (Q3 > Q2 > Q1) where both have a lap time. */
-export function samePhaseGap(a: (number | null)[], b: (number | null)[]): number | null {
+export function samePhaseGap(
+  a: (number | null)[],
+  b: (number | null)[],
+): number | null {
   for (let phase = Math.min(a.length, b.length) - 1; phase >= 0; phase--) {
     const ta = a[phase];
     const tb = b[phase];
@@ -75,7 +87,10 @@ export function samePhaseGap(a: (number | null)[], b: (number | null)[]): number
 }
 
 /** Teammate-style head-to-head over rounds where both drivers took part. */
-export function headToHead(a: DriverRoundResult[], b: DriverRoundResult[]): HeadToHead {
+export function headToHead(
+  a: DriverRoundResult[],
+  b: DriverRoundResult[],
+): HeadToHead {
   const bByRound = new Map(b.map((r) => [r.round, r]));
   const shared = a.filter((r) => bByRound.has(r.round));
   let qualifyingA = 0;
@@ -106,6 +121,12 @@ export function headToHead(a: DriverRoundResult[], b: DriverRoundResult[]): Head
     raceB,
     medianQualifyingGap: median(gaps),
     pointsA: shared.reduce((s, r) => s + r.points + r.sprintPoints, 0),
-    pointsB: shared.reduce((s, r) => s + (bByRound.get(r.round)?.points ?? 0) + (bByRound.get(r.round)?.sprintPoints ?? 0), 0),
+    pointsB: shared.reduce(
+      (s, r) =>
+        s +
+        (bByRound.get(r.round)?.points ?? 0) +
+        (bByRound.get(r.round)?.sprintPoints ?? 0),
+      0,
+    ),
   };
 }

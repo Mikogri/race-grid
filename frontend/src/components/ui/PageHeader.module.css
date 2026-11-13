@@ -189,7 +189,7 @@
 }
 
 .metaItem dt::after {
-  content: ':';
+  content: ":";
 }
 
 .metaItem dd {

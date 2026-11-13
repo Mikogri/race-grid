@@ -27,6 +27,13 @@ For larger features, briefly plan the implementation before editing files.
 
 # Frontend
 
+## Formatting
+
+- Use the pinned Prettier version with its default rules; do not add stylistic overrides or another formatter.
+- Run `npm run format` from `frontend` after editing supported source files, then `npm run format:check`.
+- Respect the root `.prettierignore`: do not format generated assets or clients, vendored code, raw track data or archived UI snapshots.
+- Keep Oxlint quality rules enabled. Formatting is checked in CI and on save in VS Code with `esbenp.prettier-vscode`.
+
 ## General
 
 - Use React + TypeScript conventions already established in the project.
@@ -43,6 +50,7 @@ For larger features, briefly plan the implementation before editing files.
 Keep TypeScript strict.
 
 Avoid:
+
 - `any`
 - `@ts-ignore`
 - unsafe casts
@@ -58,6 +66,7 @@ Do not bypass the type system just to make code compile.
 - Do not introduce generic AI/SaaS visual patterns unless requested.
 
 Avoid without explicit request:
+
 - oversized cards
 - oversized headings
 - excessive whitespace
@@ -135,11 +144,13 @@ A frontend task is not complete until the rendered result has been inspected.
 - Put abstractions at real architectural boundaries.
 
 For async operations:
+
 - propagate `CancellationToken` where appropriate
 - handle external-call timeouts
 - handle failures explicitly
 
 For database code:
+
 - avoid N+1 queries
 - avoid loading full entities when a projection is sufficient
 - paginate unbounded collections
@@ -176,6 +187,7 @@ Do not silently change an existing API contract.
 # Security
 
 Never:
+
 - hardcode secrets
 - trust client-side authorization
 - expose sensitive internal data
@@ -193,6 +205,7 @@ Authentication and authorization must be enforced server-side.
 After meaningful changes, run the relevant checks.
 
 Frontend:
+
 - typecheck
 - lint
 - tests
@@ -200,6 +213,7 @@ Frontend:
 - browser verification when UI is affected
 
 Backend:
+
 - build
 - unit tests
 - integration tests when relevant
@@ -213,12 +227,14 @@ If something could not be tested, explicitly state what was not verified.
 # Code quality
 
 Prefer:
+
 - clear names
 - small cohesive functions
 - explicit behavior
 - straightforward control flow
 
 Avoid:
+
 - unnecessary wrappers
 - excessive indirection
 - premature generalization

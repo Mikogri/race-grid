@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-const STORAGE_KEY = 'racegrid.replay.analysisHeight';
+const STORAGE_KEY = "racegrid.replay.analysisHeight";
 function readHeight(): number | null {
   try {
     const value = Number(localStorage.getItem(STORAGE_KEY));
@@ -18,7 +18,10 @@ export function useAnalysisHeight() {
     try {
       localStorage.setItem(STORAGE_KEY, String(Math.round(value)));
     } catch (error) {
-      console.warn('RaceGrid: could not persist the replay panel height', error);
+      console.warn(
+        "RaceGrid: could not persist the replay panel height",
+        error,
+      );
     }
   };
   return { height, setHeight, save };

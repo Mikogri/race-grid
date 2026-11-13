@@ -1,7 +1,15 @@
-import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from 'react';
-import { createPortal } from 'react-dom';
-import { IconCheck, IconChevronDown } from '@tabler/icons-react';
-import styles from './Select.module.css';
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
+import { createPortal } from "react-dom";
+import { IconCheck, IconChevronDown } from "@tabler/icons-react";
+import styles from "./Select.module.css";
 
 export interface SelectOption<T extends string | number> {
   value: T;
@@ -37,7 +45,7 @@ export function Select<T extends string | number>({
   value,
   options,
   onChange,
-  placeholder = 'Select…',
+  placeholder = "Select…",
   disabled = false,
   className,
   icon,
@@ -56,19 +64,23 @@ export function Select<T extends string | number>({
     if (!open) return;
     const onPointerDown = (event: PointerEvent) => {
       const target = event.target as Node;
-      if (!rootRef.current?.contains(target) && !listRef.current?.contains(target)) setOpen(false);
+      if (
+        !rootRef.current?.contains(target) &&
+        !listRef.current?.contains(target)
+      )
+        setOpen(false);
     };
     const onScroll = (event: Event) => {
       if (!listRef.current?.contains(event.target as Node)) setOpen(false);
     };
     const close = () => setOpen(false);
-    document.addEventListener('pointerdown', onPointerDown);
-    document.addEventListener('scroll', onScroll, true);
-    window.addEventListener('resize', close);
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("scroll", onScroll, true);
+    window.addEventListener("resize", close);
     return () => {
-      document.removeEventListener('pointerdown', onPointerDown);
-      document.removeEventListener('scroll', onScroll, true);
-      window.removeEventListener('resize', close);
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("scroll", onScroll, true);
+      window.removeEventListener("resize", close);
     };
   }, [open]);
 
@@ -79,22 +91,35 @@ export function Select<T extends string | number>({
     const item = list?.querySelector<HTMLElement>(`[data-index="${active}"]`);
     if (!open || !list || !item) return;
     if (item.offsetTop < list.scrollTop) list.scrollTop = item.offsetTop;
-    else if (item.offsetTop + item.offsetHeight > list.scrollTop + list.clientHeight) {
+    else if (
+      item.offsetTop + item.offsetHeight >
+      list.scrollTop + list.clientHeight
+    ) {
       list.scrollTop = item.offsetTop + item.offsetHeight - list.clientHeight;
     }
   }, [open, active]);
 
   const openList = () => {
     if (disabled || options.length === 0) return;
-    const trigger = rootRef.current?.querySelector('button')?.getBoundingClientRect();
+    const trigger = rootRef.current
+      ?.querySelector("button")
+      ?.getBoundingClientRect();
     if (trigger) {
       // Up to 320 px wide: flip to the trigger's right edge if it would leave the window.
-      const horizontal = trigger.left + 320 > window.innerWidth - 16 ? { right: window.innerWidth - trigger.right } : { left: trigger.left };
+      const horizontal =
+        trigger.left + 320 > window.innerWidth - 16
+          ? { right: window.innerWidth - trigger.right }
+          : { left: trigger.left };
       const vertical =
-        trigger.bottom + MENU_SPACE > window.innerHeight && trigger.top > MENU_SPACE
+        trigger.bottom + MENU_SPACE > window.innerHeight &&
+        trigger.top > MENU_SPACE
           ? { bottom: window.innerHeight - trigger.top + 4 }
           : { top: trigger.bottom + 4 };
-      setPosition({ ...horizontal, ...vertical, minWidth: Math.max(trigger.width, 180) });
+      setPosition({
+        ...horizontal,
+        ...vertical,
+        minWidth: Math.max(trigger.width, 180),
+      });
     }
     setActive(Math.max(0, selectedIndex));
     setOpen(true);
@@ -108,28 +133,39 @@ export function Select<T extends string | number>({
 
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     if (!open) {
-      if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(event.key)) {
+      if (["ArrowDown", "ArrowUp", "Enter", " "].includes(event.key)) {
         event.preventDefault();
         openList();
       }
       return;
     }
     const last = options.length - 1;
-    const moves: Record<string, number> = { ArrowDown: Math.min(last, active + 1), ArrowUp: Math.max(0, active - 1), Home: 0, End: last };
+    const moves: Record<string, number> = {
+      ArrowDown: Math.min(last, active + 1),
+      ArrowUp: Math.max(0, active - 1),
+      Home: 0,
+      End: last,
+    };
     if (event.key in moves) {
       event.preventDefault();
       setActive(moves[event.key] ?? 0);
-    } else if (event.key === 'Enter' || event.key === ' ') {
+    } else if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       choose(active);
-    } else if (event.key === 'Escape' || event.key === 'Tab') {
+    } else if (event.key === "Escape" || event.key === "Tab") {
       setOpen(false);
     }
   };
 
   return (
-    <div ref={rootRef} className={[styles.field, className].filter(Boolean).join(' ')}>
-      <span id={`${id}-label`} className={showLabel ? styles.label : 'visually-hidden'}>
+    <div
+      ref={rootRef}
+      className={[styles.field, className].filter(Boolean).join(" ")}
+    >
+      <span
+        id={`${id}-label`}
+        className={showLabel ? styles.label : "visually-hidden"}
+      >
         {label}
       </span>
       <button
@@ -148,9 +184,16 @@ export function Select<T extends string | number>({
       >
         <span className={styles.start}>
           {icon}
-          <span className={selected ? styles.value : styles.placeholder}>{selected?.label ?? placeholder}</span>
+          <span className={selected ? styles.value : styles.placeholder}>
+            {selected?.label ?? placeholder}
+          </span>
         </span>
-        <IconChevronDown size={16} stroke={1.5} className={styles.chevron} aria-hidden="true" />
+        <IconChevronDown
+          size={16}
+          stroke={1.5}
+          className={styles.chevron}
+          aria-hidden="true"
+        />
       </button>
       {createPortal(
         <ul
@@ -169,14 +212,21 @@ export function Select<T extends string | number>({
               data-index={index}
               role="option"
               aria-selected={index === selectedIndex}
-              className={`${styles.option} ${index === active ? styles.active : ''}`}
+              className={`${styles.option} ${index === active ? styles.active : ""}`}
               onPointerEnter={() => setActive(index)}
               // pointerdown on the document would close the list before click fires
               onPointerDown={(event) => event.preventDefault()}
               onClick={() => choose(index)}
             >
               <span className={styles.optionLabel}>{option.label}</span>
-              {index === selectedIndex && <IconCheck size={14} stroke={1.5} className={styles.check} aria-hidden="true" />}
+              {index === selectedIndex && (
+                <IconCheck
+                  size={14}
+                  stroke={1.5}
+                  className={styles.check}
+                  aria-hidden="true"
+                />
+              )}
             </li>
           ))}
         </ul>,

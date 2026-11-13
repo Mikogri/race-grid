@@ -1,8 +1,8 @@
 // Lap comparison on a common "lap progress" axis. OpenF1 car_data has no distance channel, so
 // distance is integrated from speed over time and normalised to 0..1 — a RaceGrid derivation.
-import type { CarDataRecord, Lap } from '../api/openf1/types';
-import { toMs } from '../lib/stats';
-import { isDrsOpen } from '../lib/telemetry';
+import type { CarDataRecord, Lap } from "../api/openf1/types";
+import { toMs } from "../lib/stats";
+import { isDrsOpen } from "../lib/telemetry";
 
 export interface TracePoint {
   /** 0..1 along the lap (derived). */
@@ -23,7 +23,10 @@ export interface LapTrace {
   points: TracePoint[];
 }
 
-export function buildTrace(lap: Lap, samples: CarDataRecord[]): LapTrace | null {
+export function buildTrace(
+  lap: Lap,
+  samples: CarDataRecord[],
+): LapTrace | null {
   if (!lap.date_start || !lap.lap_duration) return null;
   const start = toMs(lap.date_start);
   const end = start + lap.lap_duration * 1000;
@@ -37,7 +40,8 @@ export function buildTrace(lap: Lap, samples: CarDataRecord[]): LapTrace | null 
   const raw = inLap.map((s, i) => {
     if (i > 0) {
       const dt = (toMs(s.date) - toMs(inLap[i - 1].date)) / 1000;
-      if (dt > 0 && dt < 2) metres += ((s.speed + inLap[i - 1].speed) / 2 / 3.6) * dt;
+      if (dt > 0 && dt < 2)
+        metres += ((s.speed + inLap[i - 1].speed) / 2 / 3.6) * dt;
     }
     return { metres, s };
   });
@@ -71,12 +75,19 @@ function timeAt(points: TracePoint[], progress: number): number | null {
   }
   const a = points[lo];
   const b = points[hi];
-  const f = b.progress === a.progress ? 0 : (progress - a.progress) / (b.progress - a.progress);
+  const f =
+    b.progress === a.progress
+      ? 0
+      : (progress - a.progress) / (b.progress - a.progress);
   return a.time + (b.time - a.time) * f;
 }
 
 /** Cumulative time difference vs a reference lap along lap progress (positive = slower than reference). */
-export function deltaTrace(reference: LapTrace, other: LapTrace, steps = 300): { x: number; y: number }[] {
+export function deltaTrace(
+  reference: LapTrace,
+  other: LapTrace,
+  steps = 300,
+): { x: number; y: number }[] {
   const out: { x: number; y: number }[] = [];
   for (let i = 0; i <= steps; i++) {
     const p = i / steps;
@@ -86,7 +97,11 @@ export function deltaTrace(reference: LapTrace, other: LapTrace, steps = 300): {
   }
   // Integration drift: spread the difference to the official lap-time gap linearly over the lap,
   // so the line ends exactly on the timed difference without a step at the finish.
-  const official = (other.lap.lap_duration ?? 0) - (reference.lap.lap_duration ?? 0);
+  const official =
+    (other.lap.lap_duration ?? 0) - (reference.lap.lap_duration ?? 0);
   const drift = out.length ? official - out[out.length - 1].y : 0;
-  return out.map((point) => ({ x: point.x, y: point.y + (drift * point.x) / 100 }));
+  return out.map((point) => ({
+    x: point.x,
+    y: point.y + (drift * point.x) / 100,
+  }));
 }

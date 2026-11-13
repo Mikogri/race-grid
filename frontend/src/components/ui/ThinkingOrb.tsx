@@ -1,27 +1,29 @@
 // React port of the thinking-orbs Vue component (MIT, Copyright (c) 2026 Jakub Antalik).
 // The canvas engine lives unchanged in src/vendor/thinking-orbs. Reserved for heavy work only
 // (replay preparation, compare/performance analysis) — regular requests use skeletons.
-import { useEffect, useRef, useState } from 'react';
-import { MODE_DRAWS } from '../../vendor/thinking-orbs/engine/registry';
-import { resolvePreset } from '../../vendor/thinking-orbs/presets';
-import type { OrbSize, OrbState } from '../../vendor/thinking-orbs/types';
+import { useEffect, useRef, useState } from "react";
+import { MODE_DRAWS } from "../../vendor/thinking-orbs/engine/registry";
+import { resolvePreset } from "../../vendor/thinking-orbs/presets";
+import type { OrbSize, OrbState } from "../../vendor/thinking-orbs/types";
 
 const LABELS: Record<OrbState, string> = {
-  working: 'Working…',
-  searching: 'Searching…',
-  solving: 'Solving…',
-  listening: 'Listening…',
-  composing: 'Composing…',
-  shaping: 'Shaping…',
+  working: "Working…",
+  searching: "Searching…",
+  solving: "Solving…",
+  listening: "Listening…",
+  composing: "Composing…",
+  shaping: "Shaping…",
 };
 
 function usePrefersReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [reduced, setReduced] = useState(
+    () => matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
   useEffect(() => {
-    const query = matchMedia('(prefers-reduced-motion: reduce)');
+    const query = matchMedia("(prefers-reduced-motion: reduce)");
     const onChange = (event: MediaQueryListEvent) => setReduced(event.matches);
-    query.addEventListener('change', onChange);
-    return () => query.removeEventListener('change', onChange);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
   }, []);
   return reduced;
 }
@@ -35,7 +37,14 @@ interface ThinkingOrbProps {
   className?: string;
 }
 
-export function ThinkingOrb({ state = 'working', size = 64, speed = 1, paused = false, label, className }: ThinkingOrbProps) {
+export function ThinkingOrb({
+  state = "working",
+  size = 64,
+  speed = 1,
+  paused = false,
+  label,
+  className,
+}: ThinkingOrbProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduced = usePrefersReducedMotion();
 
@@ -45,7 +54,7 @@ export function ThinkingOrb({ state = 'working', size = 64, speed = 1, paused = 
     const dpr = Math.min(2, window.devicePixelRatio || 1);
     canvas.width = Math.round(size * dpr);
     canvas.height = Math.round(size * dpr);
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const { mode, speed: baseSpeed, opts } = resolvePreset(state, size);
@@ -84,20 +93,20 @@ export function ThinkingOrb({ state = 'working', size = 64, speed = 1, paused = 
     // Pause while scrolled out of view or while the tab is hidden.
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry?.isIntersecting ?? true;
-      if (visible && document.visibilityState !== 'hidden') start();
+      if (visible && document.visibilityState !== "hidden") start();
       else stop();
     });
     observer.observe(canvas);
     const onVisibilityChange = () => {
-      if (document.visibilityState === 'hidden') stop();
+      if (document.visibilityState === "hidden") stop();
       else if (visible) start();
     };
-    document.addEventListener('visibilitychange', onVisibilityChange);
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
       stop();
       observer.disconnect();
-      document.removeEventListener('visibilitychange', onVisibilityChange);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, [state, size, speed, paused, reduced]);
 
@@ -107,7 +116,7 @@ export function ThinkingOrb({ state = 'working', size = 64, speed = 1, paused = 
       className={className}
       role="img"
       aria-label={label ?? LABELS[state]}
-      style={{ width: size, height: size, display: 'block' }}
+      style={{ width: size, height: size, display: "block" }}
     />
   );
 }
