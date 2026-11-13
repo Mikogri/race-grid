@@ -4,12 +4,16 @@ Frontend-only Formula 1 analysis app: React 19 + TypeScript + Vite, React Router
 Visual language: `../docs/design-language.md` (derived from `../references/reference-ui-design.png`).
 
 ```bash
-npm install
+npm ci
 npm run dev        # also regenerates public/circuits from ../RaceGrid_Tracks
 npm run typecheck
 npm run lint
 npm run build
 ```
+
+Use Node.js 24. Deployment settings are documented in the [root README](../README.md#cloudflare-pages).
+Builds generate circuit assets locally and never download headshots. Driver WebPs are versioned in
+`public/assets/drivers`; run `npm run headshots` explicitly to fetch missing portraits, then review and commit them.
 
 ## Data sources — kept separate
 

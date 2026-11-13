@@ -3,11 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
     "circuits": "node scripts/build-circuits.mjs",
-    "predev": "node scripts/build-circuits.mjs && node scripts/build-headshots.mjs",
+    "predev": "node scripts/build-circuits.mjs",
     "dev": "vite",
-    "prebuild": "node scripts/build-circuits.mjs && node scripts/build-headshots.mjs",
+    "prebuild": "node scripts/build-circuits.mjs",
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b",
     "lint": "oxlint",

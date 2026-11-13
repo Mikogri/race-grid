@@ -1,4 +1,5 @@
-// Builds sharper driver headshots once and caches them in public/assets/drivers/<code>.webp
+// Manually refreshes versioned driver headshots in public/assets/drivers/<code>.webp.
+// Run `npm run headshots`, review and commit new files. Normal builds never call the API.
 // (<code> = the F1 media id in the OpenF1 headshot_url, e.g. "lannor01": one file per person, stable across seasons
 // even when race numbers change hands, like #1 after a title).
 //
@@ -26,6 +27,7 @@ const API = 'https://api.openf1.org/v1';
 const FIRST_SEASON = 2023;
 const TARGET_PX = 448;
 const QUALITY = 90;
+const REQUEST_TIMEOUT_MS = 15_000;
 /** Path or name of the Real-ESRGAN ncnn binary; set REALESRGAN_BIN to use one outside PATH. */
 const ESRGAN = process.env.REALESRGAN_BIN ?? 'realesrgan-ncnn-vulkan';
 
@@ -34,7 +36,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 /** OpenF1 allows ~3 requests/s; one at a time with a pause is plenty for a handful of calls. */
 async function openf1(endpoint, params) {
   await sleep(400);
-  const res = await fetch(`${API}/${endpoint}?${new URLSearchParams(params)}`);
+  const res = await fetch(`${API}/${endpoint}?${new URLSearchParams(params)}`, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
   if (!res.ok) throw new Error(`OpenF1 ${endpoint}: HTTP ${res.status}`);
   return res.json();
 }
@@ -66,7 +68,7 @@ async function collectHeadshots() {
 }
 
 function esrganAvailable() {
-  const probe = spawnSync(ESRGAN, ['-h'], { stdio: 'ignore' });
+  const probe = spawnSync(ESRGAN, ['-h'], { stdio: 'ignore', timeout: 5000 });
   return !probe.error;
 }
 
@@ -77,7 +79,7 @@ async function upscale(buffer) {
   const input = path.join(dir, 'in.png');
   const output = path.join(dir, 'out.png');
   await writeFile(input, await sharp(buffer).png().toBuffer());
-  const run = spawnSync(ESRGAN, ['-i', input, '-o', output, '-n', 'realesrgan-x4plus'], { stdio: 'ignore' });
+  const run = spawnSync(ESRGAN, ['-i', input, '-o', output, '-n', 'realesrgan-x4plus'], { stdio: 'ignore', timeout: 120_000 });
   if (run.status !== 0) throw new Error(`Real-ESRGAN exited with ${run.status ?? run.error?.message}`);
   const result = await readFile(output);
   await rm(dir, { recursive: true, force: true });
@@ -87,7 +89,7 @@ async function upscale(buffer) {
 async function build({ code, url, name }, canUpscale) {
   const file = path.join(outDir, `${code}.webp`);
   if (existsSync(file)) return 'cached';
-  const res = await fetch(sourceUrl(url));
+  const res = await fetch(sourceUrl(url), { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
   if (!res.ok) throw new Error(`${name}: HTTP ${res.status}`);
   let image = Buffer.from(await res.arrayBuffer());
   const { width = 0 } = await sharp(image).metadata();

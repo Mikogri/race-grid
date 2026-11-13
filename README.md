@@ -12,7 +12,7 @@ Dane obejmują sezony od 2023 roku, zależnie od dostępności w OpenF1. Dane hi
 
 ## Uruchomienie
 
-Wymagany Node.js **22.12+** (lub nowsza wspierana wersja, np. 24) i npm.
+Wymagany Node.js **24** (wersja wskazana w `.node-version`) i npm.
 
 ```bash
 cd frontend
@@ -20,7 +20,7 @@ npm ci
 npm run dev -- --port 5174
 ```
 
-Aplikacja: `http://localhost:5174`. Skrypty przed startem przygotowują tory i pobierają zdjęcia kierowców, więc pierwsze uruchomienie wymaga internetu. Opcjonalny Real-ESRGAN poprawia zdjęcia, jeśli jest dostępny; nie jest wymagany.
+Aplikacja: `http://localhost:5174`. Start i build przygotowują tory lokalnie, bez połączeń do API. Portrety kierowców są zapisane w repozytorium; `npm run headshots` pobiera nowe zdjęcia (wymaga internetu), które należy przejrzeć i dodać do Git. Opcjonalny Real-ESRGAN poprawia zdjęcia, jeśli jest dostępny; nie jest wymagany. Działająca aplikacja wymaga połączenia z OpenF1.
 
 ```bash
 npm run typecheck
@@ -28,6 +28,19 @@ npm run lint
 npm run build
 npm run preview
 ```
+
+## Cloudflare Pages
+
+Połącz repozytorium z Pages i ustaw gałąź produkcyjną `main`. Katalog główny buildu pozostaw na poziomie repozytorium — generowanie torów wymaga dostępu do `RaceGrid_Tracks` obok `frontend`.
+
+- Build command: `npm --prefix frontend ci && npm --prefix frontend run build`.
+- Output directory: `frontend/dist` (również w `wrangler.toml`).
+- Node: `24`, zgodnie z `.node-version`; można też ustawić `NODE_VERSION=24` w Pages.
+- Nie są potrzebne sekrety ani własny backend. Tokenów OpenF1 nie należy dodawać do frontendu.
+
+Pages obsługuje trasy SPA automatycznie, o ile nie dodamy głównego `404.html`. Nagłówki bezpieczeństwa i CSP są w `frontend/public/_headers`. Dopuszczają używane fonty Google, API OpenF1 oraz zdjęcia i radio z domen F1. Lokalny `npm run preview` nie interpretuje `_headers`; do sprawdzenia zachowania Pages po buildzie użyj z katalogu repozytorium `npx wrangler pages dev`.
+
+GitHub Actions sprawdza instalację z lockfile, typy, lint, audyt zależności i build. Przed produkcją sprawdź wdrożenie próbne: bezpośrednie wejścia i odświeżanie podstron, pierwszy odczyt bez cache, replay, radio i widok mobilny. Skontroluj konsolę pod kątem błędów CSP. Następnie podepnij domenę w Pages; w razie problemów przywróć poprzednie wdrożenie w panelu Cloudflare.
 
 ## Struktura
 

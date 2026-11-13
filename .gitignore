@@ -12,6 +12,8 @@ coverage/
 !.env.sample
 *.local
 .claude/
+.serena/
+.wrangler/
 
 # Logs and editor files
 *.log
